@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import github.karchx.motto.R
 import github.karchx.motto.databinding.FragmentHomeBinding
+import java.lang.Exception
 
 class HomeFragment : Fragment() {
 
@@ -24,7 +25,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
