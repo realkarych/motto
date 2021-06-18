@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "187498569902",
+    "project_id": "motto-88a46",
+    "storage_bucket": "motto-88a46.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187498569902:android:8833ae7b6470091f334d3f",
+        "android_client_info": {
+          "package_name": "github.karchx.motto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "187498569902-93mecqa2266t9kb8a4olmu9ni7ok9rve.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvFNWFm4GDY4EI5UxRVEsWO3THKvnFfvM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "187498569902-93mecqa2266t9kb8a4olmu9ni7ok9rve.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
