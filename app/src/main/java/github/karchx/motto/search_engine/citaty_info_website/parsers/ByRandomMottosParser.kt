@@ -1,5 +1,6 @@
 package github.karchx.motto.search_engine.citaty_info_website.parsers
 
+import android.util.Log
 import github.karchx.motto.search_engine.citaty_info_website.data.Constants
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import org.jsoup.Jsoup
