@@ -3,17 +3,22 @@ package github.karchx.motto.search_engine.citaty_info_website.parsers
 import github.karchx.motto.search_engine.citaty_info_website.data.Constants
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import github.karchx.motto.search_engine.citaty_info_website.data.Topic
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
 
 class ByTopicMottosParser(private var topic: Topic) : MottosParser {
 
     override fun getMottos(quantityMottos: Int): ArrayList<Motto> {
         val mottos = ArrayList<Motto>()
-        val uri = getUriToParse(topic)
+        val uriToParse = getUriToParse(topic)
 
-        val doc = Jsoup.connect(uri).get()
-        val articles: Elements = doc.select("article")
+        val okHttp = OkHttpClient()
+        val request: Request = Request.Builder().url(uriToParse).get().build()
+        val doc: Document = Jsoup.parse(okHttp.newCall(request).execute().body!!.string())
+        val articles: Elements = doc.select(Constants.ARTICLE_ROOT_ELEMENT_NAME)
 
         val limitedQuantityMottos = getLimitedMottosQuantity(articles, quantityMottos)
 
