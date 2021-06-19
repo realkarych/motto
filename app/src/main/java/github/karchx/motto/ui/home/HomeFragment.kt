@@ -27,13 +27,14 @@ class HomeFragment : Fragment() {
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+        homeViewModel.randomMottos.observe(viewLifecycleOwner, Observer {
+            textView.text = it.toString()
         })
-        return root
     }
 
     override fun onDestroyView() {
