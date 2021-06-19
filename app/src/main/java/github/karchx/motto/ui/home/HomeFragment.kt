@@ -1,15 +1,19 @@
 package github.karchx.motto.ui.home
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import github.karchx.motto.R
 import github.karchx.motto.databinding.FragmentHomeBinding
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import github.karchx.motto.ui.home.adapters.RandomMottosRecyclerAdapter
@@ -53,8 +57,7 @@ class HomeFragment : Fragment() {
             OnClickMottoItemListener(requireContext(), object :
                 OnClickMottoItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
-                    val clickedMotto = mottos[position]
-                    Log.d("posmotto", clickedMotto.toString())
+                    displayFullMottoDialog(clickedMotto = mottos[position])
                 }
             })
         )
@@ -64,6 +67,21 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun displayFullMottoDialog(clickedMotto: Motto) {
+        val dialog = Dialog(requireActivity())
+
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.dialog_full_motto)
+        dialog.setTitle(getString(R.string.motto_about))
+        dialog.show()
+
+        val tvFullMottoQuote = dialog.findViewById<TextView>(R.id.textview_motto_full_quote)
+        val tvFullMottoSource = dialog.findViewById<TextView>(R.id.textview_motto_full_source)
+        tvFullMottoQuote.text = clickedMotto.quote
+        tvFullMottoSource.text = clickedMotto.source
     }
 
     private fun displayMottosRecycler(mottos: ArrayList<Motto>) {
