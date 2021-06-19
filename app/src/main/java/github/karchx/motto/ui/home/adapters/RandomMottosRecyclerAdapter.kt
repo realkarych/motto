@@ -37,7 +37,7 @@ class RandomMottosRecyclerAdapter(
             val cutMottoTitleWordsArray =
                 mottoTitleWordsArray.take(Constants.QUANTITY_WORDS_IN_MOTTO_TITLE)
             var mottoTitle = cutMottoTitleWordsArray.joinToString(separator = " ")
-            mottoTitle = "$mottoTitle..."
+            mottoTitle = "$mottoTitle <...>"
             return mottoTitle
         } else {
             return quote
