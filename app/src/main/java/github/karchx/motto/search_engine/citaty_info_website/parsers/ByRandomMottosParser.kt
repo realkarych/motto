@@ -9,26 +9,17 @@ class ByRandomMottosParser : MottosParser {
     override fun getMottos(quantityMottos: Int): ArrayList<Motto> {
         val mottos = ArrayList<Motto>()
         val uriToParse = getUriToParse()
+        val connection = Jsoup.connect(uriToParse)
 
         for (mottoIndex in 0 until quantityMottos) {
             try {
-                mottos.add(getMottoFromHtml(uriToParse))
+                val doc = connection.get()
+                mottos.add(HtmlMottosParser.getMottoFromHtml(doc, 0))
             } catch (ex: Exception) {
             }
         }
 
         return mottos
-    }
-
-    private fun getMottoFromHtml(uriToParse: String): Motto {
-        val doc = Jsoup.connect(uriToParse).get()
-
-        val quote: String = doc.select(".field-item.even.last").text()
-        val source: String = doc.select(".field-item.even")[1].text()
-        // TODO: Fix this stub after db integration
-        val isSaved = false
-
-        return Motto(quote, source, isSaved)
     }
 
     private fun getUriToParse(): String {
