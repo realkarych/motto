@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,7 +50,8 @@ class HomeFragment : Fragment() {
         initViews()
 
         homeViewModel.randomMottos.observe(viewLifecycleOwner, Observer {
-            displayMottosRecycler(mottos = it)
+            mottos = it
+            displayMottosRecycler(mottos)
         })
 
         mRandomMottosRecycler.addOnItemTouchListener(
