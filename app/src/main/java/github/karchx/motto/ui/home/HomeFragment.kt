@@ -14,6 +14,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import github.karchx.motto.R
 import github.karchx.motto.databinding.FragmentHomeBinding
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
@@ -27,6 +29,7 @@ class HomeFragment : Fragment() {
 
     // Views
     private lateinit var mRandomMottosRecycler: RecyclerView
+    private lateinit var mSwipeRefreshLayoutRandomMottos: SwipeRefreshLayout
 
     // ViewModels
     private lateinit var homeViewModel: HomeViewModel
@@ -52,6 +55,10 @@ class HomeFragment : Fragment() {
         homeViewModel.randomMottos.observe(viewLifecycleOwner, Observer {
             mottos = it
             displayMottosRecycler(mottos)
+
+            if (mSwipeRefreshLayoutRandomMottos.isRefreshing) {
+                mSwipeRefreshLayoutRandomMottos.isRefreshing = false
+            }
         })
 
         mRandomMottosRecycler.addOnItemTouchListener(
@@ -62,6 +69,10 @@ class HomeFragment : Fragment() {
                 }
             })
         )
+
+        mSwipeRefreshLayoutRandomMottos.setOnRefreshListener {
+            homeViewModel.putRandomMottosPostValue()
+        }
     }
 
     override fun onDestroyView() {
@@ -95,5 +106,6 @@ class HomeFragment : Fragment() {
 
     private fun initViews() {
         mRandomMottosRecycler = binding.recyclerviewRandomMottos
+        mSwipeRefreshLayoutRandomMottos = binding.refreshContainerOfRecyclerviewRandomMottos
     }
 }
