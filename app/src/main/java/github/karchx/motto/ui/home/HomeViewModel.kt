@@ -15,8 +15,15 @@ class HomeViewModel : ViewModel() {
 
     private val _randomMottos = MutableLiveData<ArrayList<Motto>>().apply {
         GlobalScope.launch {
-            postValue(byRandomParser.getMottos(Constants.QUANTITY_MOTTOS_IN_LIST))
+            putRandomMottosPostValue()
         }
     }
+
+    fun putRandomMottosPostValue() {
+        GlobalScope.launch {
+            _randomMottos.postValue(byRandomParser.getMottos(Constants.QUANTITY_MOTTOS_IN_LIST))
+        }
+    }
+
     val randomMottos: LiveData<ArrayList<Motto>> = _randomMottos
 }
