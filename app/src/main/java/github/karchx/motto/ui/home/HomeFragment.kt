@@ -49,8 +49,7 @@ class HomeFragment : Fragment() {
         initViews()
 
         homeViewModel.randomMottos.observe(viewLifecycleOwner, Observer {
-            mottos = it
-            displayMottosRecycler(mottos)
+            displayMottosRecycler(mottos = it)
         })
 
         mRandomMottosRecycler.addOnItemTouchListener(
@@ -61,7 +60,6 @@ class HomeFragment : Fragment() {
                 }
             })
         )
-
     }
 
     override fun onDestroyView() {
