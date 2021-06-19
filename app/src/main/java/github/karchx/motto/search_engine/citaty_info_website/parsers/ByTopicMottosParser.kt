@@ -2,20 +2,22 @@ package github.karchx.motto.search_engine.citaty_info_website.parsers
 
 import github.karchx.motto.search_engine.citaty_info_website.data.Constants
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
+import github.karchx.motto.search_engine.citaty_info_website.data.Topic
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 
-class ByRequestMottosParser(private val userRequest: String) : MottosParser {
+class ByTopicMottosParser(private var topic: Topic) : MottosParser {
 
     override fun getMottos(quantityMottos: Int): ArrayList<Motto> {
         val mottos = ArrayList<Motto>()
+        val uri = getUriToParse(topic)
 
-        val doc = Jsoup.connect(getUriToParse(userRequest)).get()
-        val articles: Elements = doc.select(Constants.ARTICLE_ROOT_ELEMENT_NAME)
+        val doc = Jsoup.connect(uri).get()
+        val articles: Elements = doc.select("article")
 
-        val limitedMottosQuantity = getLimitedMottosQuantity(articles, quantityMottos)
+        val limitedQuantityMottos = getLimitedMottosQuantity(articles, quantityMottos)
 
-        for (mottoIndex in 0 until limitedMottosQuantity) {
+        for (mottoIndex in 0 until limitedQuantityMottos) {
             try {
                 mottos.add(HtmlMottosParser.getMottoFromHtml(doc, mottoIndex))
             } catch (ex: Exception) {
@@ -29,9 +31,10 @@ class ByRequestMottosParser(private val userRequest: String) : MottosParser {
         else quantityMottos
     }
 
-    private fun getUriToParse(request: String): String {
+    private fun getUriToParse(topic: Topic): String {
         val baseUri = Constants.DOMAIN
-        val searchType = Constants.REQUEST_SEARCH_TYPE
-        return "$baseUri$searchType$request"
+        val topicUri = topic.topicUri
+        val sortType = Constants.MOTTOS_SORT_TYPE
+        return "$baseUri$topicUri$sortType"
     }
 }

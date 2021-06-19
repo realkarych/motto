@@ -32,8 +32,8 @@ class ByRandomMottosParser : MottosParser {
     }
 
     private fun getUriToParse(): String {
-        val baseUrl = Constants.DOMAIN
+        val baseUri = Constants.DOMAIN
         val searchType = Constants.RANDOM_SEARCH_TYPE
-        return "$baseUrl$searchType"
+        return "$baseUri$searchType"
     }
 }
