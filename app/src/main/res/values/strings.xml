@@ -5,4 +5,6 @@
     <string name="title_favourites">Favourites</string>
     <string name="unknown_author">Unknown author</string>
     <string name="motto_about">About this Motto</string>
+    <string name="motto_copied">Motto copied!</string>
+    <string name="motto_source">Source:</string>
 </resources>
