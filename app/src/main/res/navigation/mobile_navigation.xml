@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="github.karchx.motto.ui.dashboard.DashboardFragment"
+        android:name="github.karchx.motto.ui.dashboard.DashboardLayoutFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard_layout" />
 
     <fragment
         android:id="@+id/navigation_favourites"
