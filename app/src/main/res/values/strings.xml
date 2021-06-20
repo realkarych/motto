@@ -7,4 +7,6 @@
     <string name="motto_about">About this Motto</string>
     <string name="motto_copied">Motto copied!</string>
     <string name="motto_source">Source:</string>
+    <string name="authors">Authors</string>
+    <string name="topics">Topics</string>
 </resources>
