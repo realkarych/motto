@@ -44,19 +44,17 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViews()
 
-        dashboardViewModel.authors.observe(viewLifecycleOwner, Observer { _authors ->
+        dashboardViewModel.authors.observe(viewLifecycleOwner, { _authors ->
             authors = _authors
             arguments?.takeIf { it.containsKey(Constants.KEYWORD_MOTTO_TYPE) }?.apply {
-                // If a section with authors is open
                 if (getString(Constants.KEYWORD_MOTTO_TYPE) == resources.getString(R.string.authors)) {
                     setAuthorsRecycler(authors)
                 }
             }
         })
-        dashboardViewModel.topics.observe(viewLifecycleOwner, Observer { _topics ->
+        dashboardViewModel.topics.observe(viewLifecycleOwner, { _topics ->
             topics = _topics
             arguments?.takeIf { it.containsKey(Constants.KEYWORD_MOTTO_TYPE) }?.apply {
-                // If a section with authors is open
                 if (getString(Constants.KEYWORD_MOTTO_TYPE) == resources.getString(R.string.topics)) {
                     setTopicsRecycler(topics)
                 }

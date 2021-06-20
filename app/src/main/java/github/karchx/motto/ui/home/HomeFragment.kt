@@ -59,7 +59,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViews()
 
-        homeViewModel.randomMottos.observe(viewLifecycleOwner, Observer {
+        homeViewModel.randomMottos.observe(viewLifecycleOwner, {
             mottos = it
             displayMottosRecycler(mottos)
 
