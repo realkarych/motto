@@ -1,11 +1,11 @@
 package github.karchx.motto.ui.dashboard
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,11 +16,14 @@ import github.karchx.motto.search_engine.citaty_info_website.data.Topic
 import github.karchx.motto.storages.Constants
 import github.karchx.motto.ui.dashboard.adapters.AuthorsRecyclerAdapter
 import github.karchx.motto.ui.dashboard.adapters.TopicsRecyclerAdapter
+import github.karchx.motto.ui.listeners.OnClickRecyclerItemListener
 
 class DashboardFragment : Fragment() {
 
     private lateinit var authors: ArrayList<Author>
     private lateinit var topics: ArrayList<Topic>
+    private lateinit var clickedAuthor: Author
+    private lateinit var clickedTopic: Topic
 
     private lateinit var mAuthorsRecycler: RecyclerView
     private lateinit var mTopicsRecycler: RecyclerView
@@ -60,6 +63,25 @@ class DashboardFragment : Fragment() {
                 }
             }
         })
+
+        mAuthorsRecycler.addOnItemTouchListener(
+            OnClickRecyclerItemListener(requireContext(), object :
+                OnClickRecyclerItemListener.OnItemClickListener {
+                override fun onItemClick(view: View, position: Int) {
+                    clickedAuthor = authors[position]
+                    Log.d("clickedAuthor", clickedAuthor.toString())
+                }
+            })
+        )
+        mTopicsRecycler.addOnItemTouchListener(
+            OnClickRecyclerItemListener(requireContext(), object :
+                OnClickRecyclerItemListener.OnItemClickListener {
+                override fun onItemClick(view: View, position: Int) {
+                    clickedTopic = topics[position]
+                    Log.d("clickedTopic", clickedTopic.toString())
+                }
+            })
+        )
     }
 
     override fun onDestroyView() {
