@@ -14,7 +14,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,7 +22,7 @@ import github.karchx.motto.R
 import github.karchx.motto.databinding.FragmentHomeBinding
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import github.karchx.motto.ui.home.adapters.RandomMottosRecyclerAdapter
-import github.karchx.motto.ui.listeners.OnClickMottoItemListener
+import github.karchx.motto.ui.listeners.OnClickRecyclerItemListener
 
 
 class HomeFragment : Fragment() {
@@ -69,8 +68,8 @@ class HomeFragment : Fragment() {
         })
 
         mRandomMottosRecycler.addOnItemTouchListener(
-            OnClickMottoItemListener(requireContext(), object :
-                OnClickMottoItemListener.OnItemClickListener {
+            OnClickRecyclerItemListener(requireContext(), object :
+                OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = mottos[position]
                     displayFullMottoDialog(clickedMotto)
