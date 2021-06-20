@@ -6,6 +6,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import org.jsoup.select.Elements
 
 
 class ByRandomMottosParser : MottosParser {
@@ -15,21 +16,28 @@ class ByRandomMottosParser : MottosParser {
         val uriToParse = getUriToParse()
         val okHttp = OkHttpClient()
         val request: Request = Request.Builder().url(uriToParse).get().build()
+        val doc: Document = Jsoup.parse(okHttp.newCall(request).execute().body!!.string())
+        val articles: Elements = doc.select(Constants.ARTICLE_ROOT_ELEMENT_NAME)
 
-        for (mottoIndex in 0 until quantityMottos) {
+        val limitedMottosQuantity = getLimitedMottosQuantity(articles, quantityMottos)
+
+        for (mottoIndex in 0 until limitedMottosQuantity) {
             try {
-                val doc: Document = Jsoup.parse(okHttp.newCall(request).execute().body!!.string())
-                mottos.add(HtmlMottosParser.getMottoFromHtml(doc, 0))
+                mottos.add(HtmlMottosParser.getMottoFromHtml(doc, mottoIndex))
             } catch (ex: Exception) {
             }
         }
 
+        mottos.shuffle()
         return mottos
     }
 
+    private fun getLimitedMottosQuantity(articles: Elements, quantityMottos: Int): Int {
+        return if (articles.size < quantityMottos) articles.size
+        else quantityMottos
+    }
+
     private fun getUriToParse(): String {
-        val baseUri = Constants.DOMAIN
-        val searchType = Constants.RANDOM_SEARCH_TYPE
-        return "$baseUri$searchType"
+        return Constants.DOMAIN
     }
 }
