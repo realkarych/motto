@@ -2,15 +2,16 @@ package github.karchx.motto.ui.dashboard
 
 import android.app.Dialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ProgressBar
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import github.karchx.motto.MainActivity
 import github.karchx.motto.R
 import github.karchx.motto.databinding.FragmentDashboardBinding
 import github.karchx.motto.search_engine.citaty_info_website.data.Author
@@ -60,9 +61,9 @@ class DashboardFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
         initViews()
         setObservers()
-
         handleAuthorsRecyclerItemClick()
         handleTopicsRecyclerItemClick()
         handleAuthorMottosRecyclerItemClick()
@@ -70,9 +71,36 @@ class DashboardFragment : Fragment() {
         handleCopyMottoData()
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            reloadFragment()
+        }
+        return true
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun displayBackArrow() {
+        (activity as MainActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as MainActivity?)?.supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
+    private fun hideBackArrow() {
+        (activity as MainActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        (activity as MainActivity?)?.supportActionBar?.setDisplayShowHomeEnabled(false)
+    }
+
+    private fun reloadFragment() {
+        findNavController().navigate(
+            R.id.navigation_dashboard,
+            arguments,
+            NavOptions.Builder()
+                .setPopUpTo(R.id.navigation_dashboard, true)
+                .build()
+        )
     }
 
     private fun handleAuthorsRecyclerItemClick() {
@@ -175,6 +203,8 @@ class DashboardFragment : Fragment() {
     }
 
     private fun displayAuthorsRecycler(authors: ArrayList<Author>) {
+        hideBackArrow()
+
         val layoutManager = GridLayoutManager(context, 2)
         val adapter = AuthorsRecyclerAdapter(this@DashboardFragment, authors)
 
@@ -184,6 +214,8 @@ class DashboardFragment : Fragment() {
     }
 
     private fun displayTopicsRecycler(topics: ArrayList<Topic>) {
+        hideBackArrow()
+
         val layoutManager = GridLayoutManager(context, 2)
         val adapter = TopicsRecyclerAdapter(this@DashboardFragment, topics)
 
@@ -193,11 +225,10 @@ class DashboardFragment : Fragment() {
     }
 
     private fun displayAuthorMottosRecycler(authorMottos: ArrayList<Motto>) {
-        // Hide authors recyclerview
+        displayBackArrow()
         mAuthorsRecycler.visibility = View.GONE
         mMottosLoadingProgressBar.visibility = View.INVISIBLE
 
-        // Display author mottos recyclerview
         val layoutManager = GridLayoutManager(context, 1)
         val adapter = MottosRecyclerAdapter(authorMottos)
 
@@ -207,11 +238,10 @@ class DashboardFragment : Fragment() {
     }
 
     private fun displayTopicMottosRecycler(topicMottos: ArrayList<Motto>) {
-        // Hide topics recyclerview
+        displayBackArrow()
         mTopicsRecycler.visibility = View.GONE
         mMottosLoadingProgressBar.visibility = View.INVISIBLE
 
-        // Display author mottos recyclerview
         val layoutManager = GridLayoutManager(context, 1)
         val adapter = MottosRecyclerAdapter(topicMottos)
 
