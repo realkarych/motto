@@ -51,32 +51,18 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViews()
+        setObservers()
+        
+        handleAuthorsRecyclerItemClick()
+        handleTopicsRecyclerItemClick()
+    }
 
-        dashboardViewModel.authors.observe(viewLifecycleOwner, { _authors ->
-            authors = _authors
-            arguments?.takeIf { it.containsKey(Constants.KEYWORD_MOTTO_TYPE) }?.apply {
-                if (getString(Constants.KEYWORD_MOTTO_TYPE) == resources.getString(R.string.authors)) {
-                    displayAuthorsRecycler(authors)
-                }
-            }
-        })
-        dashboardViewModel.topics.observe(viewLifecycleOwner, { _topics ->
-            topics = _topics
-            arguments?.takeIf { it.containsKey(Constants.KEYWORD_MOTTO_TYPE) }?.apply {
-                if (getString(Constants.KEYWORD_MOTTO_TYPE) == resources.getString(R.string.topics)) {
-                    displayTopicsRecycler(topics)
-                }
-            }
-        })
-        dashboardViewModel.authorMottos.observe(viewLifecycleOwner, { _authorMottos ->
-            authorMottos = _authorMottos
-            displayAuthorMottosRecycler(authorMottos)
-        })
-        dashboardViewModel.topicMottos.observe(viewLifecycleOwner, { _topicMottos ->
-            topicMottos = _topicMottos
-            displayTopicMottosRecycler(topicMottos)
-        })
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
+    private fun handleAuthorsRecyclerItemClick() {
         mAuthorsRecycler.addOnItemTouchListener(
             OnClickRecyclerItemListener(requireContext(), object :
                 OnClickRecyclerItemListener.OnItemClickListener {
@@ -86,6 +72,9 @@ class DashboardFragment : Fragment() {
                 }
             })
         )
+    }
+
+    private fun handleTopicsRecyclerItemClick() {
         mTopicsRecycler.addOnItemTouchListener(
             OnClickRecyclerItemListener(requireContext(), object :
                 OnClickRecyclerItemListener.OnItemClickListener {
@@ -97,9 +86,40 @@ class DashboardFragment : Fragment() {
         )
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun setAuthorsObserver() {
+        dashboardViewModel.authors.observe(viewLifecycleOwner, { _authors ->
+            authors = _authors
+            arguments?.takeIf { it.containsKey(Constants.KEYWORD_MOTTO_TYPE) }?.apply {
+                if (getString(Constants.KEYWORD_MOTTO_TYPE) == resources.getString(R.string.authors)) {
+                    displayAuthorsRecycler(authors)
+                }
+            }
+        })
+    }
+
+    private fun setTopicsObserver() {
+        dashboardViewModel.topics.observe(viewLifecycleOwner, { _topics ->
+            topics = _topics
+            arguments?.takeIf { it.containsKey(Constants.KEYWORD_MOTTO_TYPE) }?.apply {
+                if (getString(Constants.KEYWORD_MOTTO_TYPE) == resources.getString(R.string.topics)) {
+                    displayTopicsRecycler(topics)
+                }
+            }
+        })
+    }
+
+    private fun setAuthorMottosObserver() {
+        dashboardViewModel.authorMottos.observe(viewLifecycleOwner, { _authorMottos ->
+            authorMottos = _authorMottos
+            displayAuthorMottosRecycler(authorMottos)
+        })
+    }
+
+    private fun setTopicMottosObserver() {
+        dashboardViewModel.topicMottos.observe(viewLifecycleOwner, { _topicMottos ->
+            topicMottos = _topicMottos
+            displayTopicMottosRecycler(topicMottos)
+        })
     }
 
     private fun displayAuthorsRecycler(authors: ArrayList<Author>) {
@@ -144,6 +164,13 @@ class DashboardFragment : Fragment() {
         mTopicMottosRecycler.setHasFixedSize(true)
         mTopicMottosRecycler.layoutManager = layoutManager
         mTopicMottosRecycler.adapter = adapter
+    }
+
+    private fun setObservers() {
+        setAuthorsObserver()
+        setTopicsObserver()
+        setAuthorMottosObserver()
+        setTopicMottosObserver()
     }
 
     private fun initViews() {
