@@ -23,20 +23,16 @@ import github.karchx.motto.ui.managers.Toaster
 
 class HomeFragment : Fragment() {
 
-    // Data
     private lateinit var mottos: ArrayList<Motto>
     private lateinit var clickedMotto: Motto
 
-    // Views
     private lateinit var mRandomMottosRecycler: RecyclerView
     private lateinit var mSwipeRefreshLayoutRandomMottos: SwipeRefreshLayout
     private lateinit var mFullMottoDialog: Dialog
     private lateinit var mFullMottoCardView: CardView
 
-    // ViewModels
     private lateinit var homeViewModel: HomeViewModel
 
-    //Bindings
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -54,6 +50,21 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViews()
 
+        observeRandomMottos()
+        setFullMottoCardViewClickListener()
+        setRandomMottosClickListener()
+
+        mSwipeRefreshLayoutRandomMottos.setOnRefreshListener {
+            homeViewModel.putRandomMottosPostValue()
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun observeRandomMottos() {
         homeViewModel.randomMottos.observe(viewLifecycleOwner, {
             mottos = it
             displayMottosRecycler(mottos)
@@ -62,21 +73,9 @@ class HomeFragment : Fragment() {
                 mSwipeRefreshLayoutRandomMottos.isRefreshing = false
             }
         })
+    }
 
-        mRandomMottosRecycler.addOnItemTouchListener(
-            OnClickRecyclerItemListener(requireContext(), object :
-                OnClickRecyclerItemListener.OnItemClickListener {
-                override fun onItemClick(view: View, position: Int) {
-                    clickedMotto = mottos[position]
-                    DialogViewer.displayFullMottoDialog(mFullMottoDialog, clickedMotto)
-                }
-            })
-        )
-
-        mSwipeRefreshLayoutRandomMottos.setOnRefreshListener {
-            homeViewModel.putRandomMottosPostValue()
-        }
-
+    private fun setFullMottoCardViewClickListener() {
         mFullMottoCardView.setOnClickListener {
             val text = Copier.getMottoDataToCopy(
                 context = requireContext(),
@@ -89,9 +88,16 @@ class HomeFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun setRandomMottosClickListener() {
+        mRandomMottosRecycler.addOnItemTouchListener(
+            OnClickRecyclerItemListener(requireContext(), object :
+                OnClickRecyclerItemListener.OnItemClickListener {
+                override fun onItemClick(view: View, position: Int) {
+                    clickedMotto = mottos[position]
+                    DialogViewer.displayFullMottoDialog(mFullMottoDialog, clickedMotto)
+                }
+            })
+        )
     }
 
     private fun displayMottosRecycler(mottos: ArrayList<Motto>) {
