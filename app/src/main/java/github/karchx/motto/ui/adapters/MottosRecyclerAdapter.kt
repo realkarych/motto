@@ -1,4 +1,4 @@
-package github.karchx.motto.ui.home.adapters
+package github.karchx.motto.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,16 +9,16 @@ import github.karchx.motto.R
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import github.karchx.motto.storages.Constants
 
-class RandomMottosRecyclerAdapter(
+class MottosRecyclerAdapter(
     private val mottos: ArrayList<Motto>
-) : RecyclerView.Adapter<RandomMottosRecyclerAdapter.RandomMottosViewHolder>() {
+) : RecyclerView.Adapter<MottosRecyclerAdapter.MottosViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RandomMottosViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MottosViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.motto_item, parent, false)
-        return RandomMottosViewHolder(view)
+        return MottosViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RandomMottosViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MottosViewHolder, position: Int) {
         val mottoTitle = getMottoTitle(mottos[position].quote)
         val mottoSource = mottos[position].source
 
@@ -44,7 +44,7 @@ class RandomMottosRecyclerAdapter(
         }
     }
 
-    class RandomMottosViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class MottosViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val mottoTitle: TextView = itemView.findViewById(R.id.textview_motto_title)
         val mottoSource: TextView = itemView.findViewById(R.id.textview_motto_source)
     }
