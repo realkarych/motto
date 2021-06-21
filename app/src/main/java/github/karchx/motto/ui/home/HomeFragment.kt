@@ -21,7 +21,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import github.karchx.motto.R
 import github.karchx.motto.databinding.FragmentHomeBinding
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
-import github.karchx.motto.ui.home.adapters.RandomMottosRecyclerAdapter
+import github.karchx.motto.ui.adapters.MottosRecyclerAdapter
 import github.karchx.motto.ui.listeners.OnClickRecyclerItemListener
 
 
@@ -108,7 +108,7 @@ class HomeFragment : Fragment() {
 
     private fun displayMottosRecycler(mottos: ArrayList<Motto>) {
         val layoutManager = GridLayoutManager(context, 1)
-        val adapter = RandomMottosRecyclerAdapter(mottos)
+        val adapter = MottosRecyclerAdapter(mottos)
 
         mRandomMottosRecycler.setHasFixedSize(true)
         mRandomMottosRecycler.layoutManager = layoutManager
