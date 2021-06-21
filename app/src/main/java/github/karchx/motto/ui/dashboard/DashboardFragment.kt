@@ -2,9 +2,11 @@ package github.karchx.motto.ui.dashboard
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -40,6 +42,7 @@ class DashboardFragment : Fragment() {
     private lateinit var mTopicMottosRecycler: RecyclerView
     private lateinit var mFullMottoDialog: Dialog
     private lateinit var mFullMottoCardView: CardView
+    private lateinit var mMottosLoadingProgressBar: ProgressBar
 
     private lateinit var dashboardViewModel: DashboardViewModel
 
@@ -80,6 +83,7 @@ class DashboardFragment : Fragment() {
                 override fun onItemClick(view: View, position: Int) {
                     clickedAuthor = authors[position]
                     dashboardViewModel.putAuthorMottosPostValue(clickedAuthor)
+                    mMottosLoadingProgressBar.visibility = View.VISIBLE
                 }
             })
         )
@@ -92,6 +96,7 @@ class DashboardFragment : Fragment() {
                 override fun onItemClick(view: View, position: Int) {
                     clickedTopic = topics[position]
                     dashboardViewModel.putTopicMottosPostValue(clickedTopic)
+                    mMottosLoadingProgressBar.visibility = View.VISIBLE
                 }
             })
         )
@@ -191,6 +196,7 @@ class DashboardFragment : Fragment() {
     private fun displayAuthorMottosRecycler(authorMottos: ArrayList<Motto>) {
         // Hide authors recyclerview
         mAuthorsRecycler.visibility = View.GONE
+        mMottosLoadingProgressBar.visibility = View.INVISIBLE
 
         // Display author mottos recyclerview
         val layoutManager = GridLayoutManager(context, 1)
@@ -204,6 +210,7 @@ class DashboardFragment : Fragment() {
     private fun displayTopicMottosRecycler(topicMottos: ArrayList<Motto>) {
         // Hide topics recyclerview
         mTopicsRecycler.visibility = View.GONE
+        mMottosLoadingProgressBar.visibility = View.INVISIBLE
 
         // Display author mottos recyclerview
         val layoutManager = GridLayoutManager(context, 1)
@@ -226,6 +233,7 @@ class DashboardFragment : Fragment() {
         mTopicsRecycler = binding.recyclerviewTopicsDashboard
         mAuthorMottosRecycler = binding.recyclerviewAuthorMottos
         mTopicMottosRecycler = binding.recyclerviewTopicMottos
+        mMottosLoadingProgressBar = binding.progressbarMottosLoading
 
         mFullMottoDialog = Dialog(requireActivity())
         mFullMottoDialog.setContentView(R.layout.dialog_full_motto)
