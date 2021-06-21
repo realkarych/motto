@@ -1,9 +1,11 @@
 package github.karchx.motto.ui.dashboard
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,6 +20,9 @@ import github.karchx.motto.ui.adapters.MottosRecyclerAdapter
 import github.karchx.motto.ui.dashboard.adapters.AuthorsRecyclerAdapter
 import github.karchx.motto.ui.dashboard.adapters.TopicsRecyclerAdapter
 import github.karchx.motto.ui.listeners.OnClickRecyclerItemListener
+import github.karchx.motto.ui.managers.Copier
+import github.karchx.motto.ui.managers.DialogViewer
+import github.karchx.motto.ui.managers.Toaster
 
 class DashboardFragment : Fragment() {
 
@@ -27,11 +32,14 @@ class DashboardFragment : Fragment() {
     private lateinit var clickedTopic: Topic
     private lateinit var authorMottos: ArrayList<Motto>
     private lateinit var topicMottos: ArrayList<Motto>
+    private lateinit var clickedMotto: Motto
 
     private lateinit var mAuthorsRecycler: RecyclerView
     private lateinit var mTopicsRecycler: RecyclerView
     private lateinit var mAuthorMottosRecycler: RecyclerView
     private lateinit var mTopicMottosRecycler: RecyclerView
+    private lateinit var mFullMottoDialog: Dialog
+    private lateinit var mFullMottoCardView: CardView
 
     private lateinit var dashboardViewModel: DashboardViewModel
 
@@ -52,9 +60,12 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViews()
         setObservers()
-        
+
         handleAuthorsRecyclerItemClick()
         handleTopicsRecyclerItemClick()
+        handleAuthorMottosRecyclerItemClick()
+        handleTopicMottosRecyclerItemClick()
+        handleCopyMottoData()
     }
 
     override fun onDestroyView() {
@@ -84,6 +95,43 @@ class DashboardFragment : Fragment() {
                 }
             })
         )
+    }
+
+    private fun handleAuthorMottosRecyclerItemClick() {
+        mAuthorMottosRecycler.addOnItemTouchListener(
+            OnClickRecyclerItemListener(requireContext(), object :
+                OnClickRecyclerItemListener.OnItemClickListener {
+                override fun onItemClick(view: View, position: Int) {
+                    clickedMotto = authorMottos[position]
+                    DialogViewer.displayFullMottoDialog(mFullMottoDialog, clickedMotto)
+                }
+            })
+        )
+    }
+
+    private fun handleTopicMottosRecyclerItemClick() {
+        mTopicMottosRecycler.addOnItemTouchListener(
+            OnClickRecyclerItemListener(requireContext(), object :
+                OnClickRecyclerItemListener.OnItemClickListener {
+                override fun onItemClick(view: View, position: Int) {
+                    clickedMotto = topicMottos[position]
+                    DialogViewer.displayFullMottoDialog(mFullMottoDialog, clickedMotto)
+                }
+            })
+        )
+    }
+
+    private fun handleCopyMottoData() {
+        mFullMottoCardView.setOnClickListener {
+            val text = Copier.getMottoDataToCopy(
+                context = requireContext(),
+                quote = clickedMotto.quote,
+                source = clickedMotto.source
+            )
+
+            Copier.copyText(requireActivity(), text)
+            Toaster.displayTextIsCopiedToast(requireContext())
+        }
     }
 
     private fun setAuthorsObserver() {
@@ -178,5 +226,9 @@ class DashboardFragment : Fragment() {
         mTopicsRecycler = binding.recyclerviewTopicsDashboard
         mAuthorMottosRecycler = binding.recyclerviewAuthorMottos
         mTopicMottosRecycler = binding.recyclerviewTopicMottos
+
+        mFullMottoDialog = Dialog(requireActivity())
+        mFullMottoDialog.setContentView(R.layout.dialog_full_motto)
+        mFullMottoCardView = mFullMottoDialog.findViewById(R.id.cardview_full_motto_item)
     }
 }

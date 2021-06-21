@@ -1,17 +1,10 @@
 package github.karchx.motto.ui.home
 
 import android.app.Dialog
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -23,6 +16,9 @@ import github.karchx.motto.databinding.FragmentHomeBinding
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import github.karchx.motto.ui.adapters.MottosRecyclerAdapter
 import github.karchx.motto.ui.listeners.OnClickRecyclerItemListener
+import github.karchx.motto.ui.managers.Copier
+import github.karchx.motto.ui.managers.DialogViewer
+import github.karchx.motto.ui.managers.Toaster
 
 
 class HomeFragment : Fragment() {
@@ -72,7 +68,7 @@ class HomeFragment : Fragment() {
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = mottos[position]
-                    displayFullMottoDialog(clickedMotto)
+                    DialogViewer.displayFullMottoDialog(mFullMottoDialog, clickedMotto)
                 }
             })
         )
@@ -82,28 +78,20 @@ class HomeFragment : Fragment() {
         }
 
         mFullMottoCardView.setOnClickListener {
-            copyText(getMottoDataToCopy())
-            displayCopiedToast()
+            val text = Copier.getMottoDataToCopy(
+                context = requireContext(),
+                quote = clickedMotto.quote,
+                source = clickedMotto.source
+            )
+
+            Copier.copyText(requireActivity(), text)
+            Toaster.displayTextIsCopiedToast(requireContext())
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun displayFullMottoDialog(clickedMotto: Motto) {
-        mFullMottoDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        mFullMottoDialog.setCancelable(true)
-        mFullMottoDialog.setTitle(getString(R.string.motto_about))
-        mFullMottoDialog.show()
-
-        val tvFullMottoQuote =
-            mFullMottoDialog.findViewById<TextView>(R.id.textview_motto_full_quote)
-        val tvFullMottoSource =
-            mFullMottoDialog.findViewById<TextView>(R.id.textview_motto_full_source)
-        tvFullMottoQuote.text = clickedMotto.quote
-        tvFullMottoSource.text = clickedMotto.source
     }
 
     private fun displayMottosRecycler(mottos: ArrayList<Motto>) {
@@ -115,31 +103,12 @@ class HomeFragment : Fragment() {
         mRandomMottosRecycler.adapter = adapter
     }
 
-    private fun displayCopiedToast() {
-        val text = getString(R.string.motto_copied)
-        val duration = Toast.LENGTH_SHORT
-        val toast = Toast.makeText(requireContext().applicationContext, text, duration)
-        toast.show()
-    }
-
-    private fun getMottoDataToCopy(): String {
-        return "\"${clickedMotto.quote}\"\n\n" + "${getString(R.string.motto_source)} ${clickedMotto.source}"
-    }
-
-    private fun copyText(text: String) {
-        val clipboard: ClipboardManager? =
-            requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
-        val clip = ClipData.newPlainText("stub", text)
-        clipboard?.setPrimaryClip(clip)
-    }
-
     private fun initViews() {
         mRandomMottosRecycler = binding.recyclerviewRandomMottos
         mSwipeRefreshLayoutRandomMottos = binding.refreshContainerOfRecyclerviewRandomMottos
 
         mFullMottoDialog = Dialog(requireActivity())
         mFullMottoDialog.setContentView(R.layout.dialog_full_motto)
-
         mFullMottoCardView = mFullMottoDialog.findViewById(R.id.cardview_full_motto_item)
     }
 }
