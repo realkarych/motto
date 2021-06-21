@@ -9,4 +9,6 @@
     <string name="motto_source">Source:</string>
     <string name="authors">Authors</string>
     <string name="topics">Topics</string>
+    <string name="random_mottos">Random Mottos</string>
+    <string name="enter_request">Enter request</string>
 </resources>
