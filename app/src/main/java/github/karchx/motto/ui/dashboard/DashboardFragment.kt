@@ -18,13 +18,13 @@ import github.karchx.motto.search_engine.citaty_info_website.data.Author
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import github.karchx.motto.search_engine.citaty_info_website.data.Topic
 import github.karchx.motto.storages.Constants
-import github.karchx.motto.ui.adapters.MottosRecyclerAdapter
+import github.karchx.motto.ui.tools.adapters.MottosRecyclerAdapter
 import github.karchx.motto.ui.dashboard.adapters.AuthorsRecyclerAdapter
 import github.karchx.motto.ui.dashboard.adapters.TopicsRecyclerAdapter
-import github.karchx.motto.ui.listeners.OnClickRecyclerItemListener
-import github.karchx.motto.ui.managers.Copier
-import github.karchx.motto.ui.managers.DialogViewer
-import github.karchx.motto.ui.managers.Toaster
+import github.karchx.motto.ui.tools.listeners.OnClickRecyclerItemListener
+import github.karchx.motto.ui.tools.managers.Copier
+import github.karchx.motto.ui.tools.managers.DialogViewer
+import github.karchx.motto.ui.tools.managers.Toaster
 
 class DashboardFragment : Fragment() {
 

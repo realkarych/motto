@@ -1,4 +1,4 @@
-package github.karchx.motto.ui.adapters
+package github.karchx.motto.ui.tools.adapters
 
 import android.view.LayoutInflater
 import android.view.View
