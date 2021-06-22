@@ -167,6 +167,9 @@ class HomeFragment : Fragment() {
 
         val adapter = MottosRecyclerAdapter(mottos)
         mMottosRecycler.adapter = adapter
+
+        if (mottos.isEmpty())
+            mMottosFoundTextView.text = getString(R.string.not_found_on_request)
     }
 
     private fun displayRandomMottosRecycler(mottos: ArrayList<Motto>) {
@@ -174,11 +177,14 @@ class HomeFragment : Fragment() {
         hideKeyboard()
 
         val layoutManager = GridLayoutManager(context, 1)
-        val adapter = MottosRecyclerAdapter(mottos)
-
         mMottosRecycler.setHasFixedSize(true)
         mMottosRecycler.layoutManager = layoutManager
+        val adapter = MottosRecyclerAdapter(mottos)
         mMottosRecycler.adapter = adapter
+
+        if (mottos.isEmpty()) {
+            mMottosFoundTextView.text = getString(R.string.not_found_random_mottos)
+        }
     }
 
     private fun hideKeyboard() {

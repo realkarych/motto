@@ -12,4 +12,6 @@
     <string name="found_random_mottos">Found random Mottos</string>
     <string name="enter_request">Enter request</string>
     <string name="found_on_request">Found on your request</string>
+    <string name="not_found_on_request">Nothing found. Check your request and internet connection</string>
+    <string name="not_found_random_mottos">Editor\'s Choice mottos not found. Check your internet connection</string>
 </resources>
