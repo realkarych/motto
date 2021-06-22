@@ -9,6 +9,7 @@
     <string name="motto_source">Source:</string>
     <string name="authors">Authors</string>
     <string name="topics">Topics</string>
-    <string name="random_mottos">Random Mottos</string>
+    <string name="found_random_mottos">Found random Mottos</string>
     <string name="enter_request">Enter request</string>
+    <string name="found_on_request">Found on your request</string>
 </resources>
