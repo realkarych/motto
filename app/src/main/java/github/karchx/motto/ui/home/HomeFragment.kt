@@ -21,11 +21,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import github.karchx.motto.R
 import github.karchx.motto.databinding.FragmentHomeBinding
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
-import github.karchx.motto.ui.adapters.MottosRecyclerAdapter
-import github.karchx.motto.ui.listeners.OnClickRecyclerItemListener
-import github.karchx.motto.ui.managers.Copier
-import github.karchx.motto.ui.managers.DialogViewer
-import github.karchx.motto.ui.managers.Toaster
+import github.karchx.motto.ui.tools.adapters.MottosRecyclerAdapter
+import github.karchx.motto.ui.tools.listeners.OnClickRecyclerItemListener
+import github.karchx.motto.ui.tools.managers.Copier
+import github.karchx.motto.ui.tools.managers.DialogViewer
+import github.karchx.motto.ui.tools.managers.Toaster
 import java.util.*
 
 

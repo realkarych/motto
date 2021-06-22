@@ -1,4 +1,4 @@
-package github.karchx.motto.ui.managers
+package github.karchx.motto.ui.tools.managers
 
 import android.app.Dialog
 import android.graphics.Color

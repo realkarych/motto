@@ -1,4 +1,4 @@
-package github.karchx.motto.ui.listeners
+package github.karchx.motto.ui.tools.listeners
 
 import android.content.Context
 import android.view.GestureDetector
