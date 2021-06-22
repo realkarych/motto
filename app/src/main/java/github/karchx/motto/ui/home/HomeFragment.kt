@@ -65,11 +65,19 @@ class HomeFragment : Fragment() {
         observeRequestMottos()
         setFullMottoCardViewClickListener()
         setRandomMottosClickListener()
+        handleTextInputChanges()
 
         mSwipeRefreshLayoutRandomMottos.setOnRefreshListener {
             homeViewModel.putRandomMottosPostValue()
         }
+    }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun handleTextInputChanges() {
         mGlobalScopeMottosEditText.addTextChangedListener(
             object : TextWatcher {
                 override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
@@ -103,11 +111,6 @@ class HomeFragment : Fragment() {
                 }
             }
         )
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     private fun observeRequestMottos() {
@@ -161,7 +164,6 @@ class HomeFragment : Fragment() {
 
     private fun displayRequestMottosRecycler(mottos: ArrayList<Motto>) {
         mMottosLoadingProgressBar.visibility = View.INVISIBLE
-        hideKeyboard()
 
         val adapter = MottosRecyclerAdapter(mottos)
         mMottosRecycler.adapter = adapter
