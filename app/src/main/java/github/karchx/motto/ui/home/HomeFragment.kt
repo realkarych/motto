@@ -1,10 +1,17 @@
 package github.karchx.motto.ui.home
 
+import android.app.Activity
 import android.app.Dialog
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -19,6 +26,7 @@ import github.karchx.motto.ui.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.ui.managers.Copier
 import github.karchx.motto.ui.managers.DialogViewer
 import github.karchx.motto.ui.managers.Toaster
+import java.util.*
 
 
 class HomeFragment : Fragment() {
@@ -26,10 +34,13 @@ class HomeFragment : Fragment() {
     private lateinit var mottos: ArrayList<Motto>
     private lateinit var clickedMotto: Motto
 
-    private lateinit var mRandomMottosRecycler: RecyclerView
+    private lateinit var mMottosLoadingProgressBar: ProgressBar
+    private lateinit var mMottosRecycler: RecyclerView
     private lateinit var mSwipeRefreshLayoutRandomMottos: SwipeRefreshLayout
     private lateinit var mFullMottoDialog: Dialog
     private lateinit var mFullMottoCardView: CardView
+    private lateinit var mGlobalScopeMottosEditText: EditText
+    private lateinit var mMottosFoundTextView: TextView
 
     private lateinit var homeViewModel: HomeViewModel
 
@@ -51,12 +62,47 @@ class HomeFragment : Fragment() {
         initViews()
 
         observeRandomMottos()
+        observeRequestMottos()
         setFullMottoCardViewClickListener()
         setRandomMottosClickListener()
 
         mSwipeRefreshLayoutRandomMottos.setOnRefreshListener {
             homeViewModel.putRandomMottosPostValue()
         }
+
+        mGlobalScopeMottosEditText.addTextChangedListener(
+            object : TextWatcher {
+                override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+                override fun beforeTextChanged(
+                    s: CharSequence,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                private var timer: Timer = Timer()
+                private val DELAY: Long = 500 // Milliseconds
+                override fun afterTextChanged(s: Editable) {
+                    timer.cancel()
+                    timer = Timer()
+                    timer.schedule(
+                        object : TimerTask() {
+                            override fun run() {
+                                requireActivity().runOnUiThread {
+                                    mMottosLoadingProgressBar.visibility = View.VISIBLE
+                                    mMottosFoundTextView.text = getString(R.string.found_on_request)
+                                }
+
+                                val request = mGlobalScopeMottosEditText.text.toString()
+                                homeViewModel.putRequestMottosPostValue(request)
+                            }
+                        },
+                        DELAY
+                    )
+                }
+            }
+        )
     }
 
     override fun onDestroyView() {
@@ -64,10 +110,23 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
+    private fun observeRequestMottos() {
+        homeViewModel.requestMottos.observe(viewLifecycleOwner, { _requestMottos ->
+            mottos = _requestMottos
+            displayRequestMottosRecycler(mottos)
+
+            if (mSwipeRefreshLayoutRandomMottos.isRefreshing) {
+                mSwipeRefreshLayoutRandomMottos.isRefreshing = false
+            }
+        })
+    }
+
     private fun observeRandomMottos() {
-        homeViewModel.randomMottos.observe(viewLifecycleOwner, {
-            mottos = it
-            displayMottosRecycler(mottos)
+        mMottosLoadingProgressBar.visibility = View.VISIBLE
+        homeViewModel.randomMottos.observe(viewLifecycleOwner, { _randomMottos ->
+            mottos = _randomMottos
+            mMottosFoundTextView.text = getString(R.string.found_random_mottos)
+            displayRandomMottosRecycler(mottos)
 
             if (mSwipeRefreshLayoutRandomMottos.isRefreshing) {
                 mSwipeRefreshLayoutRandomMottos.isRefreshing = false
@@ -89,7 +148,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setRandomMottosClickListener() {
-        mRandomMottosRecycler.addOnItemTouchListener(
+        mMottosRecycler.addOnItemTouchListener(
             OnClickRecyclerItemListener(requireContext(), object :
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
@@ -100,18 +159,42 @@ class HomeFragment : Fragment() {
         )
     }
 
-    private fun displayMottosRecycler(mottos: ArrayList<Motto>) {
+    private fun displayRequestMottosRecycler(mottos: ArrayList<Motto>) {
+        mMottosLoadingProgressBar.visibility = View.INVISIBLE
+        hideKeyboard()
+
+        val adapter = MottosRecyclerAdapter(mottos)
+        mMottosRecycler.adapter = adapter
+    }
+
+    private fun displayRandomMottosRecycler(mottos: ArrayList<Motto>) {
+        mMottosLoadingProgressBar.visibility = View.INVISIBLE
+        hideKeyboard()
+
         val layoutManager = GridLayoutManager(context, 1)
         val adapter = MottosRecyclerAdapter(mottos)
 
-        mRandomMottosRecycler.setHasFixedSize(true)
-        mRandomMottosRecycler.layoutManager = layoutManager
-        mRandomMottosRecycler.adapter = adapter
+        mMottosRecycler.setHasFixedSize(true)
+        mMottosRecycler.layoutManager = layoutManager
+        mMottosRecycler.adapter = adapter
+    }
+
+    private fun hideKeyboard() {
+        val imm =
+            requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        var view = requireActivity().currentFocus
+        if (view == null) {
+            view = View(activity)
+        }
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun initViews() {
-        mRandomMottosRecycler = binding.recyclerviewRandomMottos
+        mMottosLoadingProgressBar = binding.progressbarMottosLoading
+        mMottosFoundTextView = binding.textviewMottosFound
+        mMottosRecycler = binding.recyclerviewMottos
         mSwipeRefreshLayoutRandomMottos = binding.refreshContainerOfRecyclerviewRandomMottos
+        mGlobalScopeMottosEditText = binding.edittextGlobalScopeMottos
 
         mFullMottoDialog = Dialog(requireActivity())
         mFullMottoDialog.setContentView(R.layout.dialog_full_motto)
