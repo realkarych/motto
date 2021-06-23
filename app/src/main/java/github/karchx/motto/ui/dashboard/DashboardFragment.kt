@@ -17,7 +17,7 @@ import github.karchx.motto.databinding.FragmentDashboardBinding
 import github.karchx.motto.search_engine.citaty_info_website.data.Author
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import github.karchx.motto.search_engine.citaty_info_website.data.Topic
-import github.karchx.motto.storages.Constants
+import github.karchx.motto.model.storages.Constants
 import github.karchx.motto.ui.tools.adapters.MottosRecyclerAdapter
 import github.karchx.motto.ui.dashboard.adapters.AuthorsRecyclerAdapter
 import github.karchx.motto.ui.dashboard.adapters.TopicsRecyclerAdapter

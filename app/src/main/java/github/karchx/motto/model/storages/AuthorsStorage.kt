@@ -1,4 +1,4 @@
-package github.karchx.motto.storages
+package github.karchx.motto.model.storages
 
 import github.karchx.motto.search_engine.citaty_info_website.data.Author
 
