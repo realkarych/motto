@@ -3,7 +3,7 @@ package github.karchx.motto.ui.dashboard.adapters
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import github.karchx.motto.storages.Constants
+import github.karchx.motto.model.storages.Constants
 import github.karchx.motto.ui.dashboard.DashboardFragment
 
 class DashboardLayoutAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
