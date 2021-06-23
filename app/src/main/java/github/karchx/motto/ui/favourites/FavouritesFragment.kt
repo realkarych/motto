@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import github.karchx.motto.databinding.FragmentFavouritesBinding
-import github.karchx.motto.model.MottoRepository
 import github.karchx.motto.viewmodels.FavouritesViewModel
 import github.karchx.motto.viewmodels.MottosViewModel
 

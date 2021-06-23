@@ -3,14 +3,14 @@ package github.karchx.motto.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import github.karchx.motto.model.storages.AuthorsStorage
+import github.karchx.motto.model.storages.Constants
+import github.karchx.motto.model.storages.TopicsStorage
 import github.karchx.motto.search_engine.citaty_info_website.data.Author
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import github.karchx.motto.search_engine.citaty_info_website.data.Topic
 import github.karchx.motto.search_engine.citaty_info_website.parsers.ByAuthorMottosParser
 import github.karchx.motto.search_engine.citaty_info_website.parsers.ByTopicMottosParser
-import github.karchx.motto.model.storages.AuthorsStorage
-import github.karchx.motto.model.storages.Constants
-import github.karchx.motto.model.storages.TopicsStorage
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
