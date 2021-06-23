@@ -18,9 +18,9 @@ import github.karchx.motto.search_engine.citaty_info_website.data.Author
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import github.karchx.motto.search_engine.citaty_info_website.data.Topic
 import github.karchx.motto.ui.MainActivity
-import github.karchx.motto.ui.dashboard.adapters.AuthorsRecyclerAdapter
-import github.karchx.motto.ui.dashboard.adapters.TopicsRecyclerAdapter
+import github.karchx.motto.ui.tools.adapters.AuthorsRecyclerAdapter
 import github.karchx.motto.ui.tools.adapters.MottosRecyclerAdapter
+import github.karchx.motto.ui.tools.adapters.TopicsRecyclerAdapter
 import github.karchx.motto.ui.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.ui.tools.managers.Copier
 import github.karchx.motto.ui.tools.managers.DialogViewer

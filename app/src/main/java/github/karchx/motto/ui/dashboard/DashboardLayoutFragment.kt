@@ -12,7 +12,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import github.karchx.motto.databinding.FragmentDashboardLayoutBinding
 import github.karchx.motto.model.storages.Constants.Companion.MOTTO_TYPES_ICONS
 import github.karchx.motto.model.storages.Constants.Companion.MOTTO_TYPES_NAMES
-import github.karchx.motto.ui.dashboard.adapters.DashboardLayoutAdapter
+import github.karchx.motto.ui.tools.adapters.DashboardLayoutAdapter
 
 class DashboardLayoutFragment : Fragment() {
 
