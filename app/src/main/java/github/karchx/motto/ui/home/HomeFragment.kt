@@ -28,8 +28,8 @@ import github.karchx.motto.ui.tools.managers.DialogViewer
 import github.karchx.motto.ui.tools.managers.Toaster
 import github.karchx.motto.viewmodels.HomeViewModel
 import github.karchx.motto.viewmodels.MottosViewModel
-import github.karchx.motto.model.db.Motto as dbMotto
 import java.util.*
+import github.karchx.motto.model.db.Motto as dbMotto
 
 
 class HomeFragment : Fragment() {
@@ -161,7 +161,14 @@ class HomeFragment : Fragment() {
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = mottos[position]
                     DialogViewer.displayFullMottoDialog(mFullMottoDialog, clickedMotto)
-                    mottosViewModel.insertMotto(dbMotto(0, clickedMotto.quote, clickedMotto.source, "12:00"))
+                    mottosViewModel.insertMotto(
+                        dbMotto(
+                            0,
+                            clickedMotto.quote,
+                            clickedMotto.source,
+                            "12:00"
+                        )
+                    )
                 }
             })
         )

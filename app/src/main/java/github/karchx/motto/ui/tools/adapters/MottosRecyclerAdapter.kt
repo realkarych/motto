@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
-import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import github.karchx.motto.model.storages.Constants
+import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 
 class MottosRecyclerAdapter(
     private val mottos: ArrayList<Motto>
