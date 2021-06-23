@@ -26,6 +26,9 @@ import github.karchx.motto.ui.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.ui.tools.managers.Copier
 import github.karchx.motto.ui.tools.managers.DialogViewer
 import github.karchx.motto.ui.tools.managers.Toaster
+import github.karchx.motto.viewmodels.HomeViewModel
+import github.karchx.motto.viewmodels.MottosViewModel
+import github.karchx.motto.model.db.Motto as dbMotto
 import java.util.*
 
 
@@ -34,6 +37,7 @@ class HomeFragment : Fragment() {
     private lateinit var mottos: ArrayList<Motto>
     private lateinit var clickedMotto: Motto
 
+    private lateinit var mottosViewModel: MottosViewModel
     private lateinit var mMottosLoadingProgressBar: ProgressBar
     private lateinit var mMottosRecycler: RecyclerView
     private lateinit var mSwipeRefreshLayoutRandomMottos: SwipeRefreshLayout
@@ -157,6 +161,7 @@ class HomeFragment : Fragment() {
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = mottos[position]
                     DialogViewer.displayFullMottoDialog(mFullMottoDialog, clickedMotto)
+                    mottosViewModel.insertMotto(dbMotto(0, clickedMotto.quote, clickedMotto.source, "12:00"))
                 }
             })
         )
@@ -207,5 +212,10 @@ class HomeFragment : Fragment() {
         mFullMottoDialog = Dialog(requireActivity())
         mFullMottoDialog.setContentView(R.layout.dialog_full_motto)
         mFullMottoCardView = mFullMottoDialog.findViewById(R.id.cardview_full_motto_item)
+
+        mottosViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        ).get(MottosViewModel(application = requireActivity().application)::class.java)
     }
 }

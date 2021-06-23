@@ -11,7 +11,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import github.karchx.motto.MainActivity
+import github.karchx.motto.ui.MainActivity
 import github.karchx.motto.R
 import github.karchx.motto.databinding.FragmentDashboardBinding
 import github.karchx.motto.search_engine.citaty_info_website.data.Author
@@ -25,6 +25,7 @@ import github.karchx.motto.ui.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.ui.tools.managers.Copier
 import github.karchx.motto.ui.tools.managers.DialogViewer
 import github.karchx.motto.ui.tools.managers.Toaster
+import github.karchx.motto.viewmodels.DashboardViewModel
 
 class DashboardFragment : Fragment() {
 
