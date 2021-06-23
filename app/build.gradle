@@ -60,4 +60,8 @@ dependencies {
     // Parsing tools
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     implementation 'org.jsoup:jsoup:1.13.1'
+    // Room Dao
+    def room_version = "2.3.0"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
 }

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import github.karchx.motto.search_engine.citaty_info_website.parsers.ByRandomMottosParser
 import github.karchx.motto.search_engine.citaty_info_website.parsers.ByRequestMottosParser
-import github.karchx.motto.storages.Constants
+import github.karchx.motto.model.storages.Constants
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
