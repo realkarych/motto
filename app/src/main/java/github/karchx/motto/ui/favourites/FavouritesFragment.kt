@@ -4,19 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import github.karchx.motto.databinding.FragmentFavouritesBinding
+import github.karchx.motto.model.MottoRepository
+import github.karchx.motto.viewmodels.FavouritesViewModel
+import github.karchx.motto.viewmodels.MottosViewModel
 
 class FavouritesFragment : Fragment() {
 
     private lateinit var favouritesViewModel: FavouritesViewModel
-    private var _binding: FragmentFavouritesBinding? = null
+    private lateinit var mottosViewModel: MottosViewModel
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private var _binding: FragmentFavouritesBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -24,21 +24,28 @@ class FavouritesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        favouritesViewModel =
-            ViewModelProvider(this).get(FavouritesViewModel::class.java)
-
         _binding = FragmentFavouritesBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
 
-        val textView: TextView = binding.textFavourites
-        favouritesViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initData()
+        mottosViewModel.allMottos.observe(viewLifecycleOwner) {
+            binding.textFavourites.text = it.toString()
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun initData() {
+        favouritesViewModel = ViewModelProvider(this).get(FavouritesViewModel::class.java)
+
+        mottosViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        ).get(MottosViewModel(application = requireActivity().application)::class.java)
     }
 }
