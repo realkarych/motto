@@ -1,4 +1,4 @@
-package github.karchx.motto.ui.dashboard.adapters
+package github.karchx.motto.ui.tools.adapters
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

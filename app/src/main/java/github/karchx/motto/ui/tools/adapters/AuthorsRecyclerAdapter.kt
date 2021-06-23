@@ -1,4 +1,4 @@
-package github.karchx.motto.ui.dashboard.adapters
+package github.karchx.motto.ui.tools.adapters
 
 import android.text.Spannable
 import android.text.SpannableString
