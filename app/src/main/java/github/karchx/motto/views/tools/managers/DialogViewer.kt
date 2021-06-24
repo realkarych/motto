@@ -41,7 +41,7 @@ class DialogViewer {
                 ivAddToFavourites.setImageDrawable(
                     AppCompatResources.getDrawable(
                         context,
-                        R.drawable.ic_favorite_white
+                        R.drawable.ic_favorite
                     )
                 )
                 ivAddToFavourites.visibility = View.VISIBLE
@@ -49,7 +49,7 @@ class DialogViewer {
                 ivAddToFavourites.setImageDrawable(
                     AppCompatResources.getDrawable(
                         context,
-                        R.drawable.ic_favorite_border_white
+                        R.drawable.ic_favorite_border
                     )
                 )
                 ivAddToFavourites.visibility = View.VISIBLE

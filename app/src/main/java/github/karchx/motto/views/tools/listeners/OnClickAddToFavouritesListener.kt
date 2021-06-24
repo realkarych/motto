@@ -55,14 +55,14 @@ class OnClickAddToFavouritesListener {
         private fun getNotAddedMottoIcon(context: Context): Drawable? {
             return AppCompatResources.getDrawable(
                 context,
-                R.drawable.ic_favorite_border_white
+                R.drawable.ic_favorite_border
             )
         }
 
         private fun getAddedMottoIcon(context: Context): Drawable? {
             return AppCompatResources.getDrawable(
                 context,
-                R.drawable.ic_favorite_white
+                R.drawable.ic_favorite
             )
         }
     }
