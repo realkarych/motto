@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="10dp"
         app:cardBackgroundColor="@color/black"
         app:cardCornerRadius="12dp"
@@ -73,13 +73,14 @@
         android:layout_marginEnd="15dp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
+        android:indeterminateTint="@color/pink"
         app:layout_constraintTop_toBottomOf="@+id/cardview_global_mottos_search" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refresh_container_of_recyclerview_random_mottos"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
