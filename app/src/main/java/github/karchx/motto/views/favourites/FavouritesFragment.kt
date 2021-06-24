@@ -75,7 +75,7 @@ class FavouritesFragment : Fragment() {
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         mFullMottoDialog,
-                        parsedMotto(clickedMotto.quote, clickedMotto.source, false),
+                        parsedMotto(clickedMotto.quote, clickedMotto.source),
                         savedMottos
                     )
                     observeDbMottos()
@@ -110,7 +110,7 @@ class FavouritesFragment : Fragment() {
                 mottosViewModel,
                 mAddToFavouritesImageView,
                 savedMottos,
-                parsedMotto(clickedMotto.quote, clickedMotto.source, false)
+                parsedMotto(clickedMotto.quote, clickedMotto.source)
             )
         }
     }

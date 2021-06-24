@@ -11,7 +11,6 @@ class HtmlMottosParser {
             val parser = HtmlMottosParser()
             val rootContentElement = parser.getRootContentElement(articlesElement, mottoIndex)
 
-            val isSaved = false
             val quote: String = parser.getQuoteElement(rootContentElement)?.text() ?: ""
             val source: String = try {
                 parser.getSourceElement(rootContentElement)?.text() ?: ""
@@ -19,7 +18,7 @@ class HtmlMottosParser {
                 ""
             }
 
-            return Motto(quote, source, isSaved)
+            return Motto(quote, source)
         }
     }
 
