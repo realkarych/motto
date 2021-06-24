@@ -8,12 +8,22 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textinput_global_scope_mottos"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="15dp"
+        android:textColorHint="@color/pink"
+        app:boxBackgroundColor="@color/dark_item"
+        app:boxBackgroundMode="filled"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxStrokeColor="@color/dark_item"
+        app:hintTextColor="@color/pink"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -21,17 +31,22 @@
             android:id="@+id/edittext_global_scope_mottos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/enter_request" />
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/open_sans_regular"
+            android:hint="@string/enter_request"
+            android:textColor="@color/soft_white"
+            android:textColorHint="@color/pink" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/textview_mottos_found"
+        style="@style/textViewTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="30dp"
         android:text="@string/found_random_mottos"
-        android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/progressbar_mottos_loading"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textinput_global_scope_mottos" />
@@ -51,7 +66,7 @@
         android:id="@+id/refresh_container_of_recyclerview_random_mottos"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
