@@ -22,14 +22,14 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import github.karchx.motto.R
 import github.karchx.motto.databinding.FragmentHomeBinding
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
+import github.karchx.motto.viewmodels.HomeViewModel
+import github.karchx.motto.viewmodels.MottosViewModel
 import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.Copier
 import github.karchx.motto.views.tools.managers.DialogViewer
 import github.karchx.motto.views.tools.managers.Toaster
-import github.karchx.motto.viewmodels.HomeViewModel
-import github.karchx.motto.viewmodels.MottosViewModel
 import java.util.*
 import github.karchx.motto.models.db.Motto as dbMotto
 
