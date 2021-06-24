@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".views.home.HomeFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textinput_global_scope_mottos"

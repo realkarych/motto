@@ -1,6 +1,6 @@
 package github.karchx.motto.search_engine.citaty_info_website.parsers
 
-import github.karchx.motto.model.storages.Constants
+import github.karchx.motto.models.storages.Constants
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import github.karchx.motto.search_engine.citaty_info_website.data.Topic
 import okhttp3.OkHttpClient
