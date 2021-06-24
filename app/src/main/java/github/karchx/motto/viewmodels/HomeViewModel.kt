@@ -29,7 +29,10 @@ class HomeViewModel : ViewModel() {
 
     fun putRandomMottosPostValue() {
         GlobalScope.launch {
-            _randomMottos.postValue(byRandomParser.getMottos(Constants.QUANTITY_MOTTOS_IN_LIST))
+            try {
+                _randomMottos.postValue(byRandomParser.getMottos(Constants.QUANTITY_MOTTOS_IN_LIST))
+            } catch (ex: Exception) {
+            }
         }
     }
 
