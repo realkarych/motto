@@ -6,50 +6,62 @@
     android:layout_height="match_parent"
     tools:context=".views.home.HomeFragment">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textinput_global_scope_mottos"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardview_global_mottos_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="15dp"
-        android:textColorHint="@color/pink"
-        app:boxBackgroundColor="@color/dark_item"
-        app:boxBackgroundMode="filled"
-        app:boxCornerRadiusBottomEnd="8dp"
-        app:boxCornerRadiusBottomStart="8dp"
-        app:boxCornerRadiusTopEnd="8dp"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
-        app:boxCornerRadiusTopStart="12dp"
-        app:boxStrokeColor="@color/dark_item"
-        app:hintTextColor="@color/pink"
+        android:layout_marginEnd="10dp"
+        app:cardBackgroundColor="@color/black"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="1dp"
+        app:cardUseCompatPadding="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edittext_global_scope_mottos"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textinput_global_scope_mottos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/open_sans_regular"
-            android:hint="@string/enter_request"
-            android:textColor="@color/soft_white"
-            android:textColorHint="@color/pink" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:outlineProvider="bounds"
+            android:textColorHint="@color/pink"
+            app:boxBackgroundColor="@color/dark_item"
+            app:boxBackgroundMode="filled"
+            app:boxStrokeColor="@color/dark_item"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:hintTextColor="@color/pink">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edittext_global_scope_mottos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_regular"
+                android:hint="@string/enter_request"
+                android:singleLine="true"
+                android:textColor="@color/soft_white"
+                android:textColorHint="@color/pink"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:targetApi="o" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/textview_mottos_found"
         style="@style/textViewTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/found_random_mottos"
+        app:layout_constraintBottom_toBottomOf="@+id/progressbar_mottos_loading"
         app:layout_constraintEnd_toStartOf="@+id/progressbar_mottos_loading"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textinput_global_scope_mottos" />
+        app:layout_constraintTop_toBottomOf="@+id/cardview_global_mottos_search" />
 
     <ProgressBar
         android:id="@+id/progressbar_mottos_loading"
@@ -57,10 +69,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="15dp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textinput_global_scope_mottos" />
+        app:layout_constraintTop_toBottomOf="@+id/cardview_global_mottos_search" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refresh_container_of_recyclerview_random_mottos"
