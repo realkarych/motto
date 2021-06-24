@@ -25,26 +25,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:outlineProvider="bounds"
-            android:textColorHint="@color/pink"
-            app:boxBackgroundColor="@color/dark_item"
+            android:textColorHint="@color/soft_black"
+            app:boxBackgroundColor="@color/orange"
             app:boxBackgroundMode="filled"
-            app:boxStrokeColor="@color/dark_item"
+            app:boxStrokeColor="@color/orange"
             app:boxStrokeWidth="0dp"
+            app:startIconDrawable="@drawable/ic_search_white"
+            app:startIconTint="@color/purple"
             app:boxStrokeWidthFocused="0dp"
-            app:hintTextColor="@color/pink">
+            app:hintTextColor="@color/soft_black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edittext_global_scope_mottos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans_regular"
+                android:fontFamily="@font/roboto"
                 android:hint="@string/enter_request"
                 android:singleLine="true"
-                android:textColor="@color/soft_white"
-                android:textColorHint="@color/pink"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:targetApi="o" />
+                android:maxLength="100"
+                android:textColor="@color/soft_black"
+                android:textColorHint="@color/soft_black"
+                android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </com.google.android.material.card.MaterialCardView>
