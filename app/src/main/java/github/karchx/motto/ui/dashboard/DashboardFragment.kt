@@ -3,12 +3,14 @@ package github.karchx.motto.ui.dashboard
 import android.app.Dialog
 import android.os.Bundle
 import android.view.*
+import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import github.karchx.motto.model.db.Motto as dbMotto
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
@@ -21,11 +23,13 @@ import github.karchx.motto.ui.MainActivity
 import github.karchx.motto.ui.tools.adapters.AuthorsRecyclerAdapter
 import github.karchx.motto.ui.tools.adapters.MottosRecyclerAdapter
 import github.karchx.motto.ui.tools.adapters.TopicsRecyclerAdapter
+import github.karchx.motto.ui.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.ui.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.ui.tools.managers.Copier
 import github.karchx.motto.ui.tools.managers.DialogViewer
 import github.karchx.motto.ui.tools.managers.Toaster
 import github.karchx.motto.viewmodels.DashboardViewModel
+import github.karchx.motto.viewmodels.MottosViewModel
 
 class DashboardFragment : Fragment() {
 
@@ -33,16 +37,18 @@ class DashboardFragment : Fragment() {
     private lateinit var topics: ArrayList<Topic>
     private lateinit var clickedAuthor: Author
     private lateinit var clickedTopic: Topic
+    private lateinit var allDbMottos: List<dbMotto>
     private lateinit var authorMottos: ArrayList<Motto>
     private lateinit var topicMottos: ArrayList<Motto>
     private lateinit var clickedMotto: Motto
-
+    private lateinit var mottosViewModel: MottosViewModel
     private lateinit var mAuthorsRecycler: RecyclerView
     private lateinit var mTopicsRecycler: RecyclerView
     private lateinit var mAuthorMottosRecycler: RecyclerView
     private lateinit var mTopicMottosRecycler: RecyclerView
     private lateinit var mFullMottoDialog: Dialog
     private lateinit var mFullMottoCardView: CardView
+    private lateinit var mAddToFavouritesImageView: ImageView
     private lateinit var mMottosLoadingProgressBar: ProgressBar
 
     private lateinit var dashboardViewModel: DashboardViewModel
@@ -70,6 +76,7 @@ class DashboardFragment : Fragment() {
         handleAuthorMottosRecyclerItemClick()
         handleTopicMottosRecyclerItemClick()
         handleCopyMottoData()
+        setAddToFavouritesBtnClickListener()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -104,6 +111,18 @@ class DashboardFragment : Fragment() {
         )
     }
 
+    private fun setAddToFavouritesBtnClickListener() {
+        mAddToFavouritesImageView.setOnClickListener {
+            OnClickAddToFavouritesListener.handleMotto(
+                requireContext(),
+                mottosViewModel,
+                mAddToFavouritesImageView,
+                allDbMottos,
+                clickedMotto
+            )
+        }
+    }
+
     private fun handleAuthorsRecyclerItemClick() {
         mAuthorsRecycler.addOnItemTouchListener(
             OnClickRecyclerItemListener(requireContext(), object :
@@ -136,7 +155,13 @@ class DashboardFragment : Fragment() {
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = authorMottos[position]
-                    //DialogViewer.displayFullMottoDialog(requireContext(), mFullMottoDialog, clickedMotto, )
+                    DialogViewer.displayFullMottoDialog(
+                        requireContext(),
+                        mFullMottoDialog,
+                        clickedMotto,
+                        allDbMottos
+                    )
+                    observeDbMottos()
                 }
             })
         )
@@ -148,7 +173,13 @@ class DashboardFragment : Fragment() {
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = topicMottos[position]
-                    //DialogViewer.displayFullMottoDialog(mFullMottoDialog, clickedMotto)
+                    DialogViewer.displayFullMottoDialog(
+                        requireContext(),
+                        mFullMottoDialog,
+                        clickedMotto,
+                        allDbMottos
+                    )
+                    observeDbMottos()
                 }
             })
         )
@@ -251,11 +282,18 @@ class DashboardFragment : Fragment() {
         mTopicMottosRecycler.adapter = adapter
     }
 
+    private fun observeDbMottos() {
+        mottosViewModel.allMottos.observe(viewLifecycleOwner) { allMottos ->
+            allDbMottos = allMottos
+        }
+    }
+
     private fun setObservers() {
         setAuthorsObserver()
         setTopicsObserver()
         setAuthorMottosObserver()
         setTopicMottosObserver()
+        observeDbMottos()
     }
 
     private fun initViews() {
@@ -268,5 +306,11 @@ class DashboardFragment : Fragment() {
         mFullMottoDialog = Dialog(requireActivity())
         mFullMottoDialog.setContentView(R.layout.dialog_full_motto)
         mFullMottoCardView = mFullMottoDialog.findViewById(R.id.cardview_full_motto_item)
+        mAddToFavouritesImageView = mFullMottoDialog.findViewById(R.id.imageview_is_saved_motto)
+
+        mottosViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        ).get(MottosViewModel(application = requireActivity().application)::class.java)
     }
 }
