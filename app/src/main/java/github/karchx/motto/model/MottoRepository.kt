@@ -15,7 +15,7 @@ class MottoRepository(private val mottoDao: MottoDao) {
     }
 
     @WorkerThread
-    suspend fun removeMotto(mottoID: Int) {
-        mottoDao.deleteMotto(mottoID)
+    suspend fun removeMotto(mottoQuote: String, mottoSource: String) {
+        mottoDao.deleteMotto(mottoQuote, mottoSource)
     }
 }

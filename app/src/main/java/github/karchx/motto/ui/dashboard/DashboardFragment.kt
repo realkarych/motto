@@ -136,7 +136,7 @@ class DashboardFragment : Fragment() {
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = authorMottos[position]
-                    DialogViewer.displayFullMottoDialog(mFullMottoDialog, clickedMotto)
+                    //DialogViewer.displayFullMottoDialog(requireContext(), mFullMottoDialog, clickedMotto, )
                 }
             })
         )
@@ -148,7 +148,7 @@ class DashboardFragment : Fragment() {
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = topicMottos[position]
-                    DialogViewer.displayFullMottoDialog(mFullMottoDialog, clickedMotto)
+                    //DialogViewer.displayFullMottoDialog(mFullMottoDialog, clickedMotto)
                 }
             })
         )
