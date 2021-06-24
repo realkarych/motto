@@ -50,6 +50,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_margin="10dp"
                 android:contentDescription="Stub"
+                android:visibility="invisible"
                 android:src="@drawable/ic_favorite_border_white"
                 tools:ignore="HardcodedText" />
 
