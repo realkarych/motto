@@ -14,14 +14,14 @@ import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
 import github.karchx.motto.databinding.FragmentFavouritesBinding
 import github.karchx.motto.models.db.Motto
+import github.karchx.motto.viewmodels.FavouritesViewModel
+import github.karchx.motto.viewmodels.MottosViewModel
 import github.karchx.motto.views.tools.adapters.FromDbMottosRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.Copier
 import github.karchx.motto.views.tools.managers.DialogViewer
 import github.karchx.motto.views.tools.managers.Toaster
-import github.karchx.motto.viewmodels.FavouritesViewModel
-import github.karchx.motto.viewmodels.MottosViewModel
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto as parsedMotto
 
 class FavouritesFragment : Fragment() {
