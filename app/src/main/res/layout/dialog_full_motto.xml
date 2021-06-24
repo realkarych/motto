@@ -31,14 +31,26 @@
 
             <TextView
                 android:id="@+id/textview_motto_full_source"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textview_motto_full_quote"
                 android:layout_margin="10dp"
+                android:layout_toStartOf="@id/imageview_is_saved_motto"
                 android:text="Stub"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/imageview_is_saved_motto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textview_motto_full_quote"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="10dp"
+                android:contentDescription="Stub"
+                android:src="@drawable/ic_favorite_border_white"
                 tools:ignore="HardcodedText" />
 
         </RelativeLayout>
