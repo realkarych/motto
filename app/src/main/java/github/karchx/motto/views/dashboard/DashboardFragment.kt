@@ -18,6 +18,8 @@ import github.karchx.motto.models.storages.Constants
 import github.karchx.motto.search_engine.citaty_info_website.data.Author
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import github.karchx.motto.search_engine.citaty_info_website.data.Topic
+import github.karchx.motto.viewmodels.DashboardViewModel
+import github.karchx.motto.viewmodels.MottosViewModel
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.AuthorsRecyclerAdapter
 import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
@@ -27,8 +29,6 @@ import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.Copier
 import github.karchx.motto.views.tools.managers.DialogViewer
 import github.karchx.motto.views.tools.managers.Toaster
-import github.karchx.motto.viewmodels.DashboardViewModel
-import github.karchx.motto.viewmodels.MottosViewModel
 import github.karchx.motto.models.db.Motto as dbMotto
 
 class DashboardFragment : Fragment() {
