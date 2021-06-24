@@ -12,7 +12,10 @@ class FromDbMottosRecyclerAdapter(
     private val mottos: ArrayList<Motto>
 ) : RecyclerView.Adapter<MottosRecyclerAdapter.MottosViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MottosRecyclerAdapter.MottosViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): MottosRecyclerAdapter.MottosViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.motto_item, parent, false)
         return MottosRecyclerAdapter.MottosViewHolder(view)
     }
