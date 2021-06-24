@@ -7,29 +7,27 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
+        style="@style/mottoCardView"
+        android:layout_margin="8dp"
         android:id="@+id/cardview_full_motto_item"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:backgroundTint="@android:color/holo_blue_dark"
-        app:cardCornerRadius="12dp">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <TextView
+                style="@style/textViewRegular"
                 android:id="@+id/textview_motto_full_quote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Stub"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold"
                 tools:ignore="HardcodedText" />
 
             <TextView
+                style="@style/textViewUnderRegular"
                 android:id="@+id/textview_motto_full_source"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -37,9 +35,6 @@
                 android:layout_margin="10dp"
                 android:layout_toStartOf="@id/imageview_is_saved_motto"
                 android:text="Stub"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"
                 tools:ignore="HardcodedText" />
 
             <ImageView
@@ -51,7 +46,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:contentDescription="Stub"
-                android:src="@drawable/ic_favorite_border_white"
+                android:src="@drawable/ic_favorite_border"
                 android:visibility="invisible"
                 tools:ignore="HardcodedText" />
 
