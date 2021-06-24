@@ -3,27 +3,29 @@ package github.karchx.motto.ui.tools.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
+import github.karchx.motto.model.db.Motto
 import github.karchx.motto.model.storages.Constants
-import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 
-class MottosRecyclerAdapter(
+class FromDbMottosRecyclerAdapter(
     private val mottos: ArrayList<Motto>
 ) : RecyclerView.Adapter<MottosRecyclerAdapter.MottosViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MottosViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MottosRecyclerAdapter.MottosViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.motto_item, parent, false)
-        return MottosViewHolder(view)
+        return MottosRecyclerAdapter.MottosViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MottosViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MottosRecyclerAdapter.MottosViewHolder, position: Int) {
         val mottoTitle = getMottoTitle(mottos[position].quote)
         val mottoSource = mottos[position].source
+        val mottoDateAdded = mottos[position].dateSaved
 
         holder.mottoTitle.text = mottoTitle
         holder.mottoSource.text = mottoSource
+        holder.mottoDateAdded.visibility = View.VISIBLE
+        holder.mottoDateAdded.text = mottoDateAdded
     }
 
     override fun getItemCount(): Int {
@@ -42,11 +44,5 @@ class MottosRecyclerAdapter(
         } else {
             return quote
         }
-    }
-
-    class MottosViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val mottoTitle: TextView = itemView.findViewById(R.id.textview_motto_title)
-        val mottoSource: TextView = itemView.findViewById(R.id.textview_motto_source)
-        val mottoDateAdded: TextView = itemView.findViewById(R.id.textview_db_motto_time_added)
     }
 }
