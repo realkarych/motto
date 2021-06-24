@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
-import github.karchx.motto.model.db.Motto as dbMotto
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
@@ -30,6 +29,7 @@ import github.karchx.motto.ui.tools.managers.DialogViewer
 import github.karchx.motto.ui.tools.managers.Toaster
 import github.karchx.motto.viewmodels.DashboardViewModel
 import github.karchx.motto.viewmodels.MottosViewModel
+import github.karchx.motto.model.db.Motto as dbMotto
 
 class DashboardFragment : Fragment() {
 
