@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="github.karchx.motto.ui.home.HomeFragment"
+        android:name="github.karchx.motto.views.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="github.karchx.motto.ui.dashboard.DashboardLayoutFragment"
+        android:name="github.karchx.motto.views.dashboard.DashboardLayoutFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard_layout" />
 
     <fragment
         android:id="@+id/navigation_favourites"
-        android:name="github.karchx.motto.ui.favourites.FavouritesFragment"
+        android:name="github.karchx.motto.views.favourites.FavouritesFragment"
         android:label="@string/title_favourites"
         tools:layout="@layout/fragment_favourites" />
 </navigation>
