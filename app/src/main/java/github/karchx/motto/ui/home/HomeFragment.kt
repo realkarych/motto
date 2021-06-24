@@ -180,9 +180,20 @@ class HomeFragment : Fragment() {
 
     private fun setRandomMottosClickListener() {
         mMottosRecycler.addOnItemTouchListener(
-            OnClickRecyclerItemListener(requireContext(), object :
+            OnClickRecyclerItemListener(requireContext(), mMottosRecycler, object :
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
+                    clickedMotto = mottos[position]
+                    DialogViewer.displayFullMottoDialog(
+                        requireContext(),
+                        mFullMottoDialog,
+                        clickedMotto,
+                        allDbMottos
+                    )
+                    observeDbMottos()
+                }
+
+                override fun onItemLongClick(view: View, position: Int) {
                     clickedMotto = mottos[position]
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
