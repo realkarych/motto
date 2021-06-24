@@ -3,8 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="soft_black">#FF121212</color>
 
-    <color name="dark_item">#FF1D1D1D</color>
-    <color name="middle_dark_item">#FF3C4042</color>
+    <color name="dark_item">#FF403D46</color>
 
     <color name="white">#FFFFFFFF</color>
     <color name="soft_white">#CCFFFFFF</color>
@@ -13,5 +12,7 @@
 
     <color name="dark_purple">#FF170026</color>
     <color name="purple">#FF4B0082</color>
+
+    <color name="orange">#FFDBCBC9</color>
 
 </resources>

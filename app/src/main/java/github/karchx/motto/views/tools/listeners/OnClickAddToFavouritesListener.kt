@@ -49,7 +49,7 @@ class OnClickAddToFavouritesListener {
         }
 
         private fun getCurrentDate(): String {
-            return SimpleDateFormat("dd.MM HH:mm", Locale.getDefault()).format(Date())
+            return SimpleDateFormat("dd.MM, HH:mm", Locale.getDefault()).format(Date())
         }
 
         private fun getNotAddedMottoIcon(context: Context): Drawable? {

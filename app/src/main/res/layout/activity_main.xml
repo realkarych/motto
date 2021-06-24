@@ -13,7 +13,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
 
-        android:background="@color/dark_item"
+        android:background="@color/soft_black"
         app:itemIconTint="@color/bottom_nav_color"
         app:itemTextColor="@color/bottom_nav_color"
         app:layout_constraintBottom_toBottomOf="parent"

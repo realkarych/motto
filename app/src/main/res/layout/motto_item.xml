@@ -2,44 +2,39 @@
 
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/mottoCardView"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardview_motto_item"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:backgroundTint="@android:color/holo_blue_dark"
-    app:cardCornerRadius="12dp">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
+            style="@style/textViewRegular"
             android:id="@+id/textview_motto_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="Stub"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
             tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/textview_motto_source"
+            style="@style/textViewUnderRegular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textview_motto_title"
             android:layout_margin="10dp"
             android:layout_toStartOf="@+id/textview_db_motto_time_added"
             android:text="Stub"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:textStyle="bold"
             tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/textview_db_motto_time_added"
+            style="@style/textViewUnderRegular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textview_motto_source"
@@ -47,9 +42,6 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:text="Stub"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:textStyle="bold"
             android:visibility="invisible"
             tools:ignore="HardcodedText" />
 
