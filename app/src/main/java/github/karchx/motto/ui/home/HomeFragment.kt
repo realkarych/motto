@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -22,6 +23,7 @@ import github.karchx.motto.R
 import github.karchx.motto.databinding.FragmentHomeBinding
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import github.karchx.motto.ui.tools.adapters.MottosRecyclerAdapter
+import github.karchx.motto.ui.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.ui.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.ui.tools.managers.Copier
 import github.karchx.motto.ui.tools.managers.DialogViewer
@@ -36,6 +38,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var mottos: ArrayList<Motto>
     private lateinit var clickedMotto: Motto
+    private lateinit var allDbMottos: List<dbMotto>
 
     private lateinit var mottosViewModel: MottosViewModel
     private lateinit var mMottosLoadingProgressBar: ProgressBar
@@ -43,6 +46,7 @@ class HomeFragment : Fragment() {
     private lateinit var mSwipeRefreshLayoutRandomMottos: SwipeRefreshLayout
     private lateinit var mFullMottoDialog: Dialog
     private lateinit var mFullMottoCardView: CardView
+    private lateinit var mAddToFavouritesImageView: ImageView
     private lateinit var mGlobalScopeMottosEditText: EditText
     private lateinit var mMottosFoundTextView: TextView
 
@@ -67,9 +71,11 @@ class HomeFragment : Fragment() {
 
         observeRandomMottos()
         observeRequestMottos()
+        observeDbMottos()
         setFullMottoCardViewClickListener()
         setRandomMottosClickListener()
         handleTextInputChanges()
+        setAddToFavouritesBtnClickListener()
 
         mSwipeRefreshLayoutRandomMottos.setOnRefreshListener {
             homeViewModel.putRandomMottosPostValue()
@@ -141,6 +147,12 @@ class HomeFragment : Fragment() {
         })
     }
 
+    private fun observeDbMottos() {
+        mottosViewModel.allMottos.observe(viewLifecycleOwner) { allMottos ->
+            allDbMottos = allMottos
+        }
+    }
+
     private fun setFullMottoCardViewClickListener() {
         mFullMottoCardView.setOnClickListener {
             val text = Copier.getMottoDataToCopy(
@@ -154,21 +166,31 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun setAddToFavouritesBtnClickListener() {
+        mAddToFavouritesImageView.setOnClickListener {
+            OnClickAddToFavouritesListener.handleMotto(
+                requireContext(),
+                mottosViewModel,
+                mAddToFavouritesImageView,
+                allDbMottos,
+                clickedMotto
+            )
+        }
+    }
+
     private fun setRandomMottosClickListener() {
         mMottosRecycler.addOnItemTouchListener(
             OnClickRecyclerItemListener(requireContext(), object :
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = mottos[position]
-                    DialogViewer.displayFullMottoDialog(mFullMottoDialog, clickedMotto)
-                    mottosViewModel.insertMotto(
-                        dbMotto(
-                            0,
-                            clickedMotto.quote,
-                            clickedMotto.source,
-                            "12:00"
-                        )
+                    DialogViewer.displayFullMottoDialog(
+                        requireContext(),
+                        mFullMottoDialog,
+                        clickedMotto,
+                        allDbMottos
                     )
+                    observeDbMottos()
                 }
             })
         )
@@ -219,6 +241,7 @@ class HomeFragment : Fragment() {
         mFullMottoDialog = Dialog(requireActivity())
         mFullMottoDialog.setContentView(R.layout.dialog_full_motto)
         mFullMottoCardView = mFullMottoDialog.findViewById(R.id.cardview_full_motto_item)
+        mAddToFavouritesImageView = mFullMottoDialog.findViewById(R.id.imageview_is_saved_motto)
 
         mottosViewModel = ViewModelProvider(
             this,

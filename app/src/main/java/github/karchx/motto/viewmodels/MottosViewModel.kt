@@ -24,7 +24,7 @@ class MottosViewModel(application: Application) : AndroidViewModel(application) 
         repository.insertMotto(motto)
     }
 
-    fun deleteMotto(mottoID: Int) = viewModelScope.launch {
-        repository.removeMotto(mottoID)
+    fun deleteMotto(mottoQuote: String, mottoSource: String) = viewModelScope.launch {
+        repository.removeMotto(mottoQuote, mottoSource)
     }
 }

@@ -15,6 +15,6 @@ interface MottoDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertMotto(motto: Motto)
 
-    @Query("DELETE FROM motto_table WHERE id = :mottoID")
-    suspend fun deleteMotto(mottoID: Int)
+    @Query("DELETE FROM motto_table WHERE quote = :mottoQuote AND source = :mottoSource")
+    suspend fun deleteMotto(mottoQuote: String, mottoSource: String)
 }
