@@ -9,7 +9,7 @@ import github.karchx.motto.model.db.Motto
 import github.karchx.motto.model.storages.Constants
 
 class FromDbMottosRecyclerAdapter(
-    private val mottos: ArrayList<Motto>
+    private val mottos: List<Motto>
 ) : RecyclerView.Adapter<MottosRecyclerAdapter.MottosViewHolder>() {
 
     override fun onCreateViewHolder(

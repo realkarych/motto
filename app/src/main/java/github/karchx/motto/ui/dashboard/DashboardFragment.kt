@@ -125,9 +125,15 @@ class DashboardFragment : Fragment() {
 
     private fun handleAuthorsRecyclerItemClick() {
         mAuthorsRecycler.addOnItemTouchListener(
-            OnClickRecyclerItemListener(requireContext(), object :
+            OnClickRecyclerItemListener(requireContext(), mAuthorsRecycler, object :
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
+                    clickedAuthor = authors[position]
+                    dashboardViewModel.putAuthorMottosPostValue(clickedAuthor)
+                    mMottosLoadingProgressBar.visibility = View.VISIBLE
+                }
+
+                override fun onItemLongClick(view: View, position: Int) {
                     clickedAuthor = authors[position]
                     dashboardViewModel.putAuthorMottosPostValue(clickedAuthor)
                     mMottosLoadingProgressBar.visibility = View.VISIBLE
@@ -138,9 +144,15 @@ class DashboardFragment : Fragment() {
 
     private fun handleTopicsRecyclerItemClick() {
         mTopicsRecycler.addOnItemTouchListener(
-            OnClickRecyclerItemListener(requireContext(), object :
+            OnClickRecyclerItemListener(requireContext(), mTopicsRecycler, object :
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
+                    clickedTopic = topics[position]
+                    dashboardViewModel.putTopicMottosPostValue(clickedTopic)
+                    mMottosLoadingProgressBar.visibility = View.VISIBLE
+                }
+
+                override fun onItemLongClick(view: View, position: Int) {
                     clickedTopic = topics[position]
                     dashboardViewModel.putTopicMottosPostValue(clickedTopic)
                     mMottosLoadingProgressBar.visibility = View.VISIBLE
@@ -151,9 +163,20 @@ class DashboardFragment : Fragment() {
 
     private fun handleAuthorMottosRecyclerItemClick() {
         mAuthorMottosRecycler.addOnItemTouchListener(
-            OnClickRecyclerItemListener(requireContext(), object :
+            OnClickRecyclerItemListener(requireContext(), mAuthorMottosRecycler, object :
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
+                    clickedMotto = authorMottos[position]
+                    DialogViewer.displayFullMottoDialog(
+                        requireContext(),
+                        mFullMottoDialog,
+                        clickedMotto,
+                        allDbMottos
+                    )
+                    observeDbMottos()
+                }
+
+                override fun onItemLongClick(view: View, position: Int) {
                     clickedMotto = authorMottos[position]
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
@@ -169,9 +192,20 @@ class DashboardFragment : Fragment() {
 
     private fun handleTopicMottosRecyclerItemClick() {
         mTopicMottosRecycler.addOnItemTouchListener(
-            OnClickRecyclerItemListener(requireContext(), object :
+            OnClickRecyclerItemListener(requireContext(), mTopicMottosRecycler, object :
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
+                    clickedMotto = topicMottos[position]
+                    DialogViewer.displayFullMottoDialog(
+                        requireContext(),
+                        mFullMottoDialog,
+                        clickedMotto,
+                        allDbMottos
+                    )
+                    observeDbMottos()
+                }
+
+                override fun onItemLongClick(view: View, position: Int) {
                     clickedMotto = topicMottos[position]
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),

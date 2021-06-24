@@ -68,7 +68,7 @@ class FavouritesFragment : Fragment() {
 
     private fun setFavouriteMottosClickListener() {
         mFavouriteMottosRecycler.addOnItemTouchListener(
-            OnClickRecyclerItemListener(requireContext(), object :
+            OnClickRecyclerItemListener(requireContext(), mFavouriteMottosRecycler, object :
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = savedMottos[position]
@@ -78,6 +78,12 @@ class FavouritesFragment : Fragment() {
                         parsedMotto(clickedMotto.quote, clickedMotto.source, false),
                         savedMottos
                     )
+                    observeDbMottos()
+                }
+
+                override fun onItemLongClick(view: View, position: Int) {
+                    clickedMotto = savedMottos[position]
+                    mottosViewModel.deleteMotto(clickedMotto.quote, clickedMotto.source)
                     observeDbMottos()
                 }
             })
@@ -116,7 +122,7 @@ class FavouritesFragment : Fragment() {
 
     private fun displayFavouriteMottos(mottos: List<Motto>) {
         val layoutManager = GridLayoutManager(context, 1)
-        val adapter = FromDbMottosRecyclerAdapter(mottos as ArrayList<Motto>)
+        val adapter = FromDbMottosRecyclerAdapter(mottos)
         mFavouriteMottosRecycler.setHasFixedSize(true)
         mFavouriteMottosRecycler.layoutManager = layoutManager
         mFavouriteMottosRecycler.adapter = adapter
