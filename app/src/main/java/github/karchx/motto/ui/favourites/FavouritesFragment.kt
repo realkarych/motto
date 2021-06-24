@@ -6,7 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.databinding.FragmentFavouritesBinding
+import github.karchx.motto.model.db.Motto
+import github.karchx.motto.ui.tools.adapters.AuthorsRecyclerAdapter
+import github.karchx.motto.ui.tools.adapters.FromDbMottosRecyclerAdapter
 import github.karchx.motto.viewmodels.FavouritesViewModel
 import github.karchx.motto.viewmodels.MottosViewModel
 
@@ -14,6 +19,8 @@ class FavouritesFragment : Fragment() {
 
     private lateinit var favouritesViewModel: FavouritesViewModel
     private lateinit var mottosViewModel: MottosViewModel
+    
+    private lateinit var mFavouriteMottosRecycler: RecyclerView
 
     private var _binding: FragmentFavouritesBinding? = null
     private val binding get() = _binding!!
@@ -28,9 +35,14 @@ class FavouritesFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initViews()
         initData()
         mottosViewModel.allMottos.observe(viewLifecycleOwner) {
-            binding.textFavourites.text = it.toString()
+            val layoutManager = GridLayoutManager(context, 1)
+            val adapter = FromDbMottosRecyclerAdapter(it.reversed() as ArrayList<Motto>)
+            mFavouriteMottosRecycler.setHasFixedSize(true)
+            mFavouriteMottosRecycler.layoutManager = layoutManager
+            mFavouriteMottosRecycler.adapter = adapter
         }
     }
 
@@ -46,5 +58,9 @@ class FavouritesFragment : Fragment() {
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
         ).get(MottosViewModel(application = requireActivity().application)::class.java)
+    }
+    
+    private fun initViews() {
+        mFavouriteMottosRecycler = binding.recyclerviewFavouriteMottos
     }
 }
