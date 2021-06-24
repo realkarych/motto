@@ -5,9 +5,9 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import github.karchx.motto.model.MottoRepository
-import github.karchx.motto.model.db.Motto
-import github.karchx.motto.model.db.MottoDatabase
+import github.karchx.motto.models.MottoRepository
+import github.karchx.motto.models.db.Motto
+import github.karchx.motto.models.db.MottoDatabase
 import kotlinx.coroutines.launch
 
 class MottosViewModel(application: Application) : AndroidViewModel(application) {
