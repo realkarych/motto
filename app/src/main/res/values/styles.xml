@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_activity_layout</item>
+        <item name="colorPrimaryDark">@color/dark_purple</item>
+        <item name="colorPrimary">@color/dark_purple</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/black</item>
+        <item name="colorSecondaryVariant">@color/black</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:navigationBarColor">@color/dark_purple</item>
+    </style>
+
     <style name="textViewTitle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/pink</item>
         <item name="android:textStyle">bold</item>
