@@ -59,7 +59,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:text="@string/found_random_mottos"
-        app:layout_constraintBottom_toBottomOf="@+id/progressbar_mottos_loading"
+
         app:layout_constraintEnd_toStartOf="@+id/progressbar_mottos_loading"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardview_global_mottos_search" />
