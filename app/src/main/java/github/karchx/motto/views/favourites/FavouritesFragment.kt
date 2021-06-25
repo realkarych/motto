@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -33,6 +34,7 @@ class FavouritesFragment : Fragment() {
 
     private lateinit var mFavouriteMottosRecycler: RecyclerView
     private lateinit var mAddToFavouritesImageView: ImageView
+    private lateinit var mNotAnyAddedMottosTextView: TextView
 
     private var _binding: FragmentFavouritesBinding? = null
     private val binding get() = _binding!!
@@ -62,7 +64,14 @@ class FavouritesFragment : Fragment() {
     private fun observeDbMottos() {
         mottosViewModel.allMottos.observe(viewLifecycleOwner) { mottos ->
             savedMottos = mottos.reversed()
-            displayFavouriteMottos(savedMottos)
+            if (mottos.isEmpty()) {
+                mFavouriteMottosRecycler.visibility = View.INVISIBLE
+                mNotAnyAddedMottosTextView.visibility = View.VISIBLE
+            } else {
+                mNotAnyAddedMottosTextView.visibility = View.INVISIBLE
+                mFavouriteMottosRecycler.visibility = View.VISIBLE
+                displayFavouriteMottos(savedMottos)
+            }
         }
     }
 
@@ -143,5 +152,6 @@ class FavouritesFragment : Fragment() {
         mFullMottoDialog.setContentView(R.layout.dialog_full_motto)
         mFullMottoCardView = mFullMottoDialog.findViewById(R.id.cardview_full_motto_item)
         mAddToFavouritesImageView = mFullMottoDialog.findViewById(R.id.imageview_is_saved_motto)
+        mNotAnyAddedMottosTextView = binding.textviewMottosFound
     }
 }
