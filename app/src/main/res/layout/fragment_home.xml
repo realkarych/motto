@@ -87,6 +87,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textview_mottos_found">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:layoutAnimation="@anim/recycler_animation"
             android:id="@+id/recyclerview_mottos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

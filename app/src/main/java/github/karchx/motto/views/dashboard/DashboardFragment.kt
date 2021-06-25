@@ -298,6 +298,7 @@ class DashboardFragment : Fragment() {
         val layoutManager = GridLayoutManager(context, 1)
         val adapter = MottosRecyclerAdapter(authorMottos)
 
+        mAuthorMottosRecycler.scheduleLayoutAnimation()
         mAuthorMottosRecycler.setHasFixedSize(true)
         mAuthorMottosRecycler.layoutManager = layoutManager
         mAuthorMottosRecycler.adapter = adapter
@@ -311,6 +312,7 @@ class DashboardFragment : Fragment() {
         val layoutManager = GridLayoutManager(context, 1)
         val adapter = MottosRecyclerAdapter(topicMottos)
 
+        mTopicMottosRecycler.scheduleLayoutAnimation()
         mTopicMottosRecycler.setHasFixedSize(true)
         mTopicMottosRecycler.layoutManager = layoutManager
         mTopicMottosRecycler.adapter = adapter

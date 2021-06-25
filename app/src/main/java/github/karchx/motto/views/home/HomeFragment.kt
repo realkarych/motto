@@ -222,6 +222,7 @@ class HomeFragment : Fragment() {
         hideKeyboard()
 
         val layoutManager = GridLayoutManager(context, 1)
+        mMottosRecycler.scheduleLayoutAnimation()
         mMottosRecycler.setHasFixedSize(true)
         mMottosRecycler.layoutManager = layoutManager
         val adapter = MottosRecyclerAdapter(mottos)
