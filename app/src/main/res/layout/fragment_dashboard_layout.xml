@@ -13,7 +13,7 @@
         app:tabIconTint="@color/bottom_nav_color"
         app:tabIndicatorColor="@color/pink"
         app:tabMode="fixed"
-        app:tabRippleColor="@color/white"
+        app:tabRippleColor="@color/purple"
         app:tabSelectedTextColor="@color/bottom_nav_color"
         app:tabTextColor="@color/soft_white">
 

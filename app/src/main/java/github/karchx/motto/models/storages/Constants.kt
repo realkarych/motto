@@ -16,7 +16,10 @@ class Constants {
         const val KEYWORD_MOTTO_TYPE = "motto_type"
 
         fun getMottoTypesNames(context: Context): ArrayList<String> {
-            return arrayListOf(context.getString(R.string.authors), context.getString(R.string.topics))
+            return arrayListOf(
+                context.getString(R.string.authors),
+                context.getString(R.string.topics)
+            )
         }
 
     }
