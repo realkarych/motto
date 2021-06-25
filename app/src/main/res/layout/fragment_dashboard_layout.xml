@@ -7,6 +7,12 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout_motto_types"
+        android:background="@color/dark_purple"
+        app:tabIconTint="@color/bottom_nav_color"
+        app:tabTextColor="@color/soft_white"
+        app:tabIndicatorColor="@color/pink"
+        app:tabRippleColor="@color/white"
+        app:tabSelectedTextColor="@color/bottom_nav_color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabMode="fixed">
