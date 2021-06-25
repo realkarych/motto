@@ -2,8 +2,8 @@ package github.karchx.motto.views.tools.adapters
 
 import android.text.Spannable
 import android.text.SpannableString
-import android.text.style.AbsoluteSizeSpan
 import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -69,7 +69,7 @@ class AuthorsRecyclerAdapter(
         val authorNameSpan: Spannable = SpannableString(name + "\n")
 
         authorNameSpan.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(context, R.color.white)),
+            ForegroundColorSpan(ContextCompat.getColor(context, R.color.soft_white)),
             0,
             authorNameSpan.length,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -87,13 +87,6 @@ class AuthorsRecyclerAdapter(
             authorSurnameSpan.length,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-        authorSurnameSpan.setSpan(
-            AbsoluteSizeSpan(19, true),
-            0,
-            authorSurnameSpan.length,
-            Spannable.SPAN_INCLUSIVE_INCLUSIVE
-        )
-
         return authorSurnameSpan
     }
 

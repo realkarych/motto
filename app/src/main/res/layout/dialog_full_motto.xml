@@ -42,8 +42,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="Stub"
-                    android:textSize="18sp"
-                    android:textStyle="normal"
+                    android:textColor="@color/soft_white"
                     tools:ignore="HardcodedText" />
 
                 <TextView
