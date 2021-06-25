@@ -30,9 +30,7 @@ class ByTopicMottosParser(private var topic: Topic) : MottosParser {
                 }
             }
             return mottos
-        }
-
-        catch (ex: Exception) {
+        } catch (ex: Exception) {
             return mottos
         }
     }

@@ -8,7 +8,6 @@
     <TextView
         android:id="@+id/textview_about_this_full_motto"
         style="@style/textViewTitle"
-        android:textColor="@color/pink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -16,6 +15,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:text="@string/motto_about"
+        android:textColor="@color/pink"
         android:textSize="28sp"
         tools:ignore="HardcodedText" />
 
