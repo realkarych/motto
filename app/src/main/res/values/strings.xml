@@ -9,10 +9,10 @@
     <string name="motto_source">Source:</string>
     <string name="authors">Authors</string>
     <string name="topics">Topics</string>
-    <string name="found_random_mottos">Found random Mottos</string>
+    <string name="found_random_mottos">Our selection</string>
     <string name="enter_request">Enter request</string>
     <string name="found_on_request">Found on your request</string>
     <string name="not_found_on_request">Nothing found. Check your request and internet connection. You can swipe-up below and see our selected mottos again</string>
-    <string name="not_found_random_mottos">Editor\'s Choice mottos not found. Check your internet connection</string>
+    <string name="not_found_random_mottos">Our selected mottos not found. Check your internet connection</string>
     <string name="not_saved_any_mottos">You have no saved mottos. Click any motto, press \"like\" button and it will be saved &amp; displayed here</string>
 </resources>
