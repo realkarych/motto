@@ -15,20 +15,26 @@ class ByTopicMottosParser(private var topic: Topic) : MottosParser {
         val mottos = ArrayList<Motto>()
         val uriToParse = getUriToParse(topic)
 
-        val okHttp = OkHttpClient()
-        val request: Request = Request.Builder().url(uriToParse).get().build()
-        val doc: Document = Jsoup.parse(okHttp.newCall(request).execute().body!!.string())
-        val articles: Elements = doc.select(Constants.ARTICLE_ROOT_ELEMENT_NAME)
+        try {
+            val okHttp = OkHttpClient()
+            val request: Request = Request.Builder().url(uriToParse).get().build()
+            val doc: Document = Jsoup.parse(okHttp.newCall(request).execute().body!!.string())
+            val articles: Elements = doc.select(Constants.ARTICLE_ROOT_ELEMENT_NAME)
 
-        val limitedQuantityMottos = getLimitedMottosQuantity(articles, quantityMottos)
+            val limitedQuantityMottos = getLimitedMottosQuantity(articles, quantityMottos)
 
-        for (mottoIndex in 0 until limitedQuantityMottos) {
-            try {
-                mottos.add(HtmlMottosParser.getMottoFromHtml(doc, mottoIndex))
-            } catch (ex: Exception) {
+            for (mottoIndex in 0 until limitedQuantityMottos) {
+                try {
+                    mottos.add(HtmlMottosParser.getMottoFromHtml(doc, mottoIndex))
+                } catch (ex: Exception) {
+                }
             }
+            return mottos
         }
-        return mottos
+
+        catch (ex: Exception) {
+            return mottos
+        }
     }
 
     private fun getLimitedMottosQuantity(articles: Elements, quantityMottos: Int): Int {
