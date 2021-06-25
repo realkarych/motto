@@ -78,6 +78,7 @@ class HomeFragment : Fragment() {
         setAddToFavouritesBtnClickListener()
 
         mSwipeRefreshLayoutRandomMottos.setOnRefreshListener {
+            mGlobalScopeMottosEditText.text.clear()
             homeViewModel.putRandomMottosPostValue()
         }
     }
