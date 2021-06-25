@@ -7,7 +7,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import github.karchx.motto.models.storages.Constants
 import github.karchx.motto.views.dashboard.DashboardFragment
 
-class DashboardLayoutAdapter(fragment: Fragment, private val context: Context) : FragmentStateAdapter(fragment) {
+class DashboardLayoutAdapter(fragment: Fragment, private val context: Context) :
+    FragmentStateAdapter(fragment) {
 
     override fun getItemCount(): Int = 2
 
