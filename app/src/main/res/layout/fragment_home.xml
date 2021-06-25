@@ -71,9 +71,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="15dp"
+        android:indeterminateTint="@color/pink"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        android:indeterminateTint="@color/pink"
         app:layout_constraintTop_toBottomOf="@+id/cardview_global_mottos_search" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -87,10 +87,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textview_mottos_found">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layoutAnimation="@anim/recycler_animation"
             android:id="@+id/recyclerview_mottos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layoutAnimation="@anim/recycler_animation"
             android:scrollbars="vertical" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

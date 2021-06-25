@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/mottoCardView"
-    android:backgroundTint="@color/darker_item"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardview_author_item"
+    style="@style/mottoCardView"
     android:layout_width="match_parent"
     android:layout_height="120dp"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    android:backgroundTint="@color/darker_item">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            style="@style/textViewMottoTypeRegular"
             android:id="@+id/textview_author_name"
+            style="@style/textViewMottoTypeRegular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -36,9 +36,9 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="0dp"
-            android:alpha=".75"
             android:layout_marginBottom="0dp"
             android:adjustViewBounds="true"
+            android:alpha=".75"
             android:contentDescription="Stub"
             android:maxWidth="85dp"
             android:maxHeight="85dp"

@@ -1,40 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        style="@style/mottoCardView"
-        android:layout_margin="8dp"
         android:id="@+id/cardview_full_motto_item"
+        style="@style/mottoCardView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <TextView
-                style="@style/textViewRegular"
                 android:id="@+id/textview_motto_full_quote"
+                style="@style/textViewMottoTypeRegular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Stub"
+                android:textSize="18sp"
+                android:textStyle="normal"
                 tools:ignore="HardcodedText" />
 
             <TextView
-                style="@style/textViewUnderRegular"
                 android:id="@+id/textview_motto_full_source"
+                style="@style/textViewRegular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textview_motto_full_quote"
                 android:layout_margin="10dp"
                 android:layout_toStartOf="@id/imageview_is_saved_motto"
                 android:text="Stub"
+                android:textColor="@color/pink"
                 tools:ignore="HardcodedText" />
 
             <ImageView
