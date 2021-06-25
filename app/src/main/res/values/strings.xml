@@ -8,7 +8,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_favourites">Favourites</string>
     <string name="unknown_author">Unknown author</string>
-    <string name="motto_about">About this Motto</string>
+    <string name="motto_about">Click motto to copy it</string>
     <string name="motto_copied">Motto copied!</string>
     <string name="motto_source">Source:</string>
     <string name="authors">Authors</string>
@@ -20,4 +20,5 @@
     <string name="not_found_random_mottos">Our selected mottos not found. Check your internet connection</string>
     <string name="not_found_any_mottos">Nothing found. Check your internet connection</string>
     <string name="not_saved_any_mottos">You have no saved mottos. Click any motto, press \"like\" button and it will be saved &amp; displayed here</string>
+    <string name="how_to_delete_motto">Make a long press to delete the motto</string>
 </resources>

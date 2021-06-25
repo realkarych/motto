@@ -34,7 +34,7 @@ class FavouritesFragment : Fragment() {
 
     private lateinit var mFavouriteMottosRecycler: RecyclerView
     private lateinit var mAddToFavouritesImageView: ImageView
-    private lateinit var mNotAnyAddedMottosTextView: TextView
+    private lateinit var mSavedMottosInfoTextView: TextView
 
     private var _binding: FragmentFavouritesBinding? = null
     private val binding get() = _binding!!
@@ -65,10 +65,10 @@ class FavouritesFragment : Fragment() {
         mottosViewModel.allMottos.observe(viewLifecycleOwner) { mottos ->
             savedMottos = mottos.reversed()
             if (mottos.isEmpty()) {
+                mSavedMottosInfoTextView.text = getString(R.string.not_saved_any_mottos)
                 mFavouriteMottosRecycler.visibility = View.INVISIBLE
-                mNotAnyAddedMottosTextView.visibility = View.VISIBLE
             } else {
-                mNotAnyAddedMottosTextView.visibility = View.INVISIBLE
+                mSavedMottosInfoTextView.text = getString(R.string.how_to_delete_motto)
                 mFavouriteMottosRecycler.visibility = View.VISIBLE
                 displayFavouriteMottos(savedMottos)
             }
@@ -152,6 +152,6 @@ class FavouritesFragment : Fragment() {
         mFullMottoDialog.setContentView(R.layout.dialog_full_motto)
         mFullMottoCardView = mFullMottoDialog.findViewById(R.id.cardview_full_motto_item)
         mAddToFavouritesImageView = mFullMottoDialog.findViewById(R.id.imageview_is_saved_motto)
-        mNotAnyAddedMottosTextView = binding.textviewMottosFound
+        mSavedMottosInfoTextView = binding.textviewSavedMottosInfo
     }
 }
