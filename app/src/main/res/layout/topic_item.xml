@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/mottoCardView"
-    android:backgroundTint="@color/darker_item"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardview_topic_item"
+    style="@style/mottoCardView"
     android:layout_width="match_parent"
     android:layout_height="120dp"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    android:backgroundTint="@color/darker_item">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            style="@style/textViewMottoTypeRegular"
-            android:textColor="@color/pink"
-            android:textSize="18sp"
             android:id="@+id/textview_topic_title"
+            style="@style/textViewMottoTypeRegular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -25,6 +23,8 @@
             android:layout_margin="10dp"
             android:gravity="center_vertical"
             android:text="Stub"
+            android:textColor="@color/pink"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageview_topic_image"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,11 +40,11 @@
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
             android:adjustViewBounds="true"
+            android:alpha=".75"
             android:contentDescription="Stub"
             android:maxWidth="85dp"
             android:maxHeight="85dp"
             android:minWidth="85dp"
-            android:alpha=".75"
             android:minHeight="85dp"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"

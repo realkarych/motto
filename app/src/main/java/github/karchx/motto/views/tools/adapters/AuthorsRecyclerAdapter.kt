@@ -4,7 +4,6 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.AbsoluteSizeSpan
 import android.text.style.ForegroundColorSpan
-import android.text.style.RelativeSizeSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -92,7 +91,8 @@ class AuthorsRecyclerAdapter(
             AbsoluteSizeSpan(19, true),
             0,
             authorSurnameSpan.length,
-            Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+            Spannable.SPAN_INCLUSIVE_INCLUSIVE
+        )
 
         return authorSurnameSpan
     }
