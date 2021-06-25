@@ -14,22 +14,26 @@ class ByRandomMottosParser : MottosParser {
     override fun getMottos(quantityMottos: Int): ArrayList<Motto> {
         val mottos = ArrayList<Motto>()
         val uriToParse = getUriToParse()
-        val okHttp = OkHttpClient()
-        val request: Request = Request.Builder().url(uriToParse).get().build()
-        val doc: Document = Jsoup.parse(okHttp.newCall(request).execute().body!!.string())
-        val articles: Elements = doc.select(Constants.ARTICLE_ROOT_ELEMENT_NAME)
 
-        val limitedMottosQuantity = getLimitedMottosQuantity(articles, quantityMottos)
+        try {
+            val okHttp = OkHttpClient()
+            val request: Request = Request.Builder().url(uriToParse).get().build()
+            val doc: Document = Jsoup.parse(okHttp.newCall(request).execute().body!!.string())
+            val articles: Elements = doc.select(Constants.ARTICLE_ROOT_ELEMENT_NAME)
 
-        for (mottoIndex in 0 until limitedMottosQuantity) {
-            try {
-                mottos.add(HtmlMottosParser.getMottoFromHtml(doc, mottoIndex))
-            } catch (ex: Exception) {
+            val limitedMottosQuantity = getLimitedMottosQuantity(articles, quantityMottos)
+
+            for (mottoIndex in 0 until limitedMottosQuantity) {
+                try {
+                    mottos.add(HtmlMottosParser.getMottoFromHtml(doc, mottoIndex))
+                } catch (ex: Exception) {
+                }
             }
+            mottos.shuffle()
+            return mottos
+        } catch (ex: Exception) {
+            return mottos
         }
-
-        mottos.shuffle()
-        return mottos
     }
 
     private fun getLimitedMottosQuantity(articles: Elements, quantityMottos: Int): Int {
