@@ -14,7 +14,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            style="@style/textViewRegular"
+            style="@style/textViewMottoTypeRegular"
             android:id="@+id/textview_author_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

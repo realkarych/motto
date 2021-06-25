@@ -14,7 +14,9 @@
         android:layout_height="wrap_content">
 
         <TextView
-            style="@style/textViewRegular"
+            style="@style/textViewMottoTypeRegular"
+            android:textColor="@color/pink"
+            android:textSize="18sp"
             android:id="@+id/textview_topic_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
