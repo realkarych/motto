@@ -17,7 +17,6 @@ class HtmlMottosParser {
             } catch (ex: NullPointerException) {
                 ""
             }
-
             return Motto(quote, source)
         }
     }
