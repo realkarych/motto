@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="soft_black">#FF121212</color>
 
+    <color name="darker_item">#FF1D1D1D</color>
     <color name="dark_item">#FF403D46</color>
 
     <color name="white">#FFFFFFFF</color>
