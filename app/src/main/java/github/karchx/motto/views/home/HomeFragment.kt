@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -229,6 +230,7 @@ class HomeFragment : Fragment() {
         mMottosRecycler.adapter = adapter
 
         if (mottos.isEmpty()) {
+            mMottosLoadingProgressBar.visibility = View.INVISIBLE
             mMottosFoundTextView.text = getString(R.string.not_found_random_mottos)
         }
     }
