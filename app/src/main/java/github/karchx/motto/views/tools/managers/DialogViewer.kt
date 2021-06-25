@@ -5,12 +5,14 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.View
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import github.karchx.motto.R
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import github.karchx.motto.models.db.Motto as dbMotto
+
 
 class DialogViewer {
     companion object {
@@ -21,6 +23,10 @@ class DialogViewer {
             allDbMottos: List<dbMotto>
         ) {
             dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            val lp = dialog.window!!.attributes
+            lp.dimAmount = 0.9f
+            dialog.window!!.attributes = lp
+            dialog.window!!.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
             dialog.setCancelable(true)
             dialog.show()
 
