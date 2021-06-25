@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Motto</string>
+    <string name="title_search">Поиск</string>
+    <string name="title_dashboard">Подборки</string>
+    <string name="title_favourites">Любимое</string>
+    <string name="unknown_author">Автор неизвестен</string>
+    <string name="motto_copied">Цитата скопирована!</string>
+    <string name="motto_source">Источник:</string>
+    <string name="authors">Авторы</string>
+    <string name="topics">Темы</string>
+    <string name="found_random_mottos">Наша подборка</string>
+    <string name="enter_request">Введите запрос</string>
+    <string name="found_on_request">Найдено по вашему запросу</string>
+    <string name="not_found_on_request">Ничего не найдено. Проверьте текст запроса и интернет-соединение. Вы можете свайпнуть ниже, чтобы увидеть нашу подборку снова</string>
+    <string name="motto_about">Об этой цитате</string>
+    <string name="not_found_random_mottos">Цитаты из нашей подборки не найдены. Проверьте интернет-соединение</string>
+    <string name="not_saved_any_mottos">У вас нет сохранённых цитат. Нажмите на любую цитату, кликните по кнопке \"Лайк\" и цитата отобразится здесь</string>
+</resources>
