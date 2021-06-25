@@ -15,4 +15,5 @@
     <string name="motto_about">Об этой цитате</string>
     <string name="not_found_random_mottos">Цитаты из нашей подборки не найдены. Проверьте интернет-соединение</string>
     <string name="not_saved_any_mottos">У вас нет сохранённых цитат. Нажмите на любую цитату, кликните по кнопке \"Лайк\" и цитата отобразится здесь</string>
+    <string name="not_found_any_mottos">Цитаты не найдены. Проверьте интернет-соединение</string>
 </resources>

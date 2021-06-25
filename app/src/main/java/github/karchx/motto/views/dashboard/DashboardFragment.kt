@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -50,6 +51,7 @@ class DashboardFragment : Fragment() {
     private lateinit var mFullMottoCardView: CardView
     private lateinit var mAddToFavouritesImageView: ImageView
     private lateinit var mMottosLoadingProgressBar: ProgressBar
+    private lateinit var mNotFoundMottosTextView: TextView
 
     private lateinit var dashboardViewModel: DashboardViewModel
 
@@ -236,7 +238,7 @@ class DashboardFragment : Fragment() {
         dashboardViewModel.authors.observe(viewLifecycleOwner, { _authors ->
             authors = _authors
             arguments?.takeIf { it.containsKey(Constants.KEYWORD_MOTTO_TYPE) }?.apply {
-                if (getString(Constants.KEYWORD_MOTTO_TYPE) == resources.getString(R.string.authors)) {
+                if (getString(Constants.KEYWORD_MOTTO_TYPE) == resources.getString(R.string.authors_key)) {
                     displayAuthorsRecycler(authors)
                 }
             }
@@ -247,7 +249,7 @@ class DashboardFragment : Fragment() {
         dashboardViewModel.topics.observe(viewLifecycleOwner, { _topics ->
             topics = _topics
             arguments?.takeIf { it.containsKey(Constants.KEYWORD_MOTTO_TYPE) }?.apply {
-                if (getString(Constants.KEYWORD_MOTTO_TYPE) == resources.getString(R.string.topics)) {
+                if (getString(Constants.KEYWORD_MOTTO_TYPE) == resources.getString(R.string.topics_key)) {
                     displayTopicsRecycler(topics)
                 }
             }
@@ -292,30 +294,44 @@ class DashboardFragment : Fragment() {
 
     private fun displayAuthorMottosRecycler(authorMottos: ArrayList<Motto>) {
         displayBackArrow()
-        mAuthorsRecycler.visibility = View.GONE
-        mMottosLoadingProgressBar.visibility = View.INVISIBLE
+        if (authorMottos.isEmpty()) {
+            mAuthorsRecycler.visibility = View.GONE
+            mNotFoundMottosTextView.visibility = View.VISIBLE
+            mMottosLoadingProgressBar.visibility = View.INVISIBLE
+        } else {
+            mNotFoundMottosTextView.visibility = View.INVISIBLE
+            mAuthorsRecycler.visibility = View.GONE
+            mMottosLoadingProgressBar.visibility = View.INVISIBLE
 
-        val layoutManager = GridLayoutManager(context, 1)
-        val adapter = MottosRecyclerAdapter(authorMottos)
+            val layoutManager = GridLayoutManager(context, 1)
+            val adapter = MottosRecyclerAdapter(authorMottos)
 
-        mAuthorMottosRecycler.scheduleLayoutAnimation()
-        mAuthorMottosRecycler.setHasFixedSize(true)
-        mAuthorMottosRecycler.layoutManager = layoutManager
-        mAuthorMottosRecycler.adapter = adapter
+            mAuthorMottosRecycler.scheduleLayoutAnimation()
+            mAuthorMottosRecycler.setHasFixedSize(true)
+            mAuthorMottosRecycler.layoutManager = layoutManager
+            mAuthorMottosRecycler.adapter = adapter
+        }
     }
 
     private fun displayTopicMottosRecycler(topicMottos: ArrayList<Motto>) {
         displayBackArrow()
-        mTopicsRecycler.visibility = View.GONE
-        mMottosLoadingProgressBar.visibility = View.INVISIBLE
+        if (topicMottos.isEmpty()) {
+            mTopicsRecycler.visibility = View.GONE
+            mNotFoundMottosTextView.visibility = View.VISIBLE
+            mMottosLoadingProgressBar.visibility = View.INVISIBLE
+        } else {
+            mNotFoundMottosTextView.visibility = View.INVISIBLE
+            mTopicsRecycler.visibility = View.GONE
+            mMottosLoadingProgressBar.visibility = View.INVISIBLE
 
-        val layoutManager = GridLayoutManager(context, 1)
-        val adapter = MottosRecyclerAdapter(topicMottos)
+            val layoutManager = GridLayoutManager(context, 1)
+            val adapter = MottosRecyclerAdapter(topicMottos)
 
-        mTopicMottosRecycler.scheduleLayoutAnimation()
-        mTopicMottosRecycler.setHasFixedSize(true)
-        mTopicMottosRecycler.layoutManager = layoutManager
-        mTopicMottosRecycler.adapter = adapter
+            mTopicMottosRecycler.scheduleLayoutAnimation()
+            mTopicMottosRecycler.setHasFixedSize(true)
+            mTopicMottosRecycler.layoutManager = layoutManager
+            mTopicMottosRecycler.adapter = adapter
+        }
     }
 
     private fun observeDbMottos() {
@@ -343,6 +359,7 @@ class DashboardFragment : Fragment() {
         mFullMottoDialog.setContentView(R.layout.dialog_full_motto)
         mFullMottoCardView = mFullMottoDialog.findViewById(R.id.cardview_full_motto_item)
         mAddToFavouritesImageView = mFullMottoDialog.findViewById(R.id.imageview_is_saved_motto)
+        mNotFoundMottosTextView = binding.textviewMottosNotFoundDashboard
 
         mottosViewModel = ViewModelProvider(
             this,
