@@ -10,8 +10,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import github.karchx.motto.databinding.FragmentDashboardLayoutBinding
+import github.karchx.motto.models.storages.Constants
 import github.karchx.motto.models.storages.Constants.Companion.MOTTO_TYPES_ICONS
-import github.karchx.motto.models.storages.Constants.Companion.MOTTO_TYPES_NAMES
 import github.karchx.motto.views.tools.adapters.DashboardLayoutAdapter
 
 class DashboardLayoutFragment : Fragment() {
@@ -40,11 +40,11 @@ class DashboardLayoutFragment : Fragment() {
 
     private fun setViewPagerAndTabLayout() {
         initViewPagerAndTabLayout()
-        adapter = DashboardLayoutAdapter(this)
+        adapter = DashboardLayoutAdapter(this, requireContext())
         viewPager.adapter = adapter
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = MOTTO_TYPES_NAMES[position]
+            tab.text = Constants.getMottoTypesNames(requireContext())[position]
             tab.icon = ResourcesCompat.getDrawable(
                 resources,
                 MOTTO_TYPES_ICONS[position],

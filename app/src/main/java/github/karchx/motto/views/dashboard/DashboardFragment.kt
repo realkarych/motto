@@ -238,7 +238,9 @@ class DashboardFragment : Fragment() {
         dashboardViewModel.authors.observe(viewLifecycleOwner, { _authors ->
             authors = _authors
             arguments?.takeIf { it.containsKey(Constants.KEYWORD_MOTTO_TYPE) }?.apply {
-                if (getString(Constants.KEYWORD_MOTTO_TYPE) == resources.getString(R.string.authors_key)) {
+                val authorsKey = Constants.getMottoTypesNames(requireContext())[0]
+
+                    if (getString(Constants.KEYWORD_MOTTO_TYPE) == authorsKey) {
                     displayAuthorsRecycler(authors)
                 }
             }
@@ -249,7 +251,9 @@ class DashboardFragment : Fragment() {
         dashboardViewModel.topics.observe(viewLifecycleOwner, { _topics ->
             topics = _topics
             arguments?.takeIf { it.containsKey(Constants.KEYWORD_MOTTO_TYPE) }?.apply {
-                if (getString(Constants.KEYWORD_MOTTO_TYPE) == resources.getString(R.string.topics_key)) {
+                val  topicsKey = Constants.getMottoTypesNames(requireContext())[1]
+
+                if (getString(Constants.KEYWORD_MOTTO_TYPE) == topicsKey) {
                     displayTopicsRecycler(topics)
                 }
             }
