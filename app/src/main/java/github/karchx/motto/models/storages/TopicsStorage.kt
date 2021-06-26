@@ -16,6 +16,7 @@ class TopicsStorage {
         topics.add(Topic("roditeli", "Родители", "/topic/roditeli"))
         topics.add(Topic("vozrast", "Возраст", "/topic/vozrast"))
         topics.add(Topic("odinochestvo", "Одиночество", "/topic/odinochestvo"))
+        topics.add(Topic("smert", "Смерть", "/topic/smert"))
         topics.add(Topic("bog", "Бог", "/topic/bog"))
         topics.add(Topic("deti", "Дети", "/topic/deti"))
         topics.add(Topic("dengi", "Деньги", "/topic/dengi"))
