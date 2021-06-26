@@ -20,6 +20,7 @@ class AuthorsStorage {
         authors.add(Author("shanel", "Коко", "Шанель", "/book/koko-shanel"))
         authors.add(Author("ranevskaya", "Фаина", "Раневская", "/book/faina-ranevskaya"))
         authors.add(Author("czy", "Лао", "Цзы", "/book/lao-czy"))
+        authors.add(Author("fazil_iskander", "Фазиль", "Искандер", "/book/fazil-iskander"))
         authors.add(Author("ford", "Генри", "Форд", "/book/genri-ford"))
         authors.add(Author("kerroll", "Льюис", "Кэрролл", "/book/lyuis-kerroll"))
         authors.add(Author("palanik", "Чак", "Паланик", "/book/chak-palanik"))
