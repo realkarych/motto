@@ -101,7 +101,7 @@ class HomeFragment : Fragment() {
                 }
 
                 private var timer: Timer = Timer()
-                private val DELAY: Long = 2200 // Milliseconds
+                private val DELAY: Long = 1500 // Milliseconds
                 override fun afterTextChanged(s: Editable) {
                     timer.cancel()
                     timer = Timer()
