@@ -26,6 +26,7 @@ class TopicsStorage {
         topics.add(Topic("mudrost", "Мудрость", "/topic/mudrost"))
         topics.add(Topic("razum", "Разум", "/topic/razum"))
 
+        topics.shuffle()
         return topics
     }
 }
