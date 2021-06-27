@@ -5,11 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import github.karchx.motto.models.storages.AuthorsStorage
 import github.karchx.motto.models.storages.Constants
+import github.karchx.motto.models.storages.FilmsStorage
 import github.karchx.motto.models.storages.TopicsStorage
 import github.karchx.motto.search_engine.citaty_info_website.data.Author
+import github.karchx.motto.search_engine.citaty_info_website.data.Film
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import github.karchx.motto.search_engine.citaty_info_website.data.Topic
 import github.karchx.motto.search_engine.citaty_info_website.parsers.ByAuthorMottosParser
+import github.karchx.motto.search_engine.citaty_info_website.parsers.ByFilmMottosParser
 import github.karchx.motto.search_engine.citaty_info_website.parsers.ByTopicMottosParser
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -18,6 +21,11 @@ class DashboardViewModel : ViewModel() {
 
     private val authorsStorage = AuthorsStorage()
     private val topicsStorage = TopicsStorage()
+    private val filmsStorage = FilmsStorage()
+
+    private val _films = MutableLiveData<ArrayList<Film>>().apply {
+        value = filmsStorage.getFilms()
+    }
 
     private val _authors = MutableLiveData<ArrayList<Author>>().apply {
         value = authorsStorage.getAuthors()
@@ -38,6 +46,15 @@ class DashboardViewModel : ViewModel() {
 
     fun putTopicMottosPostValue(topic: Topic) {
         val parser = ByTopicMottosParser(topic)
+        GlobalScope.launch {
+            _topicMottos.postValue(parser.getMottos(Constants.QUANTITY_MOTTOS_IN_LIST))
+        }
+    }
+
+    private val _filmMottos = MutableLiveData<ArrayList<Motto>>().apply {}
+
+    fun putFilmMottosPostValue(film: Film) {
+        val parser = ByFilmMottosParser(film)
         GlobalScope.launch {
             _topicMottos.postValue(parser.getMottos(Constants.QUANTITY_MOTTOS_IN_LIST))
         }
