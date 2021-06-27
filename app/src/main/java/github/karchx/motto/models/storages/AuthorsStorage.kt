@@ -25,6 +25,7 @@ class AuthorsStorage {
         authors.add(Author("kerroll", "Льюис", "Кэрролл", "/book/lyuis-kerroll"))
         authors.add(Author("palanik", "Чак", "Паланик", "/book/chak-palanik"))
 
+        authors.shuffle()
         return authors
     }
 }
