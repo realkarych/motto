@@ -10,7 +10,14 @@ class AuthorsStorage {
         authors.add(Author("gyugo", "Виктор", "Гюго", "/book/viktor-gyugo"))
         authors.add(Author("uaild", "Оскар", "Уайльд", "/book/oskar-uaild"))
         authors.add(Author("bredberi", "Рэй", "Брэдбери", "/book/rei-bredberi"))
-        authors.add(Author("arkadii_i_boris_strugackie", "Аркадий и Борис", "Стругацкие", "/book/arkadii-i-boris-strugackie"))
+        authors.add(
+            Author(
+                "arkadii_i_boris_strugackie",
+                "Аркадий и Борис",
+                "Стругацкие",
+                "/book/arkadii-i-boris-strugackie"
+            )
+        )
         authors.add(Author("tolstoi", "Лев", "Толстой", "/book/lev-nikolaevich-tolstoi"))
         authors.add(Author("tven", "Марк", "Твен", "/book/mark-tven"))
         authors.add(Author("freid", "Зигмунд", "Фрейд", "/book/zigmund-freid"))

@@ -12,14 +12,14 @@ import com.google.android.material.tabs.TabLayoutMediator
 import github.karchx.motto.databinding.FragmentDashboardLayoutBinding
 import github.karchx.motto.models.storages.Constants
 import github.karchx.motto.models.storages.Constants.Companion.MOTTO_TYPES_ICONS
-import github.karchx.motto.views.tools.adapters.DashboardLayoutAdapter
+import github.karchx.motto.views.MainActivity
+import github.karchx.motto.views.tools.adapters.ViewPagerAdapter
 
 class DashboardLayoutFragment : Fragment() {
 
     private var _binding: FragmentDashboardLayoutBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var adapter: DashboardLayoutAdapter
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
 
@@ -40,7 +40,9 @@ class DashboardLayoutFragment : Fragment() {
 
     private fun setViewPagerAndTabLayout() {
         initViewPagerAndTabLayout()
-        adapter = DashboardLayoutAdapter(this, requireContext())
+
+        val adapter = ViewPagerAdapter(requireActivity() as MainActivity)
+
         viewPager.adapter = adapter
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->

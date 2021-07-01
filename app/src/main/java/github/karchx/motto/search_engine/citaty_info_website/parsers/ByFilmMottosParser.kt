@@ -42,8 +42,8 @@ class ByFilmMottosParser(private var film: Film) : MottosParser {
 
     private fun getUriToParse(film: Film): String {
         val baseUri = Constants.DOMAIN
-        val topicUri = film.filmUri
+        val filmUri = film.filmUri
         val sortType = Constants.MOTTOS_SORT_TYPE
-        return "$baseUri$topicUri$sortType"
+        return "$baseUri$filmUri$sortType"
     }
 }
