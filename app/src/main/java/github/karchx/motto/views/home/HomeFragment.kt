@@ -221,6 +221,7 @@ class HomeFragment : Fragment() {
     private fun displayRandomMottosRecycler(mottos: ArrayList<Motto>) {
         mMottosLoadingProgressBar.visibility = View.INVISIBLE
         hideKeyboard()
+        mGlobalScopeMottosEditText.isCursorVisible = false
 
         val layoutManager = GridLayoutManager(context, 1)
         mMottosRecycler.scheduleLayoutAnimation()
