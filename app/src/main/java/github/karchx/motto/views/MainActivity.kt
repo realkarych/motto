@@ -1,6 +1,7 @@
 package github.karchx.motto.views
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
@@ -11,6 +12,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import github.karchx.motto.R
 import github.karchx.motto.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,5 +39,16 @@ class MainActivity : AppCompatActivity() {
         window.navigationBarColor = ContextCompat.getColor(this, R.color.soft_black)
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+    }
+
+    override fun onBackPressed() {
+        val fm: android.app.FragmentManager? = fragmentManager
+        if (fm!!.backStackEntryCount > 0) {
+            Log.i("MainActivity", "popping backstack")
+            fm.popBackStack()
+        } else {
+            Log.i("MainActivity", "nothing on backstack, calling super")
+            super.onBackPressed()
+        }
     }
 }
