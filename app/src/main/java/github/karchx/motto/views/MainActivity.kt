@@ -40,15 +40,4 @@ class MainActivity : AppCompatActivity() {
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
-
-    override fun onBackPressed() {
-        val fm: android.app.FragmentManager? = fragmentManager
-        if (fm!!.backStackEntryCount > 0) {
-            Log.i("MainActivity", "popping backstack")
-            fm.popBackStack()
-        } else {
-            Log.i("MainActivity", "nothing on backstack, calling super")
-            super.onBackPressed()
-        }
-    }
 }
