@@ -12,6 +12,8 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
@@ -80,16 +82,16 @@ class TopicsFragment : Fragment(R.layout.fragment_topics) {
         setAddToFavouritesBtnClickListener()
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            reloadFragment()
+        }
+        return true
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
-            FragmentReload.reload(this, R.layout.fragment_topics)
-        }
-        return true
     }
 
     private fun observeTopics() {
@@ -215,6 +217,16 @@ class TopicsFragment : Fragment(R.layout.fragment_topics) {
             Copier.copyText(requireActivity(), text)
             Toaster.displayTextIsCopiedToast(requireContext())
         }
+    }
+
+    private fun reloadFragment() {
+        findNavController().navigate(
+            R.id.navigation_dashboard,
+            arguments,
+            NavOptions.Builder()
+                .setPopUpTo(R.id.navigation_dashboard, true)
+                .build()
+        )
     }
 
     private fun initData() {
