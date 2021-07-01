@@ -12,7 +12,7 @@ import github.karchx.motto.R
 import github.karchx.motto.search_engine.citaty_info_website.data.Topic
 
 class TopicsRecyclerAdapter(
-    private val fragment: Fragment,
+    fragment: Fragment,
     private val topics: ArrayList<Topic>
 ) : RecyclerView.Adapter<TopicsRecyclerAdapter.TopicsViewHolder>() {
 
@@ -20,7 +20,8 @@ class TopicsRecyclerAdapter(
     private val activity = fragment.requireActivity()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopicsViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.topic_item, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.motto_tab_item, parent, false)
         return TopicsViewHolder(view)
     }
 
@@ -52,7 +53,7 @@ class TopicsRecyclerAdapter(
     }
 
     class TopicsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var topicTitle: TextView = itemView.findViewById(R.id.textview_topic_title)
-        val topicImage: ImageView = itemView.findViewById(R.id.imageview_topic_image)
+        val topicTitle: TextView = itemView.findViewById(R.id.textview_motto_tab_title)
+        val topicImage: ImageView = itemView.findViewById(R.id.imageview_motto_tab_image)
     }
 }

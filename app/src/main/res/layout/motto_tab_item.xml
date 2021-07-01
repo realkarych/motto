@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardview_film_item"
+    android:id="@+id/cardview_motto_type_item"
     style="@style/mottoCardView"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="120dp"
     android:layout_margin="8dp"
     android:backgroundTint="@color/darker_item">
 
@@ -14,7 +15,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/textview_film_title"
+            android:id="@+id/textview_motto_tab_title"
             style="@style/textViewMottoTypeRegular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,13 +25,13 @@
             android:gravity="center_vertical"
             android:text="Stub"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageview_film_image"
+            app:layout_constraintEnd_toStartOf="@+id/imageview_motto_tab_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="HardcodedText" />
 
         <ImageView
-            android:id="@+id/imageview_film_image"
+            android:id="@+id/imageview_motto_tab_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -40,10 +41,10 @@
             android:adjustViewBounds="true"
             android:alpha=".5"
             android:contentDescription="Stub"
-            android:maxWidth="50dp"
-            android:maxHeight="50dp"
-            android:minWidth="50dp"
-            android:minHeight="50dp"
+            android:maxWidth="85dp"
+            android:maxHeight="85dp"
+            android:minWidth="85dp"
+            android:minHeight="85dp"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
