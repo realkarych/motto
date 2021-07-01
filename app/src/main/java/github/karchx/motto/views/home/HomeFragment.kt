@@ -98,6 +98,7 @@ class HomeFragment : Fragment() {
                     count: Int,
                     after: Int
                 ) {
+                    mGlobalScopeMottosEditText.isCursorVisible = true
                 }
 
                 private var timer: Timer = Timer()
