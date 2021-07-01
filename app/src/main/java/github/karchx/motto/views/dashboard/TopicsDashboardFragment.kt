@@ -17,31 +17,31 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
-import github.karchx.motto.databinding.FragmentAuthorsBinding
-import github.karchx.motto.search_engine.citaty_info_website.data.Author
+import github.karchx.motto.databinding.FragmentTopicsDashboardBinding
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
-import github.karchx.motto.viewmodels.AuthorsViewModel
+import github.karchx.motto.search_engine.citaty_info_website.data.Topic
 import github.karchx.motto.viewmodels.MottosViewModel
+import github.karchx.motto.viewmodels.TopicsDashboardViewModel
 import github.karchx.motto.views.MainActivity
-import github.karchx.motto.views.tools.adapters.AuthorsRecyclerAdapter
 import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
+import github.karchx.motto.views.tools.adapters.TopicsRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.*
 import github.karchx.motto.models.db.Motto as dbMotto
 
-class AuthorsFragment : Fragment(R.layout.fragment_authors) {
+class TopicsDashboardFragment : Fragment(R.layout.fragment_topics_dashboard) {
 
-    private var _binding: FragmentAuthorsBinding? = null
+    private var _binding: FragmentTopicsDashboardBinding? = null
     private val binding get() = _binding!!
 
     // ViewModels
-    private lateinit var authorsViewModel: AuthorsViewModel
+    private lateinit var topicsDashboardViewModel: TopicsDashboardViewModel
     private lateinit var mottosViewModel: MottosViewModel
 
     // Views
-    private lateinit var authorsRecycler: RecyclerView
-    private lateinit var authorMottosRecycler: RecyclerView
+    private lateinit var topicsRecycler: RecyclerView
+    private lateinit var topicMottosRecycler: RecyclerView
     private lateinit var mottosLoadingProgressBar: ProgressBar
     private lateinit var fullMottoCardView: CardView
     private lateinit var fullMottoDialog: Dialog
@@ -49,10 +49,10 @@ class AuthorsFragment : Fragment(R.layout.fragment_authors) {
     private lateinit var notFoundMottosTextView: TextView
 
     //Data
-    private lateinit var authors: ArrayList<Author>
-    private lateinit var clickedAuthor: Author
+    private lateinit var topics: ArrayList<Topic>
+    private lateinit var clickedTopic: Topic
     private lateinit var allDbMottos: List<dbMotto>
-    private lateinit var authorMottos: ArrayList<Motto>
+    private lateinit var topicMottos: ArrayList<Motto>
     private lateinit var clickedMotto: Motto
 
     override fun onCreateView(
@@ -60,8 +60,8 @@ class AuthorsFragment : Fragment(R.layout.fragment_authors) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        authorsViewModel = ViewModelProvider(this).get(AuthorsViewModel::class.java)
-        _binding = FragmentAuthorsBinding.inflate(inflater, container, false)
+        topicsDashboardViewModel = ViewModelProvider(this).get(TopicsDashboardViewModel::class.java)
+        _binding = FragmentTopicsDashboardBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -71,12 +71,12 @@ class AuthorsFragment : Fragment(R.layout.fragment_authors) {
         initData()
         initViews()
 
-        observeAuthors()
-        observeAuthorMottos()
+        observeTopics()
+        observeTopicMottos()
         observeDbMottos()
 
-        handleAuthorsRecyclerItemClick()
-        handleAuthorMottosRecyclerItemClick()
+        handleTopicsRecyclerItemClick()
+        handleTopicMottosRecyclerItemClick()
 
         handleCopyMottoData()
         setAddToFavouritesBtnClickListener()
@@ -94,17 +94,17 @@ class AuthorsFragment : Fragment(R.layout.fragment_authors) {
         _binding = null
     }
 
-    private fun observeAuthors() {
-        authorsViewModel.authors.observe(viewLifecycleOwner, { _authors ->
-            authors = _authors
-            displayAuthorsRecycler(authors)
+    private fun observeTopics() {
+        topicsDashboardViewModel.topics.observe(viewLifecycleOwner, { _topics ->
+            topics = _topics
+            displayTopicsRecycler(topics)
         })
     }
 
-    private fun observeAuthorMottos() {
-        authorsViewModel.authorMottos.observe(viewLifecycleOwner, { _authorMottos ->
-            authorMottos = _authorMottos
-            displayAuthorMottosRecycler(authorMottos)
+    private fun observeTopicMottos() {
+        topicsDashboardViewModel.topicMottos.observe(viewLifecycleOwner, { _topicMottos ->
+            topicMottos = _topicMottos
+            displayTopicMottosRecycler(topicMottos)
         })
     }
 
@@ -114,35 +114,35 @@ class AuthorsFragment : Fragment(R.layout.fragment_authors) {
         }
     }
 
-    private fun displayAuthorsRecycler(authors: ArrayList<Author>) {
+    private fun displayTopicsRecycler(topics: ArrayList<Topic>) {
         Arrow.hideBackArrow(activity as MainActivity)
 
         val layoutManager = GridLayoutManager(context, 2)
-        val adapter = AuthorsRecyclerAdapter(this@AuthorsFragment, authors)
+        val adapter = TopicsRecyclerAdapter(this@TopicsDashboardFragment, topics)
 
-        authorsRecycler.setHasFixedSize(true)
-        authorsRecycler.layoutManager = layoutManager
-        authorsRecycler.adapter = adapter
+        topicsRecycler.setHasFixedSize(true)
+        topicsRecycler.layoutManager = layoutManager
+        topicsRecycler.adapter = adapter
     }
 
-    private fun displayAuthorMottosRecycler(authorMottos: ArrayList<Motto>) {
+    private fun displayTopicMottosRecycler(topicMottos: ArrayList<Motto>) {
         Arrow.displayBackArrow(activity as MainActivity)
-        if (authorMottos.isEmpty()) {
-            authorsRecycler.visibility = View.GONE
+        if (topicMottos.isEmpty()) {
+            topicsRecycler.visibility = View.GONE
             notFoundMottosTextView.visibility = View.VISIBLE
             mottosLoadingProgressBar.visibility = View.INVISIBLE
         } else {
             notFoundMottosTextView.visibility = View.INVISIBLE
-            authorsRecycler.visibility = View.GONE
+            topicsRecycler.visibility = View.GONE
             mottosLoadingProgressBar.visibility = View.INVISIBLE
 
             val layoutManager = GridLayoutManager(context, 1)
-            val adapter = MottosRecyclerAdapter(authorMottos)
+            val adapter = MottosRecyclerAdapter(topicMottos)
 
-            authorMottosRecycler.scheduleLayoutAnimation()
-            authorMottosRecycler.setHasFixedSize(true)
-            authorMottosRecycler.layoutManager = layoutManager
-            authorMottosRecycler.adapter = adapter
+            topicMottosRecycler.scheduleLayoutAnimation()
+            topicMottosRecycler.setHasFixedSize(true)
+            topicMottosRecycler.layoutManager = layoutManager
+            topicMottosRecycler.adapter = adapter
         }
     }
 
@@ -158,31 +158,31 @@ class AuthorsFragment : Fragment(R.layout.fragment_authors) {
         }
     }
 
-    private fun handleAuthorsRecyclerItemClick() {
-        authorsRecycler.addOnItemTouchListener(
-            OnClickRecyclerItemListener(requireContext(), authorsRecycler, object :
+    private fun handleTopicsRecyclerItemClick() {
+        topicsRecycler.addOnItemTouchListener(
+            OnClickRecyclerItemListener(requireContext(), topicsRecycler, object :
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
-                    clickedAuthor = authors[position]
-                    authorsViewModel.putAuthorMottosPostValue(clickedAuthor)
+                    clickedTopic = topics[position]
+                    topicsDashboardViewModel.putTopicMottosPostValue(clickedTopic)
                     mottosLoadingProgressBar.visibility = View.VISIBLE
                 }
 
                 override fun onItemLongClick(view: View, position: Int) {
-                    clickedAuthor = authors[position]
-                    authorsViewModel.putAuthorMottosPostValue(clickedAuthor)
+                    clickedTopic = topics[position]
+                    topicsDashboardViewModel.putTopicMottosPostValue(clickedTopic)
                     mottosLoadingProgressBar.visibility = View.VISIBLE
                 }
             })
         )
     }
 
-    private fun handleAuthorMottosRecyclerItemClick() {
-        authorMottosRecycler.addOnItemTouchListener(
-            OnClickRecyclerItemListener(requireContext(), authorMottosRecycler, object :
+    private fun handleTopicMottosRecyclerItemClick() {
+        topicMottosRecycler.addOnItemTouchListener(
+            OnClickRecyclerItemListener(requireContext(), topicMottosRecycler, object :
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
-                    clickedMotto = authorMottos[position]
+                    clickedMotto = topicMottos[position]
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         fullMottoDialog,
@@ -193,7 +193,7 @@ class AuthorsFragment : Fragment(R.layout.fragment_authors) {
                 }
 
                 override fun onItemLongClick(view: View, position: Int) {
-                    clickedMotto = authorMottos[position]
+                    clickedMotto = topicMottos[position]
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         fullMottoDialog,
@@ -229,14 +229,13 @@ class AuthorsFragment : Fragment(R.layout.fragment_authors) {
         )
     }
 
-
     private fun initData() {
 
     }
 
     private fun initViews() {
-        authorsRecycler = binding.recyclerviewAuthorsDashboard
-        authorMottosRecycler = binding.recyclerviewAuthorMottos
+        topicsRecycler = binding.recyclerviewTopicsDashboard
+        topicMottosRecycler = binding.recyclerviewTopicMottos
 
         mottosLoadingProgressBar = binding.progressbarMottosLoading
 

@@ -11,7 +11,7 @@ import github.karchx.motto.search_engine.citaty_info_website.parsers.ByTopicMott
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class TopicsViewModel : ViewModel() {
+class TopicsDashboardViewModel : ViewModel() {
 
     private val topicsStorage = TopicsStorage()
 
