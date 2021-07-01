@@ -15,7 +15,7 @@ import github.karchx.motto.R
 import github.karchx.motto.search_engine.citaty_info_website.data.Author
 
 class AuthorsRecyclerAdapter(
-    private val fragment: Fragment,
+    fragment: Fragment,
     private val authors: ArrayList<Author>
 ) : RecyclerView.Adapter<AuthorsRecyclerAdapter.AuthorsViewHolder>() {
 
@@ -23,7 +23,8 @@ class AuthorsRecyclerAdapter(
     private val activity = fragment.requireActivity()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AuthorsViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.author_item, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.motto_tab_item, parent, false)
         return AuthorsViewHolder(view)
     }
 
@@ -90,7 +91,7 @@ class AuthorsRecyclerAdapter(
     }
 
     class AuthorsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var authorName: TextView = itemView.findViewById(R.id.textview_author_name)
-        val authorImage: ImageView = itemView.findViewById(R.id.imageview_author_image)
+        val authorName: TextView = itemView.findViewById(R.id.textview_motto_tab_title)
+        val authorImage: ImageView = itemView.findViewById(R.id.imageview_motto_tab_image)
     }
 }

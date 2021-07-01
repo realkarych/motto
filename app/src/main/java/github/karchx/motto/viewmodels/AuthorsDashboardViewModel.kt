@@ -11,7 +11,7 @@ import github.karchx.motto.search_engine.citaty_info_website.parsers.ByAuthorMot
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class AuthorsViewModel : ViewModel() {
+class AuthorsDashboardViewModel : ViewModel() {
 
     private val authorsStorage = AuthorsStorage()
 
