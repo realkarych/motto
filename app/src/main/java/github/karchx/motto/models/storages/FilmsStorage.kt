@@ -92,7 +92,13 @@ class FilmsStorage {
                 "/movie/a-v-dushe-ya-tancuyu-inside-im-dancing"
             )
         )
-        films.add(Film("schindlers_list", "Список Шиндлера", "/movie/spisok-shindlera-schindlers-list"))
+        films.add(
+            Film(
+                "schindlers_list",
+                "Список Шиндлера",
+                "/movie/spisok-shindlera-schindlers-list"
+            )
+        )
 
         films.shuffle()
         return films
