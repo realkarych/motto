@@ -4,7 +4,7 @@ import github.karchx.motto.search_engine.citaty_info_website.data.Anime
 
 class AnimeStorage {
 
-    fun getStorage(): ArrayList<Anime> {
+    fun getAnime(): ArrayList<Anime> {
         val anime = ArrayList<Anime>()
 
         anime.add(
