@@ -16,14 +16,16 @@ class Constants {
             arrayListOf(
                 R.drawable.ic_baseline_person_24,
                 R.drawable.ic_baseline_topic_24,
-                R.drawable.ic_baseline_camera_24
+                R.drawable.ic_baseline_camera_24,
+                R.drawable.ic_baseline_anime_24
             )
 
         fun getMottoTypesNames(context: Context): ArrayList<String> {
             return arrayListOf(
                 context.getString(R.string.authors),
                 context.getString(R.string.topics),
-                context.getString(R.string.films)
+                context.getString(R.string.films),
+                context.getString(R.string.anime)
             )
         }
 
