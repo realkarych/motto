@@ -1,7 +1,7 @@
 package github.karchx.motto.search_engine.citaty_info_website.parsers
 
 import github.karchx.motto.models.storages.Constants
-import github.karchx.motto.search_engine.citaty_info_website.data.Film
+import github.karchx.motto.search_engine.citaty_info_website.data.Anime
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -9,11 +9,11 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
 
-class ByFilmMottosParser(private val film: Film) : MottosParser {
+class ByAnimeMottosParser(private val anime: Anime) : MottosParser {
 
     override fun getMottos(quantityMottos: Int): ArrayList<Motto> {
         val mottos = ArrayList<Motto>()
-        val uriToParse = getUriToParse(film)
+        val uriToParse = getUriToParse(anime)
 
         try {
             val okHttp = OkHttpClient()
@@ -40,10 +40,10 @@ class ByFilmMottosParser(private val film: Film) : MottosParser {
         else quantityMottos
     }
 
-    private fun getUriToParse(film: Film): String {
+    private fun getUriToParse(anime: Anime): String {
         val baseUri = Constants.DOMAIN
-        val filmUri = film.filmUri
+        val animeUri = anime.animeUri
         val sortType = Constants.MOTTOS_SORT_TYPE
-        return "$baseUri$filmUri$sortType"
+        return "$baseUri$animeUri$sortType"
     }
 }
