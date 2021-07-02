@@ -19,4 +19,6 @@
     <string name="how_to_delete_motto">Чтобы удалить цитату, долго кликните по ней</string>
     <string name="films">Фильмы</string>
     <string name="anime">Аниме</string>
+    <string name="channels">Каналы</string>
+    <string name="series">Сериалы</string>
 </resources>
