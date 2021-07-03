@@ -18,7 +18,7 @@
     <string name="channels">Channels</string>
     <string name="series">Series</string>
     <string name="found_random_mottos">Our selection</string>
-    <string name="enter_request">Enter request</string>
+    <string name="enter_request">Enter words from motto</string>
     <string name="found_on_request">Found on your request</string>
     <string name="not_found_on_request">Nothing found. Check your request and internet connection. You can swipe-up below and see our selected mottos again</string>
     <string name="not_found_random_mottos">Our selected mottos not found. Check your internet connection</string>

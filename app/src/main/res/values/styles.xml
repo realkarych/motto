@@ -17,7 +17,7 @@
         <item name="android:textColor">@color/pink</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">24sp</item>
-        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:fontFamily">@font/inter</item>
     </style>
 
     <style name="textViewRegular" parent="Widget.AppCompat.TextView">
