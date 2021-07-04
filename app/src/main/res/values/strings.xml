@@ -1,8 +1,4 @@
 <resources>
-    const val AUTHORS_KEY = "Authors"
-    const val TOPICS_KEY = "Topics"
-    <string name="authors_key" translatable="false">Authors</string>
-    <string name="topics_key" translatable="false">Topics</string>
     <string name="app_name" translatable="false">Motto</string>
     <string name="title_search">Search</string>
     <string name="title_dashboard">Dashboard</string>
