@@ -10,11 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/dark_purple"
-        app:tabIconTint="@color/bottom_nav_color"
-        app:tabIndicatorColor="@color/pink"
-        app:tabMode="auto"
+        app:tabIconTint="@color/tab_layout_color"
+        app:tabIndicatorColor="@color/red"
+        app:tabMode="scrollable"
         app:tabRippleColor="@color/purple"
-        app:tabSelectedTextColor="@color/bottom_nav_color"
+        app:tabSelectedTextColor="@color/tab_layout_color"
         app:tabTextColor="@color/soft_white">
 
     </com.google.android.material.tabs.TabLayout>
