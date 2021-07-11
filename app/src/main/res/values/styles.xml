@@ -39,6 +39,10 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:fontFamily">@font/roboto</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMinTextSize">12sp</item>
+        <item name="autoSizeMaxTextSize">18sp</item>
+        <item name="autoSizeStepGranularity">1sp</item>
     </style>
 
     <style name="mottoCardView" parent="CardView">
