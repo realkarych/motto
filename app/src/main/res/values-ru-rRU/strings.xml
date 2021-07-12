@@ -13,7 +13,7 @@
     <string name="found_on_request">Найдено по вашему запросу</string>
     <string name="not_found_on_request">Ничего не найдено. Проверьте текст запроса и интернет-соединение. Вы можете свайпнуть ниже, чтобы увидеть нашу подборку снова</string>
     <string name="not_found_random_mottos">Цитаты из нашей подборки не найдены. Проверьте интернет-соединение</string>
-    <string name="not_saved_any_mottos">У вас нет сохранённых цитат. Нажмите на любую цитату, кликните по кнопке \"Лайк\" и цитата отобразится здесь</string>
+    <string name="not_saved_any_mottos">У вас нет сохранённых цитат. Нажмите на любую цитату, кликните по кнопке \"Лайк\", и цитата отобразится здесь</string>
     <string name="not_found_any_mottos">Цитаты не найдены. Проверьте интернет-соединение</string>
     <string name="motto_about">Чтобы скопировать, кликните по цитате</string>
     <string name="how_to_delete_motto">Чтобы удалить цитату, долго кликните по ней</string>
