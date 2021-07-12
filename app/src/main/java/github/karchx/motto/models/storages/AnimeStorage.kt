@@ -32,6 +32,7 @@ class AnimeStorage {
         anime.add(Anime("hacksign", ".хак//ЗНАК", "/anime/hakznak-hacksign"))
         anime.add(Anime("samurai_7", "7 самураев", "/anime/7-samuraev-7-samurai"))
 
+        anime.shuffle()
         return anime
     }
 }
