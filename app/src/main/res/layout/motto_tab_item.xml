@@ -14,6 +14,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/imageview_motto_tab_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:adjustViewBounds="true"
+            android:alpha=".4"
+            android:contentDescription="Stub"
+            android:maxWidth="85dp"
+            android:maxHeight="85dp"
+            android:minWidth="85dp"
+            android:minHeight="85dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="HardcodedText"
+            tools:srcCompat="@tools:sample/avatars" />
+
         <TextView
             android:id="@+id/textview_motto_tab_title"
             style="@style/textViewMottoTypeRegular"
@@ -29,27 +50,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="HardcodedText" />
-
-        <ImageView
-            android:id="@+id/imageview_motto_tab_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="0dp"
-            android:adjustViewBounds="true"
-            android:alpha=".35"
-            android:contentDescription="Stub"
-            android:maxWidth="85dp"
-            android:maxHeight="85dp"
-            android:minWidth="85dp"
-            android:minHeight="85dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="HardcodedText"
-            tools:srcCompat="@tools:sample/avatars" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
