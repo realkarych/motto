@@ -15,9 +15,9 @@ class TVChannelsStorage {
         channels.add(TVChannel("kvn", "КВН", "/tv/kvn"))
         channels.add(TVChannel("frenki_shou", "Фрэнки-шоу", "/tv/frenki-shou"))
         channels.add(TVChannel("chto_bylo_dalshe", "Что было дальше?", "/tv/chto-bylo-dalshe"))
-        channels.add(TVChannel("100500", "Макс +100500", "/tv/100500"))
-        channels.add(TVChannel("22_komika", "22 комика", "/tv/22-komika"))
-        channels.add(TVChannel("60_minut", "60 минут", "/tv/60-minut"))
+        channels.add(TVChannel("max100500", "Макс +100500", "/tv/100500"))
+        channels.add(TVChannel("komika_22", "22 комика", "/tv/22-komika"))
+        channels.add(TVChannel("minut_60", "60 минут", "/tv/60-minut"))
         channels.add(TVChannel("comedy_woman", "Comedy Woman", "/tv/comedy-woman"))
 
         return channels
