@@ -105,7 +105,9 @@ class AuthorsDashboardFragment : Fragment(R.layout.fragment_authors_dashboard) {
     private fun observeAuthorMottos() {
         authorsDashboardViewModel.authorMottos.observe(viewLifecycleOwner, { _authorMottos ->
             authorMottos = _authorMottos
-            displayAuthorMottosRecycler(authorMottos)
+            Thread {
+                displayAuthorMottosRecycler(authorMottos)
+            }.start()
         })
     }
 
