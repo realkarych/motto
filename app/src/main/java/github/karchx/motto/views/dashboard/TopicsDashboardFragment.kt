@@ -97,9 +97,7 @@ class TopicsDashboardFragment : Fragment(R.layout.fragment_topics_dashboard) {
     private fun observeTopics() {
         topicsDashboardViewModel.topics.observe(viewLifecycleOwner, { _topics ->
             topics = _topics
-            Thread {
-                displayTopicsRecycler(topics)
-            }.start()
+            displayTopicsRecycler(topics)
         })
     }
 
