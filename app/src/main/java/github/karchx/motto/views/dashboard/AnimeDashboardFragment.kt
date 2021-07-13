@@ -120,6 +120,7 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
         val layoutManager = GridLayoutManager(context, 2)
         val adapter = AnimeRecyclerAdapter(this@AnimeDashboardFragment, anime)
 
+        adapter.setHasStableIds(true)
         animeRecycler.setHasFixedSize(true)
         animeRecycler.layoutManager = layoutManager
         animeRecycler.adapter = adapter
