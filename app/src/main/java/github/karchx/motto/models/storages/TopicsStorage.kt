@@ -9,9 +9,9 @@ class TopicsStorage {
 
         topics.add(Topic("zhizn", "Жизнь", "/topic/zhizn"))
         topics.add(Topic("lyubov", "Любовь", "/topic/lyubov"))
-        topics.add(Topic("chelovek-lyudi", "Человек", "/topic/chelovek-lyudi"))
-        topics.add(Topic("druzya-druzhba", "Дружба", "/topic/druzya-druzhba"))
-        topics.add(Topic("motiviruyushie-citaty", "Мотивация", "/category/motiviruyushie-citaty"))
+        topics.add(Topic("chelovek_lyudi", "Человек", "/topic/chelovek-lyudi"))
+        topics.add(Topic("druzya_druzhba", "Дружба", "/topic/druzya-druzhba"))
+        topics.add(Topic("motiviruyushie_citaty", "Мотивация", "/category/motiviruyushie-citaty"))
         topics.add(Topic("otnosheniya", "Отношения", "/topic/otnosheniya"))
         topics.add(Topic("roditeli", "Родители", "/topic/roditeli"))
         topics.add(Topic("vozrast", "Возраст", "/topic/vozrast"))
