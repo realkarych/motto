@@ -28,6 +28,8 @@ import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import github.karchx.motto.models.db.Motto as dbMotto
 
 class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
@@ -97,9 +99,7 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
     private fun observeAnime() {
         animeDashboardViewModel.anime.observe(viewLifecycleOwner, { _anime ->
             anime = _anime
-            Thread {
-                displayAnimeRecycler(anime)
-            }.start()
+            displayAnimeRecycler(anime)
         })
     }
 
