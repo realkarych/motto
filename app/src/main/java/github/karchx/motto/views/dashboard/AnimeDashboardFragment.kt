@@ -97,7 +97,9 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
     private fun observeAnime() {
         animeDashboardViewModel.anime.observe(viewLifecycleOwner, { _anime ->
             anime = _anime
-            displayAnimeRecycler(anime)
+            Thread {
+                displayAnimeRecycler(anime)
+            }.start()
         })
     }
 

@@ -97,7 +97,9 @@ class FilmsDashboardFragment : Fragment(R.layout.fragment_films_dashboard) {
     private fun observeAuthors() {
         filmsDashboardViewModel.films.observe(viewLifecycleOwner, { _films ->
             films = _films
-            displayFilmsRecycler(films)
+            Thread {
+                displayFilmsRecycler(films)
+            }.start()
         })
     }
 
