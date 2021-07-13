@@ -123,6 +123,7 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
         val layoutManager = GridLayoutManager(context, 2)
         val adapter = ChannelsRecyclerAdapter(this@TVChannelsDashboardFragment, tvChannels)
 
+        adapter.setHasStableIds(true)
         tvChannelsRecycler.setHasFixedSize(true)
         tvChannelsRecycler.layoutManager = layoutManager
         tvChannelsRecycler.adapter = adapter

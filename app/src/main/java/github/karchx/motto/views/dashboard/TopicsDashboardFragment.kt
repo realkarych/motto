@@ -120,6 +120,7 @@ class TopicsDashboardFragment : Fragment(R.layout.fragment_topics_dashboard) {
         val layoutManager = GridLayoutManager(context, 2)
         val adapter = TopicsRecyclerAdapter(this@TopicsDashboardFragment, topics)
 
+        adapter.setHasStableIds(true)
         topicsRecycler.setHasFixedSize(true)
         topicsRecycler.layoutManager = layoutManager
         topicsRecycler.adapter = adapter

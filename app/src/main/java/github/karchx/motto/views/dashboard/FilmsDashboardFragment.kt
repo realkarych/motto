@@ -120,6 +120,7 @@ class FilmsDashboardFragment : Fragment(R.layout.fragment_films_dashboard) {
         val layoutManager = GridLayoutManager(context, 2)
         val adapter = FilmsRecyclerAdapter(this@FilmsDashboardFragment, films)
 
+        adapter.setHasStableIds(true)
         filmsRecycler.setHasFixedSize(true)
         filmsRecycler.layoutManager = layoutManager
         filmsRecycler.adapter = adapter
