@@ -98,7 +98,9 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
     private fun observeTVChannels() {
         tvChannelsDashboardViewModel.tvChannels.observe(viewLifecycleOwner, { _tvChannels ->
             tvChannels = _tvChannels
-            displayTVChannelsRecycler(tvChannels)
+            Thread {
+                displayTVChannelsRecycler(tvChannels)
+            }.start()
         })
     }
 
