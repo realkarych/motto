@@ -33,5 +33,6 @@ class Constants {
             )
         }
 
+        const val LAST_TAB_SELECTED = "selected_tab"
     }
 }
