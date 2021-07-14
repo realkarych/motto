@@ -59,8 +59,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
     // Parsing tools
-    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
-    implementation 'org.jsoup:jsoup:1.13.1'
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
+    implementation 'org.jsoup:jsoup:1.14.1'
     // Room (SQLite)
     def room_version = "2.3.0"
     implementation "androidx.room:room-ktx:$room_version"
