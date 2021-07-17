@@ -187,6 +187,8 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = tvChannelMottos[position]
+
+                    AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         fullMottoDialog,
@@ -198,6 +200,8 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
 
                 override fun onItemLongClick(view: View, position: Int) {
                     clickedMotto = tvChannelMottos[position]
+
+                    AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         fullMottoDialog,

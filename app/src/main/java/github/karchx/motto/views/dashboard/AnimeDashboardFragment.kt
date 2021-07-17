@@ -28,8 +28,6 @@ import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import github.karchx.motto.models.db.Motto as dbMotto
 
 class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
@@ -186,7 +184,8 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = animeMottos[position]
-                    AdViewer.displayFullMottoAd(requireActivity() as MainActivity)
+
+                    AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         fullMottoDialog,
@@ -198,6 +197,8 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
 
                 override fun onItemLongClick(view: View, position: Int) {
                     clickedMotto = animeMottos[position]
+
+                    AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         fullMottoDialog,
