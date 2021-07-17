@@ -184,6 +184,8 @@ class FilmsDashboardFragment : Fragment(R.layout.fragment_films_dashboard) {
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = filmMottos[position]
+
+                    AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         fullMottoDialog,
@@ -195,6 +197,8 @@ class FilmsDashboardFragment : Fragment(R.layout.fragment_films_dashboard) {
 
                 override fun onItemLongClick(view: View, position: Int) {
                     clickedMotto = filmMottos[position]
+
+                    AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         fullMottoDialog,

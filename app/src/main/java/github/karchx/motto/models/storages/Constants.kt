@@ -34,5 +34,6 @@ class Constants {
         }
 
         const val LAST_TAB_SELECTED = "selected_tab"
+        const val NUMBER_OF_DISPLAYED_ADS = "num_of_displayed_ads"
     }
 }

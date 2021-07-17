@@ -185,6 +185,8 @@ class AuthorsDashboardFragment : Fragment(R.layout.fragment_authors_dashboard) {
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = authorMottos[position]
+
+                    AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         fullMottoDialog,
@@ -196,6 +198,8 @@ class AuthorsDashboardFragment : Fragment(R.layout.fragment_authors_dashboard) {
 
                 override fun onItemLongClick(view: View, position: Int) {
                     clickedMotto = authorMottos[position]
+
+                    AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         fullMottoDialog,
