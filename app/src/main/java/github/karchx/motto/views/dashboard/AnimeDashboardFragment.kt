@@ -186,6 +186,7 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = animeMottos[position]
+                    AdViewer.displayFullMottoAd(requireActivity() as MainActivity)
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         fullMottoDialog,
