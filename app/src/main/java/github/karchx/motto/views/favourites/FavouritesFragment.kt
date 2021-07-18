@@ -135,6 +135,19 @@ class FavouritesFragment : Fragment() {
         mFavouriteMottosRecycler.setHasFixedSize(true)
         mFavouriteMottosRecycler.layoutManager = layoutManager
         mFavouriteMottosRecycler.adapter = adapter
+
+        mFavouriteMottosRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (recyclerView.scrollState == RecyclerView.SCROLL_STATE_SETTLING)
+                    if (dy > 0) {
+                        mSavedMottosInfoTextView.animate().translationY(1f)
+                        mSavedMottosInfoTextView.visibility = View.GONE
+                    } else if (dy < 0) {
+                        mSavedMottosInfoTextView.animate().translationY(0f)
+                        mSavedMottosInfoTextView.visibility = View.VISIBLE
+                    }
+            }
+        })
     }
 
     private fun initData() {
