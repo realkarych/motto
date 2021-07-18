@@ -9,10 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -24,9 +21,11 @@ import github.karchx.motto.databinding.FragmentHomeBinding
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import github.karchx.motto.viewmodels.HomeViewModel
 import github.karchx.motto.viewmodels.MottosViewModel
+import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
+import github.karchx.motto.views.tools.managers.AdViewer
 import github.karchx.motto.views.tools.managers.Copier
 import github.karchx.motto.views.tools.managers.DialogViewer
 import github.karchx.motto.views.tools.managers.Toaster
@@ -186,6 +185,8 @@ class HomeFragment : Fragment() {
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = mottos[position]
+
+                    AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         mFullMottoDialog,
@@ -197,6 +198,8 @@ class HomeFragment : Fragment() {
 
                 override fun onItemLongClick(view: View, position: Int) {
                     clickedMotto = mottos[position]
+
+                    AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         mFullMottoDialog,
@@ -230,6 +233,19 @@ class HomeFragment : Fragment() {
         mMottosRecycler.layoutManager = layoutManager
         val adapter = MottosRecyclerAdapter(mottos)
         mMottosRecycler.adapter = adapter
+
+        mMottosRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (recyclerView.scrollState == RecyclerView.SCROLL_STATE_SETTLING)
+                    if (dy > 0) {
+                        mMottosFoundTextView.animate().translationY(1f)
+                        mMottosFoundTextView.visibility = View.GONE
+                    } else if (dy < 0) {
+                        mMottosFoundTextView.animate().translationY(0f)
+                        mMottosFoundTextView.visibility = View.VISIBLE
+                    }
+            }
+        })
 
         if (mottos.isEmpty()) {
             mMottosLoadingProgressBar.visibility = View.INVISIBLE

@@ -29,6 +29,8 @@ class ByAuthorMottosParser(private val author: Author) : MottosParser {
                 } catch (ex: Exception) {
                 }
             }
+
+            mottos.shuffle()
             return mottos
         } catch (ex: Exception) {
             return mottos

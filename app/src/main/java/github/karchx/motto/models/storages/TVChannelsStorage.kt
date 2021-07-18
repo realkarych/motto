@@ -20,6 +20,7 @@ class TVChannelsStorage {
         channels.add(TVChannel("minut_60", "60 минут", "/tv/60-minut"))
         channels.add(TVChannel("comedy_woman", "Comedy Woman", "/tv/comedy-woman"))
 
+        channels.shuffle()
         return channels
     }
 }

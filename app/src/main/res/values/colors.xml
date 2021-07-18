@@ -5,6 +5,7 @@
 
     <color name="darker_item">#FF1D1D1D</color>
     <color name="dark_item">#CC403D46</color>
+    <color name="dark_item_not_transp">#FF403D46</color>
     <color name="dark_motto_type_item">#80403D46</color>
 
     <color name="white">#FFFFFFFF</color>

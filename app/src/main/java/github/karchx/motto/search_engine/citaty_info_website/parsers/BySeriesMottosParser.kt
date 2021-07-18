@@ -29,6 +29,8 @@ class BySeriesMottosParser(private val series: TVSeries) : MottosParser {
                 } catch (ex: Exception) {
                 }
             }
+
+            mottos.shuffle()
             return mottos
         } catch (ex: Exception) {
             return mottos
