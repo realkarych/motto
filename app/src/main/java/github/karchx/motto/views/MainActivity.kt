@@ -15,6 +15,7 @@ import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
 import github.karchx.motto.R
 import github.karchx.motto.databinding.ActivityMainBinding
+import java.lang.Exception
 
 
 class MainActivity : AppCompatActivity() {
@@ -45,7 +46,10 @@ class MainActivity : AppCompatActivity() {
 
         MobileAds.initialize(this)
 
-        updateApp()
+        try {
+            updateApp()
+        } catch (ex: Exception) {
+        }
     }
 
     private fun updateApp() {
