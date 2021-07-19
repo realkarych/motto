@@ -17,6 +17,14 @@ class TVSeriesStorage {
         series.add(TVSeries("two_and_a_half_men", "2,5 человека", "/series/2-5-cheloveka-dva-s-polovinoi-cheloveka-two-and-a-half-men"))
         series.add(TVSeries("crime_scene_investigation", "C.S.I. Место преступления", "/series/csi-mesto-prestupleniya-csi-crime-scene-investigation"))
         series.add(TVSeries("csi_miami", "C.S.I.: Майами", "/series/csi-maiami-csi-miami"))
+        series.add(TVSeries("sherlock", "Шерлок Холмс", "/series/sherlok-sherlock"))
+        series.add(TVSeries("mad_men", "Безумцы", "/series/bezumcy-mad-men"))
+        series.add(TVSeries("game_of_thrones", "Игра престолов", "/series/igra-prestolov-game-of-thrones"))
+        series.add(TVSeries("supernatural", "Сверхъестественное", "/series/sverhestestvennoe-supernatural"))
+        series.add(TVSeries("doctor_who", "Доктор Кто", "/series/doktor-kto-doctor-who-2005"))
+        series.add(TVSeries("breaking_bad", "Во все тяжкие", "/series/vo-vse-tyazhkie-breaking-bad"))
+        series.add(TVSeries("house_md", "Доктор Хаус", "/series/doktor-haus-house-md"))
+        series.add(TVSeries("black_mirror", "Чёрное Зеркало", "/series/chernoe-zerkalo-black-mirror"))
 
         series.shuffle()
         return series
