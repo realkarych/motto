@@ -17,7 +17,27 @@ class HtmlMottosParser {
             } catch (ex: NullPointerException) {
                 ""
             }
-            return Motto(quote, source)
+            return Motto(reformatQuote(quote), source)
+        }
+
+        private fun reformatQuote(quote: String): String {
+            var counter = 0
+            var reformattedQuote = ""
+
+            for (word in quote) {
+                if (word == '—') {
+                    if (counter != 0) {
+                        reformattedQuote += "\n$word"
+                    } else {
+                        reformattedQuote += word
+                    }
+                    counter += 1
+                } else {
+                    reformattedQuote += word
+                }
+            }
+
+            return reformattedQuote
         }
     }
 
