@@ -19,6 +19,8 @@ class TVChannelsStorage {
         channels.add(TVChannel("komika_22", "22 комика", "/tv/22-komika"))
         channels.add(TVChannel("minut_60", "60 минут", "/tv/60-minut"))
         channels.add(TVChannel("comedy_woman", "Comedy Woman", "/tv/comedy-woman"))
+        channels.add(TVChannel("uralskie_pelmeni", "Уральские пельмени", "/tv/uralskie-pelmeni"))
+        channels.add(TVChannel("vechernii_urgant", "Вечерний Ургант", "/tv/vechernii-urgant"))
 
         channels.shuffle()
         return channels
