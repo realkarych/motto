@@ -18,8 +18,7 @@ class AdViewer {
             val sharedPrefs = activity.getPreferences(Context.MODE_PRIVATE)
             val numberOfDisplayedAds = sharedPrefs.getInt(Constants.NUMBER_OF_DISPLAYED_ADS, 0)
 
-            // 1/3 реклама! (Только в дашборде)
-            if (numberOfDisplayedAds < 2) {
+            if (numberOfDisplayedAds < 3) {
                 sharedPrefs.edit().putInt(Constants.NUMBER_OF_DISPLAYED_ADS, numberOfDisplayedAds+1).apply()
             } else {
                 sharedPrefs.edit().putInt(Constants.NUMBER_OF_DISPLAYED_ADS, 0).apply()
