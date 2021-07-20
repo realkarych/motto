@@ -21,4 +21,6 @@
     <string name="anime">Аниме</string>
     <string name="channels">Каналы</string>
     <string name="series">Сериалы</string>
+    <string name="app_updated">Приложение обновлено.</string>
+    <string name="restart">Перезапуск</string>
 </resources>
