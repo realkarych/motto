@@ -30,7 +30,7 @@ class ByChannelMottosParser(private val channel: TVChannel) : MottosParser {
                 }
             }
 
-            mottos.shuffle()
+
             return mottos
         } catch (ex: Exception) {
             return mottos

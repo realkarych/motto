@@ -28,7 +28,7 @@ class ByRequestMottosParser(private val userRequest: String) : MottosParser {
                 }
             }
 
-            mottos.shuffle()
+
             return mottos
         } catch (ex: Exception) {
             return mottos

@@ -30,7 +30,6 @@ class ByTopicMottosParser(private val topic: Topic) : MottosParser {
                 }
             }
 
-            mottos.shuffle()
             return mottos
         } catch (ex: Exception) {
             return mottos

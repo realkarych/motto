@@ -30,7 +30,7 @@ class ByAnimeMottosParser(private val anime: Anime) : MottosParser {
                 }
             }
 
-            mottos.shuffle()
+
             return mottos
         } catch (ex: Exception) {
             return mottos

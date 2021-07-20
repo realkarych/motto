@@ -30,7 +30,7 @@ class ByFilmMottosParser(private val film: Film) : MottosParser {
                 }
             }
 
-            mottos.shuffle()
+
             return mottos
         } catch (ex: Exception) {
             return mottos

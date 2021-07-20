@@ -121,7 +121,6 @@ class AuthorsDashboardFragment : Fragment(R.layout.fragment_authors_dashboard) {
         val layoutManager = GridLayoutManager(context, 2)
         val adapter = AuthorsRecyclerAdapter(this@AuthorsDashboardFragment, authors)
 
-        adapter.setHasStableIds(true)
         authorsRecycler.setHasFixedSize(true)
         authorsRecycler.layoutManager = layoutManager
         authorsRecycler.adapter = adapter

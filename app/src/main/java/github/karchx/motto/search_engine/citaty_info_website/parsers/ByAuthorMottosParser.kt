@@ -30,7 +30,7 @@ class ByAuthorMottosParser(private val author: Author) : MottosParser {
                 }
             }
 
-            mottos.shuffle()
+
             return mottos
         } catch (ex: Exception) {
             return mottos

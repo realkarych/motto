@@ -19,7 +19,8 @@ class AdViewer {
             val numberOfDisplayedAds = sharedPrefs.getInt(Constants.NUMBER_OF_DISPLAYED_ADS, 0)
 
             if (numberOfDisplayedAds < 3) {
-                sharedPrefs.edit().putInt(Constants.NUMBER_OF_DISPLAYED_ADS, numberOfDisplayedAds+1).apply()
+                sharedPrefs.edit()
+                    .putInt(Constants.NUMBER_OF_DISPLAYED_ADS, numberOfDisplayedAds + 1).apply()
             } else {
                 sharedPrefs.edit().putInt(Constants.NUMBER_OF_DISPLAYED_ADS, 0).apply()
                 _displayFullMottoAd(activity, context)
