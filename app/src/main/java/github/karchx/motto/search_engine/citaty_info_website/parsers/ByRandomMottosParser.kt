@@ -30,6 +30,7 @@ class ByRandomMottosParser : MottosParser {
                 }
             }
 
+            mottos.shuffle()
             return mottos
         } catch (ex: Exception) {
             return mottos
