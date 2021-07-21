@@ -237,7 +237,10 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
     }
 
     private fun initData() {
-
+        mottosViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        ).get(MottosViewModel(application = requireActivity().application)::class.java)
     }
 
     private fun initViews() {
@@ -253,10 +256,5 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
         addToFavouritesImageView = fullMottoDialog.findViewById(R.id.imageview_is_saved_motto)
 
         notFoundMottosTextView = binding.textviewMottosNotFoundDashboard
-
-        mottosViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        ).get(MottosViewModel(application = requireActivity().application)::class.java)
     }
 }
