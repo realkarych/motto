@@ -1,4 +1,4 @@
-package github.karchx.motto.views.dashboard
+package github.karchx.motto.views.dashboard.items
 
 import android.app.Dialog
 import android.os.Bundle
@@ -17,31 +17,31 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
-import github.karchx.motto.databinding.FragmentTvChannelsDashboardBinding
+import github.karchx.motto.databinding.FragmentAuthorsDashboardBinding
+import github.karchx.motto.search_engine.citaty_info_website.data.Author
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
-import github.karchx.motto.search_engine.citaty_info_website.data.TVChannel
+import github.karchx.motto.viewmodels.AuthorsDashboardViewModel
 import github.karchx.motto.viewmodels.MottosViewModel
-import github.karchx.motto.viewmodels.TVChannelsDashboardViewModel
 import github.karchx.motto.views.MainActivity
-import github.karchx.motto.views.tools.adapters.ChannelsRecyclerAdapter
+import github.karchx.motto.views.tools.adapters.AuthorsRecyclerAdapter
 import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.*
 import github.karchx.motto.models.db.Motto as dbMotto
 
-class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashboard) {
+class AuthorsDashboardFragment : Fragment(R.layout.fragment_authors_dashboard) {
 
-    private var _binding: FragmentTvChannelsDashboardBinding? = null
+    private var _binding: FragmentAuthorsDashboardBinding? = null
     private val binding get() = _binding!!
 
     // ViewModels
-    private lateinit var tvChannelsDashboardViewModel: TVChannelsDashboardViewModel
+    private lateinit var authorsDashboardViewModel: AuthorsDashboardViewModel
     private lateinit var mottosViewModel: MottosViewModel
 
     // Views
-    private lateinit var tvChannelsRecycler: RecyclerView
-    private lateinit var tvChannelMottosRecycler: RecyclerView
+    private lateinit var authorsRecycler: RecyclerView
+    private lateinit var authorMottosRecycler: RecyclerView
     private lateinit var mottosLoadingProgressBar: ProgressBar
     private lateinit var fullMottoCardView: CardView
     private lateinit var fullMottoDialog: Dialog
@@ -49,10 +49,10 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
     private lateinit var notFoundMottosTextView: TextView
 
     //Data
-    private lateinit var tvChannels: ArrayList<TVChannel>
-    private lateinit var clickedTVChannel: TVChannel
+    private lateinit var authors: ArrayList<Author>
+    private lateinit var clickedAuthor: Author
     private lateinit var allDbMottos: List<dbMotto>
-    private lateinit var tvChannelMottos: ArrayList<Motto>
+    private lateinit var authorMottos: ArrayList<Motto>
     private lateinit var clickedMotto: Motto
 
     override fun onCreateView(
@@ -60,9 +60,9 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        tvChannelsDashboardViewModel =
-            ViewModelProvider(this).get(TVChannelsDashboardViewModel::class.java)
-        _binding = FragmentTvChannelsDashboardBinding.inflate(inflater, container, false)
+        authorsDashboardViewModel =
+            ViewModelProvider(this).get(AuthorsDashboardViewModel::class.java)
+        _binding = FragmentAuthorsDashboardBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -72,12 +72,12 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
         initData()
         initViews()
 
-        observeTVChannels()
-        observeTVChannelMottos()
+        observeAuthors()
+        observeAuthorMottos()
         observeDbMottos()
 
-        handleTVChannelsRecyclerItemClick()
-        handleTVChannelMottosRecyclerItemClick()
+        handleAuthorsRecyclerItemClick()
+        handleAuthorMottosRecyclerItemClick()
 
         handleCopyMottoData()
         setAddToFavouritesBtnClickListener()
@@ -95,20 +95,18 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
         _binding = null
     }
 
-    private fun observeTVChannels() {
-        tvChannelsDashboardViewModel.tvChannels.observe(viewLifecycleOwner, { _tvChannels ->
-            tvChannels = _tvChannels
-            displayTVChannelsRecycler(tvChannels)
+    private fun observeAuthors() {
+        authorsDashboardViewModel.authors.observe(viewLifecycleOwner, { _authors ->
+            authors = _authors
+            displayAuthorsRecycler(authors)
         })
     }
 
-    private fun observeTVChannelMottos() {
-        tvChannelsDashboardViewModel.tvChannelMottos.observe(
-            viewLifecycleOwner,
-            { _tvChannelMottos ->
-                tvChannelMottos = _tvChannelMottos
-                displayTVChannelMottosRecycler(tvChannelMottos)
-            })
+    private fun observeAuthorMottos() {
+        authorsDashboardViewModel.authorMottos.observe(viewLifecycleOwner, { _authorMottos ->
+            authorMottos = _authorMottos
+            displayAuthorMottosRecycler(authorMottos)
+        })
     }
 
     private fun observeDbMottos() {
@@ -117,35 +115,35 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
         }
     }
 
-    private fun displayTVChannelsRecycler(tvChannels: ArrayList<TVChannel>) {
+    private fun displayAuthorsRecycler(authors: ArrayList<Author>) {
         Arrow.hideBackArrow(activity as MainActivity)
 
         val layoutManager = GridLayoutManager(context, 2)
-        val adapter = ChannelsRecyclerAdapter(this@TVChannelsDashboardFragment, tvChannels)
+        val adapter = AuthorsRecyclerAdapter(this@AuthorsDashboardFragment, authors)
 
-        tvChannelsRecycler.setHasFixedSize(true)
-        tvChannelsRecycler.layoutManager = layoutManager
-        tvChannelsRecycler.adapter = adapter
+        authorsRecycler.setHasFixedSize(true)
+        authorsRecycler.layoutManager = layoutManager
+        authorsRecycler.adapter = adapter
     }
 
-    private fun displayTVChannelMottosRecycler(tvChannelMottos: ArrayList<Motto>) {
+    private fun displayAuthorMottosRecycler(authorMottos: ArrayList<Motto>) {
         Arrow.displayBackArrow(activity as MainActivity)
-        if (tvChannelMottos.isEmpty()) {
-            tvChannelsRecycler.visibility = View.GONE
+        if (authorMottos.isEmpty()) {
+            authorsRecycler.visibility = View.GONE
             notFoundMottosTextView.visibility = View.VISIBLE
             mottosLoadingProgressBar.visibility = View.INVISIBLE
         } else {
             notFoundMottosTextView.visibility = View.INVISIBLE
-            tvChannelsRecycler.visibility = View.GONE
+            authorsRecycler.visibility = View.GONE
             mottosLoadingProgressBar.visibility = View.INVISIBLE
 
             val layoutManager = GridLayoutManager(context, 1)
-            val adapter = MottosRecyclerAdapter(tvChannelMottos)
+            val adapter = MottosRecyclerAdapter(authorMottos)
 
-            tvChannelMottosRecycler.scheduleLayoutAnimation()
-            tvChannelMottosRecycler.setHasFixedSize(true)
-            tvChannelMottosRecycler.layoutManager = layoutManager
-            tvChannelMottosRecycler.adapter = adapter
+            authorMottosRecycler.scheduleLayoutAnimation()
+            authorMottosRecycler.setHasFixedSize(true)
+            authorMottosRecycler.layoutManager = layoutManager
+            authorMottosRecycler.adapter = adapter
         }
     }
 
@@ -161,31 +159,31 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
         }
     }
 
-    private fun handleTVChannelsRecyclerItemClick() {
-        tvChannelsRecycler.addOnItemTouchListener(
-            OnClickRecyclerItemListener(requireContext(), tvChannelsRecycler, object :
+    private fun handleAuthorsRecyclerItemClick() {
+        authorsRecycler.addOnItemTouchListener(
+            OnClickRecyclerItemListener(requireContext(), authorsRecycler, object :
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
-                    clickedTVChannel = tvChannels[position]
-                    tvChannelsDashboardViewModel.putTVChannelMottosPostValue(clickedTVChannel)
+                    clickedAuthor = authors[position]
+                    authorsDashboardViewModel.putAuthorMottosPostValue(clickedAuthor)
                     mottosLoadingProgressBar.visibility = View.VISIBLE
                 }
 
                 override fun onItemLongClick(view: View, position: Int) {
-                    clickedTVChannel = tvChannels[position]
-                    tvChannelsDashboardViewModel.putTVChannelMottosPostValue(clickedTVChannel)
+                    clickedAuthor = authors[position]
+                    authorsDashboardViewModel.putAuthorMottosPostValue(clickedAuthor)
                     mottosLoadingProgressBar.visibility = View.VISIBLE
                 }
             })
         )
     }
 
-    private fun handleTVChannelMottosRecyclerItemClick() {
-        tvChannelMottosRecycler.addOnItemTouchListener(
-            OnClickRecyclerItemListener(requireContext(), tvChannelMottosRecycler, object :
+    private fun handleAuthorMottosRecyclerItemClick() {
+        authorMottosRecycler.addOnItemTouchListener(
+            OnClickRecyclerItemListener(requireContext(), authorMottosRecycler, object :
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
-                    clickedMotto = tvChannelMottos[position]
+                    clickedMotto = authorMottos[position]
 
                     AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
                     DialogViewer.displayFullMottoDialog(
@@ -198,7 +196,7 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
                 }
 
                 override fun onItemLongClick(view: View, position: Int) {
-                    clickedMotto = tvChannelMottos[position]
+                    clickedMotto = authorMottos[position]
 
                     AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
                     DialogViewer.displayFullMottoDialog(
@@ -236,13 +234,14 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
         )
     }
 
+
     private fun initData() {
 
     }
 
     private fun initViews() {
-        tvChannelsRecycler = binding.recyclerviewTvChannelsDashboard
-        tvChannelMottosRecycler = binding.recyclerviewTvChannelsMottos
+        authorsRecycler = binding.recyclerviewAuthorsDashboard
+        authorMottosRecycler = binding.recyclerviewAuthorMottos
 
         mottosLoadingProgressBar = binding.progressbarMottosLoading
 
