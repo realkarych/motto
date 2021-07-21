@@ -32,5 +32,5 @@ class BooksDashboardViewModel : ViewModel() {
     }
 
     val books: LiveData<ArrayList<Book>> = _books
-    val authorMottos: LiveData<ArrayList<Motto>> = _bookMottos
+    val bookMottos: LiveData<ArrayList<Motto>> = _bookMottos
 }
