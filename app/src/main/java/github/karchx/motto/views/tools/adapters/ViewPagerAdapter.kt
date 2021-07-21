@@ -8,11 +8,12 @@ import github.karchx.motto.views.dashboard.items.*
 class ViewPagerAdapter(activity: MainActivity) : FragmentStateAdapter(activity) {
 
     private val fragments = arrayListOf(
-        AuthorsDashboardFragment(),
-        TopicsDashboardFragment(),
+        BooksDashboardFragment(),
         FilmsDashboardFragment(),
         SeriesDashboardFragment(),
         AnimeDashboardFragment(),
+        TopicsDashboardFragment(),
+        AuthorsDashboardFragment(),
         TVChannelsDashboardFragment()
     )
 
