@@ -1,4 +1,4 @@
-package github.karchx.motto.views.dashboard
+package github.karchx.motto.views.dashboard.items
 
 import android.app.Dialog
 import android.os.Bundle
@@ -17,31 +17,35 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
-import github.karchx.motto.databinding.FragmentAnimeDashboardBinding
-import github.karchx.motto.search_engine.citaty_info_website.data.Anime
+import github.karchx.motto.databinding.FragmentAuthorsDashboardBinding
+import github.karchx.motto.databinding.FragmentBooksDashboardBinding
+import github.karchx.motto.search_engine.citaty_info_website.data.Author
+import github.karchx.motto.search_engine.citaty_info_website.data.Book
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
-import github.karchx.motto.viewmodels.AnimeDashboardViewModel
+import github.karchx.motto.viewmodels.AuthorsDashboardViewModel
+import github.karchx.motto.viewmodels.BooksDashboardViewModel
 import github.karchx.motto.viewmodels.MottosViewModel
 import github.karchx.motto.views.MainActivity
-import github.karchx.motto.views.tools.adapters.AnimeRecyclerAdapter
+import github.karchx.motto.views.tools.adapters.AuthorsRecyclerAdapter
+import github.karchx.motto.views.tools.adapters.BooksRecyclerAdapter
 import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.*
 import github.karchx.motto.models.db.Motto as dbMotto
 
-class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
+class BooksDashboardFragment : Fragment(R.layout.fragment_books_dashboard) {
 
-    private var _binding: FragmentAnimeDashboardBinding? = null
+    private var _binding: FragmentBooksDashboardBinding? = null
     private val binding get() = _binding!!
 
     // ViewModels
-    private lateinit var animeDashboardViewModel: AnimeDashboardViewModel
+    private lateinit var booksDashboardViewModel: BooksDashboardViewModel
     private lateinit var mottosViewModel: MottosViewModel
 
     // Views
-    private lateinit var animeRecycler: RecyclerView
-    private lateinit var animeMottosRecycler: RecyclerView
+    private lateinit var booksRecycler: RecyclerView
+    private lateinit var bookMottosRecycler: RecyclerView
     private lateinit var mottosLoadingProgressBar: ProgressBar
     private lateinit var fullMottoCardView: CardView
     private lateinit var fullMottoDialog: Dialog
@@ -49,10 +53,10 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
     private lateinit var notFoundMottosTextView: TextView
 
     //Data
-    private lateinit var anime: ArrayList<Anime>
-    private lateinit var clickedAnime: Anime
+    private lateinit var books: ArrayList<Book>
+    private lateinit var clickedBook: Book
     private lateinit var allDbMottos: List<dbMotto>
-    private lateinit var animeMottos: ArrayList<Motto>
+    private lateinit var bookMottos: ArrayList<Motto>
     private lateinit var clickedMotto: Motto
 
     override fun onCreateView(
@@ -60,8 +64,9 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        animeDashboardViewModel = ViewModelProvider(this).get(AnimeDashboardViewModel::class.java)
-        _binding = FragmentAnimeDashboardBinding.inflate(inflater, container, false)
+        booksDashboardViewModel =
+            ViewModelProvider(this).get(BooksDashboardViewModel::class.java)
+        _binding = FragmentBooksDashboardBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -71,12 +76,12 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
         initData()
         initViews()
 
-        observeAnime()
-        observeAnimeMottos()
+        observeBooks()
+        observeBookMottos()
         observeDbMottos()
 
-        handleAnimeRecyclerItemClick()
-        handleAnimeMottosRecyclerItemClick()
+        handleBooksRecyclerItemClick()
+        handleBookMottosRecyclerItemClick()
 
         handleCopyMottoData()
         setAddToFavouritesBtnClickListener()
@@ -94,17 +99,17 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
         _binding = null
     }
 
-    private fun observeAnime() {
-        animeDashboardViewModel.anime.observe(viewLifecycleOwner, { _anime ->
-            anime = _anime
-            displayAnimeRecycler(anime)
+    private fun observeBooks() {
+        booksDashboardViewModel.books.observe(viewLifecycleOwner, { _books ->
+            books = _books
+            displayBooksRecycler(books)
         })
     }
 
-    private fun observeAnimeMottos() {
-        animeDashboardViewModel.animeMottos.observe(viewLifecycleOwner, { _animeMottos ->
-            animeMottos = _animeMottos
-            displayAnimeMottosRecycler(animeMottos)
+    private fun observeBookMottos() {
+        booksDashboardViewModel.bookMottos.observe(viewLifecycleOwner, { _bookMottos ->
+            bookMottos = _bookMottos
+            displayBookMottosRecycler(bookMottos)
         })
     }
 
@@ -114,35 +119,35 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
         }
     }
 
-    private fun displayAnimeRecycler(anime: ArrayList<Anime>) {
+    private fun displayBooksRecycler(books: ArrayList<Book>) {
         Arrow.hideBackArrow(activity as MainActivity)
 
         val layoutManager = GridLayoutManager(context, 2)
-        val adapter = AnimeRecyclerAdapter(this@AnimeDashboardFragment, anime)
+        val adapter = BooksRecyclerAdapter(this@BooksDashboardFragment, books)
 
-        animeRecycler.setHasFixedSize(true)
-        animeRecycler.layoutManager = layoutManager
-        animeRecycler.adapter = adapter
+        booksRecycler.setHasFixedSize(true)
+        booksRecycler.layoutManager = layoutManager
+        booksRecycler.adapter = adapter
     }
 
-    private fun displayAnimeMottosRecycler(animeMottos: ArrayList<Motto>) {
+    private fun displayBookMottosRecycler(bookMottos: ArrayList<Motto>) {
         Arrow.displayBackArrow(activity as MainActivity)
-        if (animeMottos.isEmpty()) {
-            animeRecycler.visibility = View.GONE
+        if (bookMottos.isEmpty()) {
+            booksRecycler.visibility = View.GONE
             notFoundMottosTextView.visibility = View.VISIBLE
             mottosLoadingProgressBar.visibility = View.INVISIBLE
         } else {
             notFoundMottosTextView.visibility = View.INVISIBLE
-            animeRecycler.visibility = View.GONE
+            booksRecycler.visibility = View.GONE
             mottosLoadingProgressBar.visibility = View.INVISIBLE
 
             val layoutManager = GridLayoutManager(context, 1)
-            val adapter = MottosRecyclerAdapter(animeMottos)
+            val adapter = MottosRecyclerAdapter(bookMottos)
 
-            animeMottosRecycler.scheduleLayoutAnimation()
-            animeMottosRecycler.setHasFixedSize(true)
-            animeMottosRecycler.layoutManager = layoutManager
-            animeMottosRecycler.adapter = adapter
+            bookMottosRecycler.scheduleLayoutAnimation()
+            bookMottosRecycler.setHasFixedSize(true)
+            bookMottosRecycler.layoutManager = layoutManager
+            bookMottosRecycler.adapter = adapter
         }
     }
 
@@ -158,31 +163,31 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
         }
     }
 
-    private fun handleAnimeRecyclerItemClick() {
-        animeRecycler.addOnItemTouchListener(
-            OnClickRecyclerItemListener(requireContext(), animeRecycler, object :
+    private fun handleBooksRecyclerItemClick() {
+        booksRecycler.addOnItemTouchListener(
+            OnClickRecyclerItemListener(requireContext(), booksRecycler, object :
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
-                    clickedAnime = anime[position]
-                    animeDashboardViewModel.putAnimeMottosPostValue(clickedAnime)
+                    clickedBook = books[position]
+                    booksDashboardViewModel.putBookMottosPostValue(clickedBook)
                     mottosLoadingProgressBar.visibility = View.VISIBLE
                 }
 
                 override fun onItemLongClick(view: View, position: Int) {
-                    clickedAnime = anime[position]
-                    animeDashboardViewModel.putAnimeMottosPostValue(clickedAnime)
+                    clickedBook = books[position]
+                    booksDashboardViewModel.putBookMottosPostValue(clickedBook)
                     mottosLoadingProgressBar.visibility = View.VISIBLE
                 }
             })
         )
     }
 
-    private fun handleAnimeMottosRecyclerItemClick() {
-        animeMottosRecycler.addOnItemTouchListener(
-            OnClickRecyclerItemListener(requireContext(), animeMottosRecycler, object :
+    private fun handleBookMottosRecyclerItemClick() {
+        bookMottosRecycler.addOnItemTouchListener(
+            OnClickRecyclerItemListener(requireContext(), bookMottosRecycler, object :
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
-                    clickedMotto = animeMottos[position]
+                    clickedMotto = bookMottos[position]
 
                     AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
                     DialogViewer.displayFullMottoDialog(
@@ -195,7 +200,7 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
                 }
 
                 override fun onItemLongClick(view: View, position: Int) {
-                    clickedMotto = animeMottos[position]
+                    clickedMotto = bookMottos[position]
 
                     AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
                     DialogViewer.displayFullMottoDialog(
@@ -234,12 +239,15 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
     }
 
     private fun initData() {
-
+        mottosViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        ).get(MottosViewModel(application = requireActivity().application)::class.java)
     }
 
     private fun initViews() {
-        animeRecycler = binding.recyclerviewAnimeDashboard
-        animeMottosRecycler = binding.recyclerviewAnimeMottos
+        booksRecycler = binding.recyclerviewBooksDashboard
+        bookMottosRecycler = binding.recyclerviewBookMottos
 
         mottosLoadingProgressBar = binding.progressbarMottosLoading
 
@@ -250,10 +258,5 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
         addToFavouritesImageView = fullMottoDialog.findViewById(R.id.imageview_is_saved_motto)
 
         notFoundMottosTextView = binding.textviewMottosNotFoundDashboard
-
-        mottosViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        ).get(MottosViewModel(application = requireActivity().application)::class.java)
     }
 }

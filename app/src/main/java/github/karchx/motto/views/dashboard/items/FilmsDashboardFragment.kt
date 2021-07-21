@@ -1,4 +1,4 @@
-package github.karchx.motto.views.dashboard
+package github.karchx.motto.views.dashboard.items
 
 import android.app.Dialog
 import android.os.Bundle
@@ -17,31 +17,31 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
-import github.karchx.motto.databinding.FragmentTopicsDashboardBinding
+import github.karchx.motto.databinding.FragmentFilmsDashboardBinding
+import github.karchx.motto.search_engine.citaty_info_website.data.Film
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
-import github.karchx.motto.search_engine.citaty_info_website.data.Topic
+import github.karchx.motto.viewmodels.FilmsDashboardViewModel
 import github.karchx.motto.viewmodels.MottosViewModel
-import github.karchx.motto.viewmodels.TopicsDashboardViewModel
 import github.karchx.motto.views.MainActivity
+import github.karchx.motto.views.tools.adapters.FilmsRecyclerAdapter
 import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
-import github.karchx.motto.views.tools.adapters.TopicsRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.*
 import github.karchx.motto.models.db.Motto as dbMotto
 
-class TopicsDashboardFragment : Fragment(R.layout.fragment_topics_dashboard) {
+class FilmsDashboardFragment : Fragment(R.layout.fragment_films_dashboard) {
 
-    private var _binding: FragmentTopicsDashboardBinding? = null
+    private var _binding: FragmentFilmsDashboardBinding? = null
     private val binding get() = _binding!!
 
     // ViewModels
-    private lateinit var topicsDashboardViewModel: TopicsDashboardViewModel
+    private lateinit var filmsDashboardViewModel: FilmsDashboardViewModel
     private lateinit var mottosViewModel: MottosViewModel
 
     // Views
-    private lateinit var topicsRecycler: RecyclerView
-    private lateinit var topicMottosRecycler: RecyclerView
+    private lateinit var filmsRecycler: RecyclerView
+    private lateinit var filmMottosRecycler: RecyclerView
     private lateinit var mottosLoadingProgressBar: ProgressBar
     private lateinit var fullMottoCardView: CardView
     private lateinit var fullMottoDialog: Dialog
@@ -49,10 +49,10 @@ class TopicsDashboardFragment : Fragment(R.layout.fragment_topics_dashboard) {
     private lateinit var notFoundMottosTextView: TextView
 
     //Data
-    private lateinit var topics: ArrayList<Topic>
-    private lateinit var clickedTopic: Topic
+    private lateinit var films: ArrayList<Film>
+    private lateinit var clickedFilm: Film
     private lateinit var allDbMottos: List<dbMotto>
-    private lateinit var topicMottos: ArrayList<Motto>
+    private lateinit var filmMottos: ArrayList<Motto>
     private lateinit var clickedMotto: Motto
 
     override fun onCreateView(
@@ -60,8 +60,8 @@ class TopicsDashboardFragment : Fragment(R.layout.fragment_topics_dashboard) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        topicsDashboardViewModel = ViewModelProvider(this).get(TopicsDashboardViewModel::class.java)
-        _binding = FragmentTopicsDashboardBinding.inflate(inflater, container, false)
+        filmsDashboardViewModel = ViewModelProvider(this).get(FilmsDashboardViewModel::class.java)
+        _binding = FragmentFilmsDashboardBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -71,12 +71,12 @@ class TopicsDashboardFragment : Fragment(R.layout.fragment_topics_dashboard) {
         initData()
         initViews()
 
-        observeTopics()
-        observeTopicMottos()
+        observeAuthors()
+        observeFilmMottos()
         observeDbMottos()
 
-        handleTopicsRecyclerItemClick()
-        handleTopicMottosRecyclerItemClick()
+        handleAuthorsRecyclerItemClick()
+        handleFilmMottosRecyclerItemClick()
 
         handleCopyMottoData()
         setAddToFavouritesBtnClickListener()
@@ -94,17 +94,17 @@ class TopicsDashboardFragment : Fragment(R.layout.fragment_topics_dashboard) {
         _binding = null
     }
 
-    private fun observeTopics() {
-        topicsDashboardViewModel.topics.observe(viewLifecycleOwner, { _topics ->
-            topics = _topics
-            displayTopicsRecycler(topics)
+    private fun observeAuthors() {
+        filmsDashboardViewModel.films.observe(viewLifecycleOwner, { _films ->
+            films = _films
+            displayFilmsRecycler(films)
         })
     }
 
-    private fun observeTopicMottos() {
-        topicsDashboardViewModel.topicMottos.observe(viewLifecycleOwner, { _topicMottos ->
-            topicMottos = _topicMottos
-            displayTopicMottosRecycler(topicMottos)
+    private fun observeFilmMottos() {
+        filmsDashboardViewModel.filmMottos.observe(viewLifecycleOwner, { _filmMottos ->
+            filmMottos = _filmMottos
+            displayFilmMottosRecycler(filmMottos)
         })
     }
 
@@ -114,35 +114,35 @@ class TopicsDashboardFragment : Fragment(R.layout.fragment_topics_dashboard) {
         }
     }
 
-    private fun displayTopicsRecycler(topics: ArrayList<Topic>) {
+    private fun displayFilmsRecycler(films: ArrayList<Film>) {
         Arrow.hideBackArrow(activity as MainActivity)
 
         val layoutManager = GridLayoutManager(context, 2)
-        val adapter = TopicsRecyclerAdapter(this@TopicsDashboardFragment, topics)
+        val adapter = FilmsRecyclerAdapter(this@FilmsDashboardFragment, films)
 
-        topicsRecycler.setHasFixedSize(true)
-        topicsRecycler.layoutManager = layoutManager
-        topicsRecycler.adapter = adapter
+        filmsRecycler.setHasFixedSize(true)
+        filmsRecycler.layoutManager = layoutManager
+        filmsRecycler.adapter = adapter
     }
 
-    private fun displayTopicMottosRecycler(topicMottos: ArrayList<Motto>) {
+    private fun displayFilmMottosRecycler(filmMottos: ArrayList<Motto>) {
         Arrow.displayBackArrow(activity as MainActivity)
-        if (topicMottos.isEmpty()) {
-            topicsRecycler.visibility = View.GONE
+        if (filmMottos.isEmpty()) {
+            filmsRecycler.visibility = View.GONE
             notFoundMottosTextView.visibility = View.VISIBLE
             mottosLoadingProgressBar.visibility = View.INVISIBLE
         } else {
             notFoundMottosTextView.visibility = View.INVISIBLE
-            topicsRecycler.visibility = View.GONE
+            filmsRecycler.visibility = View.GONE
             mottosLoadingProgressBar.visibility = View.INVISIBLE
 
             val layoutManager = GridLayoutManager(context, 1)
-            val adapter = MottosRecyclerAdapter(topicMottos)
+            val adapter = MottosRecyclerAdapter(filmMottos)
 
-            topicMottosRecycler.scheduleLayoutAnimation()
-            topicMottosRecycler.setHasFixedSize(true)
-            topicMottosRecycler.layoutManager = layoutManager
-            topicMottosRecycler.adapter = adapter
+            filmMottosRecycler.scheduleLayoutAnimation()
+            filmMottosRecycler.setHasFixedSize(true)
+            filmMottosRecycler.layoutManager = layoutManager
+            filmMottosRecycler.adapter = adapter
         }
     }
 
@@ -158,31 +158,31 @@ class TopicsDashboardFragment : Fragment(R.layout.fragment_topics_dashboard) {
         }
     }
 
-    private fun handleTopicsRecyclerItemClick() {
-        topicsRecycler.addOnItemTouchListener(
-            OnClickRecyclerItemListener(requireContext(), topicsRecycler, object :
+    private fun handleAuthorsRecyclerItemClick() {
+        filmsRecycler.addOnItemTouchListener(
+            OnClickRecyclerItemListener(requireContext(), filmsRecycler, object :
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
-                    clickedTopic = topics[position]
-                    topicsDashboardViewModel.putTopicMottosPostValue(clickedTopic)
+                    clickedFilm = films[position]
+                    filmsDashboardViewModel.putFilmMottosPostValue(clickedFilm)
                     mottosLoadingProgressBar.visibility = View.VISIBLE
                 }
 
                 override fun onItemLongClick(view: View, position: Int) {
-                    clickedTopic = topics[position]
-                    topicsDashboardViewModel.putTopicMottosPostValue(clickedTopic)
+                    clickedFilm = films[position]
+                    filmsDashboardViewModel.putFilmMottosPostValue(clickedFilm)
                     mottosLoadingProgressBar.visibility = View.VISIBLE
                 }
             })
         )
     }
 
-    private fun handleTopicMottosRecyclerItemClick() {
-        topicMottosRecycler.addOnItemTouchListener(
-            OnClickRecyclerItemListener(requireContext(), topicMottosRecycler, object :
+    private fun handleFilmMottosRecyclerItemClick() {
+        filmMottosRecycler.addOnItemTouchListener(
+            OnClickRecyclerItemListener(requireContext(), filmMottosRecycler, object :
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
-                    clickedMotto = topicMottos[position]
+                    clickedMotto = filmMottos[position]
 
                     AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
                     DialogViewer.displayFullMottoDialog(
@@ -195,7 +195,7 @@ class TopicsDashboardFragment : Fragment(R.layout.fragment_topics_dashboard) {
                 }
 
                 override fun onItemLongClick(view: View, position: Int) {
-                    clickedMotto = topicMottos[position]
+                    clickedMotto = filmMottos[position]
 
                     AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
                     DialogViewer.displayFullMottoDialog(
@@ -233,16 +233,14 @@ class TopicsDashboardFragment : Fragment(R.layout.fragment_topics_dashboard) {
         )
     }
 
+
     private fun initData() {
-        mottosViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        ).get(MottosViewModel(application = requireActivity().application)::class.java)
+
     }
 
     private fun initViews() {
-        topicsRecycler = binding.recyclerviewTopicsDashboard
-        topicMottosRecycler = binding.recyclerviewTopicMottos
+        filmsRecycler = binding.recyclerviewFilmsDashboard
+        filmMottosRecycler = binding.recyclerviewFilmMottos
 
         mottosLoadingProgressBar = binding.progressbarMottosLoading
 
@@ -253,5 +251,10 @@ class TopicsDashboardFragment : Fragment(R.layout.fragment_topics_dashboard) {
         addToFavouritesImageView = fullMottoDialog.findViewById(R.id.imageview_is_saved_motto)
 
         notFoundMottosTextView = binding.textviewMottosNotFoundDashboard
+
+        mottosViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        ).get(MottosViewModel(application = requireActivity().application)::class.java)
     }
 }
