@@ -14,21 +14,23 @@ class Constants {
 
         val MOTTO_TYPES_ICONS =
             arrayListOf(
-                R.drawable.ic_baseline_person_24,
-                R.drawable.ic_baseline_topic_24,
+                R.drawable.ic_baseline_book_24,
                 R.drawable.ic_baseline_camera_24,
-                R.drawable.ic_baseline_camera_24,
+                R.drawable.ic_baseline_serials_24,
                 R.drawable.ic_baseline_anime_24,
+                R.drawable.ic_baseline_topic_24,
+                R.drawable.ic_baseline_person_24,
                 R.drawable.ic_baseline_channels_24
             )
 
         fun getMottoTypesNames(context: Context): ArrayList<String> {
             return arrayListOf(
-                context.getString(R.string.authors),
-                context.getString(R.string.topics),
+                context.getString(R.string.books),
                 context.getString(R.string.films),
                 context.getString(R.string.series),
                 context.getString(R.string.anime),
+                context.getString(R.string.topics),
+                context.getString(R.string.authors),
                 context.getString(R.string.channels)
             )
         }
