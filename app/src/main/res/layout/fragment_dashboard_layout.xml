@@ -25,5 +25,13 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adViewUnderDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-1234211612737764/3212800471">
+    </com.google.android.gms.ads.AdView>
+
 </LinearLayout>
 

@@ -3,6 +3,7 @@ package github.karchx.motto.views.tools.managers
 import android.content.Context
 import android.util.Log
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.interstitial.InterstitialAd
@@ -13,6 +14,11 @@ import github.karchx.motto.views.MainActivity
 
 class AdViewer {
     companion object {
+
+        fun displayUnderDashboardAd(adView: AdView?) {
+            val adRequest: AdRequest = AdRequest.Builder().build()
+            adView?.loadAd(adRequest)
+        }
 
         fun displayFullMottoAd(activity: MainActivity, context: Context) {
             val sharedPrefs = activity.getPreferences(Context.MODE_PRIVATE)
