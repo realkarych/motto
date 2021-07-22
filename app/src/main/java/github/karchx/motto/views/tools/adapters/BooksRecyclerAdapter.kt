@@ -4,6 +4,7 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.AbsoluteSizeSpan
 import android.text.style.ForegroundColorSpan
+import android.text.style.RelativeSizeSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -71,7 +72,7 @@ class BooksRecyclerAdapter(
         val bookTitleSpan: Spannable = SpannableString(title + "\n")
 
         bookTitleSpan.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(context, R.color.pink)),
+            ForegroundColorSpan(ContextCompat.getColor(context, R.color.soft_white)),
             0,
             bookTitleSpan.length,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -84,17 +85,17 @@ class BooksRecyclerAdapter(
         val authorSurnameSpan: Spannable = SpannableString(surname)
 
         authorSurnameSpan.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(context, R.color.soft_white)),
+            ForegroundColorSpan(ContextCompat.getColor(context, R.color.pink)),
             0,
             authorSurnameSpan.length,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
 
         authorSurnameSpan.setSpan(
-            AbsoluteSizeSpan(14),
+            RelativeSizeSpan(0.8f),
             0,
             authorSurnameSpan.length,
-            0
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
 
         return authorSurnameSpan
