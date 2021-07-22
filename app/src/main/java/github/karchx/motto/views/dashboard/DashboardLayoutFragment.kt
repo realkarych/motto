@@ -10,13 +10,17 @@ import android.view.ViewTreeObserver
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import github.karchx.motto.R
 import github.karchx.motto.databinding.FragmentDashboardLayoutBinding
 import github.karchx.motto.models.storages.Constants
 import github.karchx.motto.models.storages.Constants.Companion.MOTTO_TYPES_ICONS
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.ViewPagerAdapter
+import github.karchx.motto.views.tools.managers.AdViewer
 
 class DashboardLayoutFragment : Fragment() {
 
@@ -26,6 +30,7 @@ class DashboardLayoutFragment : Fragment() {
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
     private lateinit var sharedPrefs: SharedPreferences
+    private var mAdView: AdView? = null
 
 
     override fun onCreateView(
@@ -60,6 +65,9 @@ class DashboardLayoutFragment : Fragment() {
                 sharedPrefs.edit().putInt(Constants.LAST_TAB_SELECTED, position).apply()
             }
         })
+
+        mAdView = binding.adViewUnderDashboard
+        AdViewer.displayUnderDashboardAd(mAdView)
     }
 
     private fun setViewPagerAndTabLayout() {
