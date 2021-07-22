@@ -12,8 +12,8 @@
     <string name="films">Films</string>
     <string name="anime">Anime</string>
     <string name="channels">Channels</string>
-    <string name="series">Series</string>
-    <string name="books">Books</string>
+    <string name="series">Series (Новое)</string>
+    <string name="books">Books (New)</string>
     <string name="found_random_mottos">Our selection</string>
     <string name="enter_request">Enter words from motto</string>
     <string name="found_on_request">Found on your request</string>
