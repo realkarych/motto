@@ -13,9 +13,9 @@ class HtmlMottosParser {
 
             val quote: String = parser.getQuoteElement(rootContentElement)?.text() ?: ""
             val source: String = try {
-                parser.getSourceElement(rootContentElement)?.text() ?: ""
+                parser.getSourceElement(rootContentElement)?.text() ?: "Автор неизвестен"
             } catch (ex: NullPointerException) {
-                ""
+                "Автор неизвестен"
             }
             return Motto(reformatQuote(quote), source)
         }
