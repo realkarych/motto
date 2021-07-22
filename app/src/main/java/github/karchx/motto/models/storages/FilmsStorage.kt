@@ -99,6 +99,48 @@ class FilmsStorage {
                 "/movie/spisok-shindlera-schindlers-list"
             )
         )
+        films.add(
+            Film(
+                "ivan_vasilevich_menyaet",
+                "Иван Васильевич меняет профессию",
+                "/movie/ivan-vasilevich-menyaet-professiyu"
+            )
+        )
+        films.add(
+            Film(
+                "dzhentlmeny_udachi",
+                "Джентльмены удачи",
+                "/movie/dzhentlmeny-udachi"
+            )
+        )
+        films.add(
+            Film(
+                "garri_potter",
+                "Гарри Поттер",
+                "/movie/garri-potter-i-uznik-azkabana-harry-potter-and-the-prisoner-of-azkaban"
+            )
+        )
+        films.add(
+            Film(
+                "brilliantovaya_ruka",
+                "Бриллиантовая рука",
+                "/movie/brilliantovaya-ruka"
+            )
+        )
+        films.add(
+            Film(
+                "ace_ventura",
+                "Эйс Вентура",
+                "/movie/eis-ventura-rozysk-domashnih-zhivotnyh-ace-ventura-pet-detective"
+            )
+        )
+        films.add(
+            Film(
+                "priklyucheniya_shurika",
+                "Операция «Ы»",
+                "/movie/operaciya-y-i-drugie-priklyucheniya-shurika"
+            )
+        )
 
         films.shuffle()
         return films
