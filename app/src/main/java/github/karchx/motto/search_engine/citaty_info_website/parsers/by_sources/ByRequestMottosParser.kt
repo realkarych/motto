@@ -1,7 +1,9 @@
-package github.karchx.motto.search_engine.citaty_info_website.parsers
+package github.karchx.motto.search_engine.citaty_info_website.parsers.by_sources
 
 import github.karchx.motto.models.storages.Constants
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
+import github.karchx.motto.search_engine.citaty_info_website.parsers.HtmlMottosParser
+import github.karchx.motto.search_engine.citaty_info_website.parsers.MottosParser
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jsoup.Jsoup

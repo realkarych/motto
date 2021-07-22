@@ -7,7 +7,7 @@ import github.karchx.motto.models.storages.Constants
 import github.karchx.motto.models.storages.FilmsStorage
 import github.karchx.motto.search_engine.citaty_info_website.data.Film
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
-import github.karchx.motto.search_engine.citaty_info_website.parsers.ByFilmMottosParser
+import github.karchx.motto.search_engine.citaty_info_website.parsers.by_sources.ByFilmMottosParser
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 

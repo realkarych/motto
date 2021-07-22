@@ -1,19 +1,21 @@
-package github.karchx.motto.search_engine.citaty_info_website.parsers
+package github.karchx.motto.search_engine.citaty_info_website.parsers.by_sources
 
 import github.karchx.motto.models.storages.Constants
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
+import github.karchx.motto.search_engine.citaty_info_website.data.TVSeries
+import github.karchx.motto.search_engine.citaty_info_website.parsers.HtmlMottosParser
+import github.karchx.motto.search_engine.citaty_info_website.parsers.MottosParser
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
 
-
-class ByRandomMottosParser : MottosParser {
+class BySeriesMottosParser(private val series: TVSeries) : MottosParser {
 
     override fun getMottos(quantityMottos: Int): ArrayList<Motto> {
         val mottos = ArrayList<Motto>()
-        val uriToParse = getUriToParse()
+        val uriToParse = getUriToParse(series)
 
         try {
             val okHttp = OkHttpClient()
@@ -21,16 +23,16 @@ class ByRandomMottosParser : MottosParser {
             val doc: Document = Jsoup.parse(okHttp.newCall(request).execute().body!!.string())
             val articles: Elements = doc.select(Constants.ARTICLE_ROOT_ELEMENT_NAME)
 
-            val limitedMottosQuantity = getLimitedMottosQuantity(articles, quantityMottos)
+            val limitedQuantityMottos = getLimitedMottosQuantity(articles, quantityMottos)
 
-            for (mottoIndex in 0 until limitedMottosQuantity) {
+            for (mottoIndex in 0 until limitedQuantityMottos) {
                 try {
                     mottos.add(HtmlMottosParser.getMottoFromHtml(doc, mottoIndex))
                 } catch (ex: Exception) {
                 }
             }
 
-            mottos.shuffle()
+
             return mottos
         } catch (ex: Exception) {
             return mottos
@@ -42,7 +44,10 @@ class ByRandomMottosParser : MottosParser {
         else quantityMottos
     }
 
-    private fun getUriToParse(): String {
-        return Constants.DOMAIN
+    private fun getUriToParse(series: TVSeries): String {
+        val baseUri = Constants.DOMAIN
+        val seriesUri = series.seriesUri
+        val sortType = Constants.MOTTOS_SORT_TYPE
+        return "$baseUri$seriesUri$sortType"
     }
 }
