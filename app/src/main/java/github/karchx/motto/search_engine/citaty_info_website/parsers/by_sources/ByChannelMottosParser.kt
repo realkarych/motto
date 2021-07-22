@@ -1,20 +1,21 @@
-package github.karchx.motto.search_engine.citaty_info_website.parsers
+package github.karchx.motto.search_engine.citaty_info_website.parsers.by_sources
 
 import github.karchx.motto.models.storages.Constants
-import github.karchx.motto.search_engine.citaty_info_website.data.Author
-import github.karchx.motto.search_engine.citaty_info_website.data.Book
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
+import github.karchx.motto.search_engine.citaty_info_website.data.TVChannel
+import github.karchx.motto.search_engine.citaty_info_website.parsers.HtmlMottosParser
+import github.karchx.motto.search_engine.citaty_info_website.parsers.MottosParser
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
 
-class ByBookMottosParser(private val book: Book) : MottosParser {
+class ByChannelMottosParser(private val channel: TVChannel) : MottosParser {
 
     override fun getMottos(quantityMottos: Int): ArrayList<Motto> {
         val mottos = ArrayList<Motto>()
-        val uriToParse = getUriToParse(book)
+        val uriToParse = getUriToParse(channel)
 
         try {
             val okHttp = OkHttpClient()
@@ -43,10 +44,10 @@ class ByBookMottosParser(private val book: Book) : MottosParser {
         else quantityMottos
     }
 
-    private fun getUriToParse(book: Book): String {
+    private fun getUriToParse(channel: TVChannel): String {
         val baseUri = Constants.DOMAIN
-        val topicUri = book.pageUri
+        val channelUri = channel.channelUri
         val sortType = Constants.MOTTOS_SORT_TYPE
-        return "$baseUri$topicUri$sortType"
+        return "$baseUri$channelUri$sortType"
     }
 }
