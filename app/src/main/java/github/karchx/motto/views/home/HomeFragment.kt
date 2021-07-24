@@ -7,6 +7,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -82,6 +83,11 @@ class HomeFragment : Fragment() {
         mSwipeRefreshLayoutRandomMottos.setOnRefreshListener {
             mGlobalScopeMottosEditText.text.clear()
             homeViewModel.putRandomMottosPostValue()
+        }
+
+        mGlobalScopeMottosEditText.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) mGlobalScopeMottosEditText.hint = ""
+            else mGlobalScopeMottosEditText.hint = "Your hint"
         }
     }
 
