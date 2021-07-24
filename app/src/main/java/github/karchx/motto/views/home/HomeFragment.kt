@@ -3,12 +3,10 @@ package github.karchx.motto.views.home
 import android.app.Activity
 import android.app.Dialog
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
@@ -52,6 +50,7 @@ class HomeFragment : Fragment() {
     private lateinit var mAddToFavouritesImageView: ImageView
     private lateinit var mGlobalScopeMottosEditText: EditText
     private lateinit var mMottosFoundTextView: TextView
+    private lateinit var mFindMottosButton: ImageView
 
     private lateinit var homeViewModel: HomeViewModel
 
@@ -70,6 +69,7 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initData()
         initViews()
 
         observeRandomMottos()
@@ -77,18 +77,9 @@ class HomeFragment : Fragment() {
         observeDbMottos()
         setFullMottoCardViewClickListener()
         setRandomMottosClickListener()
-        handleTextInputChanges()
+        handleFindMottosClick()
         setAddToFavouritesBtnClickListener()
-
-        mSwipeRefreshLayoutRandomMottos.setOnRefreshListener {
-            mGlobalScopeMottosEditText.text.clear()
-            homeViewModel.putRandomMottosPostValue()
-        }
-
-        mGlobalScopeMottosEditText.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) mGlobalScopeMottosEditText.hint = ""
-            else mGlobalScopeMottosEditText.hint = "Your hint"
-        }
+        handleRecyclerSwipe()
     }
 
     override fun onDestroyView() {
@@ -96,41 +87,34 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    private fun handleTextInputChanges() {
-        mGlobalScopeMottosEditText.addTextChangedListener(
-            object : TextWatcher {
-                override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-                override fun beforeTextChanged(
-                    s: CharSequence,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
-                    mGlobalScopeMottosEditText.isCursorVisible = true
-                }
+    private fun handleRecyclerSwipe() {
+        mSwipeRefreshLayoutRandomMottos.setOnRefreshListener {
+            mGlobalScopeMottosEditText.text.clear()
+            homeViewModel.putRandomMottosPostValue()
+        }
+    }
 
-                private var timer: Timer = Timer()
-                private val DELAY: Long = 1000 // Milliseconds
-                override fun afterTextChanged(s: Editable) {
-                    timer.cancel()
-                    timer = Timer()
-                    timer.schedule(
-                        object : TimerTask() {
-                            override fun run() {
-                                requireActivity().runOnUiThread {
-                                    mMottosLoadingProgressBar.visibility = View.VISIBLE
-                                    mMottosFoundTextView.text = getString(R.string.found_on_request)
-                                }
+    private fun handleFindMottosClick() {
 
-                                val request = mGlobalScopeMottosEditText.text.toString()
-                                homeViewModel.putRequestMottosPostValue(request)
-                            }
-                        },
-                        DELAY
-                    )
-                }
+        mFindMottosButton.setOnClickListener {
+            val request = mGlobalScopeMottosEditText.text.toString().trim()
+            if (request != "") {
+                homeViewModel.putRequestMottosPostValue(request)
+                hideKeyboard()
+                mMottosLoadingProgressBar.visibility = View.VISIBLE
+                mMottosFoundTextView.text = getString(R.string.found_on_request)
             }
-        )
+        }
+
+        mGlobalScopeMottosEditText.onSubmit {
+            val request = mGlobalScopeMottosEditText.text.toString().trim()
+            if (request != "") {
+                homeViewModel.putRequestMottosPostValue(request)
+                hideKeyboard()
+                mMottosLoadingProgressBar.visibility = View.VISIBLE
+                mMottosFoundTextView.text = getString(R.string.found_on_request)
+            }
+        }
     }
 
     private fun observeRequestMottos() {
@@ -272,21 +256,34 @@ class HomeFragment : Fragment() {
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
+    private fun EditText.onSubmit(func: () -> Unit) {
+        setOnEditorActionListener { _, actionId, _ ->
+
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                func()
+            }
+            true
+        }
+    }
+
+    private fun initData() {
+        mottosViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        ).get(MottosViewModel(application = requireActivity().application)::class.java)
+    }
+
     private fun initViews() {
         mMottosLoadingProgressBar = binding.progressbarMottosLoading
         mMottosFoundTextView = binding.textviewMottosFound
         mMottosRecycler = binding.recyclerviewMottos
         mSwipeRefreshLayoutRandomMottos = binding.refreshContainerOfRecyclerviewRandomMottos
         mGlobalScopeMottosEditText = binding.edittextGlobalScopeMottos
+        mFindMottosButton = binding.findRandomMottosButton
 
         mFullMottoDialog = Dialog(requireActivity())
         mFullMottoDialog.setContentView(R.layout.dialog_full_motto)
         mFullMottoCardView = mFullMottoDialog.findViewById(R.id.cardview_full_motto_item)
         mAddToFavouritesImageView = mFullMottoDialog.findViewById(R.id.imageview_is_saved_motto)
-
-        mottosViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        ).get(MottosViewModel(application = requireActivity().application)::class.java)
     }
 }

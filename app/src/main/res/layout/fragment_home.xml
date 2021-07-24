@@ -34,6 +34,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edittext_global_scope_mottos"
+                android:imeOptions="actionDone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto"
@@ -51,6 +52,9 @@
             android:layout_alignParentEnd="true"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="0dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             app:cardCornerRadius="4dp">
 
             <ImageView
