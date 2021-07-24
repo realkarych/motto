@@ -6,49 +6,63 @@
     android:layout_height="match_parent"
     tools:context=".views.home.HomeFragment">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardview_global_mottos_search"
+    <RelativeLayout
+        android:id="@+id/text_input_home_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="54dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="10dp"
-        app:cardBackgroundColor="@color/black"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="1dp"
-        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinput_global_scope_mottos"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:outlineProvider="bounds"
-            android:textColorHint="@color/soft_black"
-            app:boxBackgroundColor="@color/orange"
-            app:boxBackgroundMode="filled"
-            app:boxStrokeColor="@color/orange"
+            android:layout_toStartOf="@+id/find_random_mottos_button_container"
+            android:background="@drawable/back_with_border_text_input"
+            android:hint="@string/enter_request"
+            android:textColorHint="@color/soft_white"
+            app:boxBackgroundMode="outline"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
-            app:hintTextColor="@color/soft_black"
             app:startIconDrawable="@drawable/ic_search_white"
-            app:startIconTint="@color/purple">
+            app:startIconTint="@color/pink">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edittext_global_scope_mottos"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/roboto"
-                android:hint="@string/enter_request"
                 android:maxLength="100"
                 android:singleLine="true"
-                android:textColor="@color/soft_black"
-                android:textColorHint="@color/soft_black"
-                android:textSize="16sp" />
+                android:textColor="@color/soft_white"
+                android:textColorHint="@color/soft_white"
+                android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/find_random_mottos_button_container"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="0dp"
+            app:cardCornerRadius="4dp">
+
+            <ImageView
+                android:id="@+id/find_random_mottos_button"
+                android:layout_width="38dp"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:background="@color/red"
+                android:src="@drawable/ic_go_to_page_arrow_24" />
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/textview_mottos_found"
@@ -56,25 +70,25 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:text="@string/found_random_mottos"
 
         app:layout_constraintEnd_toStartOf="@+id/progressbar_mottos_loading"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardview_global_mottos_search" />
+        app:layout_constraintTop_toBottomOf="@+id/text_input_home_container" />
 
     <ProgressBar
         android:id="@+id/progressbar_mottos_loading"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="14dp"
         android:indeterminateTint="@color/pink"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardview_global_mottos_search" />
+        app:layout_constraintTop_toBottomOf="@+id/text_input_home_container" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refresh_container_of_recyclerview_random_mottos"

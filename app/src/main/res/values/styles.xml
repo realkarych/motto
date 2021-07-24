@@ -56,4 +56,9 @@
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:layout_marginTop">8dp</item>
     </style>
+
+    <style name="FindMottoTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/pink</item>
+        <item name="boxStrokeWidth">2dp</item>
+    </style>
 </resources>
