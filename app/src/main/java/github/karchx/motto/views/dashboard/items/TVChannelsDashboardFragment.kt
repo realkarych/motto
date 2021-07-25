@@ -18,7 +18,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
 import github.karchx.motto.ads.AdViewer
+import github.karchx.motto.copying.Copier
 import github.karchx.motto.databinding.FragmentTvChannelsDashboardBinding
+import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.items.Motto
 import github.karchx.motto.search_engine.citaty_info_website.items.TVChannel
 import github.karchx.motto.viewmodels.MottosViewModel
@@ -50,6 +52,7 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
     private lateinit var notFoundMottosTextView: TextView
 
     //Data
+    private lateinit var userPrefs: UserPrefs
     private lateinit var tvChannels: ArrayList<TVChannel>
     private lateinit var clickedTVChannel: TVChannel
     private lateinit var allDbMottos: List<dbMotto>
@@ -216,13 +219,13 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
 
     private fun handleCopyMottoData() {
         fullMottoCardView.setOnClickListener {
-            val text = Copier.getMottoDataToCopy(
-                context = requireContext(),
+            val text = Copier(activity as MainActivity, requireContext()).getMottoDataToCopy(
                 quote = clickedMotto.quote,
-                source = clickedMotto.source
+                source = clickedMotto.source,
+                isCopyWithAuthor = userPrefs.copySettings.isWithSource()
             )
 
-            Copier.copyText(requireActivity(), text)
+            Copier(activity as MainActivity, requireContext()).copyText(text)
             Toaster.displayTextIsCopiedToast(requireContext())
         }
     }
@@ -242,6 +245,8 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
         ).get(MottosViewModel(application = requireActivity().application)::class.java)
+
+        userPrefs = UserPrefs(activity as MainActivity)
     }
 
     private fun initViews() {

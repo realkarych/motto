@@ -25,4 +25,6 @@
     <string name="restart">Перезапуск</string>
     <string name="books">Книги</string>
     <string name="title_settings">Настройки</string>
+    <string name="is_copy_with_source">Копировать с источником</string>
+    <string name="with_source">С источником</string>
 </resources>

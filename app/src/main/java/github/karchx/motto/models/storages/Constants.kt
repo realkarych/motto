@@ -37,5 +37,6 @@ class Constants {
 
         const val LAST_TAB_SELECTED = "selected_tab"
         const val NUMBER_OF_DISPLAYED_ADS = "num_of_displayed_ads"
+        const val IS_COPY_WITH_AUTHOR = "is_copy_with_author"
     }
 }

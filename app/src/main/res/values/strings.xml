@@ -25,4 +25,6 @@
     <string name="how_to_delete_motto">Make a long press to delete the motto</string>
     <string name="app_updated">App Updated.</string>
     <string name="restart">Restart</string>
+    <string name="is_copy_with_source">Copy with source</string>
+    <string name="with_source">With source</string>
 </resources>
