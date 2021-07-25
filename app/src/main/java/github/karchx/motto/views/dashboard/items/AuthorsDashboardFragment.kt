@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
+import github.karchx.motto.ads.AdViewer
 import github.karchx.motto.databinding.FragmentAuthorsDashboardBinding
 import github.karchx.motto.search_engine.citaty_info_website.items.Author
 import github.karchx.motto.search_engine.citaty_info_website.items.Motto
@@ -185,7 +186,7 @@ class AuthorsDashboardFragment : Fragment(R.layout.fragment_authors_dashboard) {
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = authorMottos[position]
 
-                    AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
+                    AdViewer(activity as MainActivity, requireContext()).displayFullMottoAd()
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         fullMottoDialog,
@@ -198,7 +199,7 @@ class AuthorsDashboardFragment : Fragment(R.layout.fragment_authors_dashboard) {
                 override fun onItemLongClick(view: View, position: Int) {
                     clickedMotto = authorMottos[position]
 
-                    AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
+                    AdViewer(activity as MainActivity, requireContext()).displayFullMottoAd()
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         fullMottoDialog,
