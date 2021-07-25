@@ -2,7 +2,6 @@ package github.karchx.motto.views.tools.adapters
 
 import android.text.Spannable
 import android.text.SpannableString
-import android.text.style.AbsoluteSizeSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.view.LayoutInflater
@@ -14,8 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
-import github.karchx.motto.search_engine.citaty_info_website.data.Author
-import github.karchx.motto.search_engine.citaty_info_website.data.Book
+import github.karchx.motto.search_engine.citaty_info_website.items.Book
 
 class BooksRecyclerAdapter(
     fragment: Fragment,

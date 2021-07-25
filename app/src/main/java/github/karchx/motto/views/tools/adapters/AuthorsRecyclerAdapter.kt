@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
-import github.karchx.motto.search_engine.citaty_info_website.data.Author
+import github.karchx.motto.search_engine.citaty_info_website.items.Author
 
 class AuthorsRecyclerAdapter(
     fragment: Fragment,

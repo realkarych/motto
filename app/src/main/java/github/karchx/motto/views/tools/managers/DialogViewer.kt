@@ -10,7 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import github.karchx.motto.R
-import github.karchx.motto.search_engine.citaty_info_website.data.Motto
+import github.karchx.motto.search_engine.citaty_info_website.items.Motto
 import github.karchx.motto.models.db.Motto as dbMotto
 
 
