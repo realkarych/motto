@@ -22,4 +22,10 @@
         android:name="github.karchx.motto.views.favourites.FavouritesFragment"
         android:label="@string/title_favourites"
         tools:layout="@layout/fragment_favourites" />
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="github.karchx.motto.views.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>
