@@ -1,4 +1,4 @@
-package github.karchx.motto.viewmodels
+package github.karchx.motto.viewmodels.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

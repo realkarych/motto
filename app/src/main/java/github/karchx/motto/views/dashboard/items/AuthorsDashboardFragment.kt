@@ -20,7 +20,7 @@ import github.karchx.motto.R
 import github.karchx.motto.databinding.FragmentAuthorsDashboardBinding
 import github.karchx.motto.search_engine.citaty_info_website.data.Author
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
-import github.karchx.motto.viewmodels.AuthorsDashboardViewModel
+import github.karchx.motto.viewmodels.dashboard.AuthorsDashboardViewModel
 import github.karchx.motto.viewmodels.MottosViewModel
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.AuthorsRecyclerAdapter

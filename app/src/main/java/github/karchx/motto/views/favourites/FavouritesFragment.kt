@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
 import github.karchx.motto.databinding.FragmentFavouritesBinding
 import github.karchx.motto.models.db.Motto
-import github.karchx.motto.viewmodels.FavouritesViewModel
+import github.karchx.motto.viewmodels.favourites.FavouritesViewModel
 import github.karchx.motto.viewmodels.MottosViewModel
 import github.karchx.motto.views.tools.adapters.FromDbMottosRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener

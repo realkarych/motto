@@ -21,7 +21,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import github.karchx.motto.R
 import github.karchx.motto.databinding.FragmentHomeBinding
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
-import github.karchx.motto.viewmodels.HomeViewModel
+import github.karchx.motto.viewmodels.home.HomeViewModel
 import github.karchx.motto.viewmodels.MottosViewModel
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter

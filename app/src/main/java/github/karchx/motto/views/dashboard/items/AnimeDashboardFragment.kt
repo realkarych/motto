@@ -20,7 +20,7 @@ import github.karchx.motto.R
 import github.karchx.motto.databinding.FragmentAnimeDashboardBinding
 import github.karchx.motto.search_engine.citaty_info_website.data.Anime
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
-import github.karchx.motto.viewmodels.AnimeDashboardViewModel
+import github.karchx.motto.viewmodels.dashboard.AnimeDashboardViewModel
 import github.karchx.motto.viewmodels.MottosViewModel
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.AnimeRecyclerAdapter
