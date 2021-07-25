@@ -10,17 +10,15 @@ import android.view.ViewTreeObserver
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import github.karchx.motto.R
 import github.karchx.motto.databinding.FragmentDashboardLayoutBinding
 import github.karchx.motto.models.storages.Constants
 import github.karchx.motto.models.storages.Constants.Companion.MOTTO_TYPES_ICONS
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.ViewPagerAdapter
-import github.karchx.motto.views.tools.managers.AdViewer
+import github.karchx.motto.ads.AdViewer
 
 class DashboardLayoutFragment : Fragment() {
 
@@ -67,7 +65,7 @@ class DashboardLayoutFragment : Fragment() {
         })
 
         mAdView = binding.adViewUnderDashboard
-        AdViewer.displayUnderDashboardAd(mAdView)
+        AdViewer(activity as MainActivity, requireContext()).displayUnderDashboardAd(mAdView)
     }
 
     private fun setViewPagerAndTabLayout() {

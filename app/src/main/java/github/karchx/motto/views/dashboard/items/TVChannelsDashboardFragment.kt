@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
+import github.karchx.motto.ads.AdViewer
 import github.karchx.motto.databinding.FragmentTvChannelsDashboardBinding
 import github.karchx.motto.search_engine.citaty_info_website.items.Motto
 import github.karchx.motto.search_engine.citaty_info_website.items.TVChannel
@@ -187,7 +188,7 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = tvChannelMottos[position]
 
-                    AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
+                    AdViewer(activity as MainActivity, requireContext()).displayFullMottoAd()
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         fullMottoDialog,
@@ -200,7 +201,7 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
                 override fun onItemLongClick(view: View, position: Int) {
                     clickedMotto = tvChannelMottos[position]
 
-                    AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
+                    AdViewer(activity as MainActivity, requireContext()).displayFullMottoAd()
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         fullMottoDialog,

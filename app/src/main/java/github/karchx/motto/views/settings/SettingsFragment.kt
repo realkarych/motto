@@ -12,8 +12,6 @@ import github.karchx.motto.views.tools.managers.Arrow
 
 class SettingsFragment: Fragment() {
 
-    private lateinit var userPrefs: UserPrefs
-
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
 
@@ -26,12 +24,10 @@ class SettingsFragment: Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Arrow.hideBackArrow(activity as MainActivity)
         initData()
         initViews()
-
 
     }
 
@@ -41,7 +37,7 @@ class SettingsFragment: Fragment() {
     }
 
     private fun initData() {
-        userPrefs = UserPrefs(requireContext())
+
     }
 
     private fun initViews() {
