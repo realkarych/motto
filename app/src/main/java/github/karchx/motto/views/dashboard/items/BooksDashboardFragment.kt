@@ -17,16 +17,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
-import github.karchx.motto.databinding.FragmentAuthorsDashboardBinding
 import github.karchx.motto.databinding.FragmentBooksDashboardBinding
-import github.karchx.motto.search_engine.citaty_info_website.data.Author
 import github.karchx.motto.search_engine.citaty_info_website.data.Book
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
-import github.karchx.motto.viewmodels.AuthorsDashboardViewModel
-import github.karchx.motto.viewmodels.BooksDashboardViewModel
+import github.karchx.motto.viewmodels.dashboard.BooksDashboardViewModel
 import github.karchx.motto.viewmodels.MottosViewModel
 import github.karchx.motto.views.MainActivity
-import github.karchx.motto.views.tools.adapters.AuthorsRecyclerAdapter
 import github.karchx.motto.views.tools.adapters.BooksRecyclerAdapter
 import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener

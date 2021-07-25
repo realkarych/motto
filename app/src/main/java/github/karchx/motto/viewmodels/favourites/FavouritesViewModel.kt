@@ -1,4 +1,4 @@
-package github.karchx.motto.viewmodels
+package github.karchx.motto.viewmodels.favourites
 
 import androidx.lifecycle.ViewModel
 
