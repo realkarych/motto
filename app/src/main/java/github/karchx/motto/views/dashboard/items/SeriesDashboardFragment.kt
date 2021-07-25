@@ -21,7 +21,7 @@ import github.karchx.motto.databinding.FragmentSeriesDashboardBinding
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import github.karchx.motto.search_engine.citaty_info_website.data.TVSeries
 import github.karchx.motto.viewmodels.MottosViewModel
-import github.karchx.motto.viewmodels.TVSeriesDashboardViewModel
+import github.karchx.motto.viewmodels.dashboard.TVSeriesDashboardViewModel
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
 import github.karchx.motto.views.tools.adapters.SeriesRecyclerAdapter

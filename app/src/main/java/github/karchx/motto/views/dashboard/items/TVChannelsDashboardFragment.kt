@@ -21,7 +21,7 @@ import github.karchx.motto.databinding.FragmentTvChannelsDashboardBinding
 import github.karchx.motto.search_engine.citaty_info_website.data.Motto
 import github.karchx.motto.search_engine.citaty_info_website.data.TVChannel
 import github.karchx.motto.viewmodels.MottosViewModel
-import github.karchx.motto.viewmodels.TVChannelsDashboardViewModel
+import github.karchx.motto.viewmodels.dashboard.TVChannelsDashboardViewModel
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.ChannelsRecyclerAdapter
 import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
