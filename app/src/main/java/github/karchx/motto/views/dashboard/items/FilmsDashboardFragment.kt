@@ -18,7 +18,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
 import github.karchx.motto.ads.AdViewer
+import github.karchx.motto.copying.Copier
 import github.karchx.motto.databinding.FragmentFilmsDashboardBinding
+import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.items.Film
 import github.karchx.motto.search_engine.citaty_info_website.items.Motto
 import github.karchx.motto.viewmodels.dashboard.FilmsDashboardViewModel
@@ -50,6 +52,7 @@ class FilmsDashboardFragment : Fragment(R.layout.fragment_films_dashboard) {
     private lateinit var notFoundMottosTextView: TextView
 
     //Data
+    private lateinit var userPrefs: UserPrefs
     private lateinit var films: ArrayList<Film>
     private lateinit var clickedFilm: Film
     private lateinit var allDbMottos: List<dbMotto>
@@ -213,13 +216,13 @@ class FilmsDashboardFragment : Fragment(R.layout.fragment_films_dashboard) {
 
     private fun handleCopyMottoData() {
         fullMottoCardView.setOnClickListener {
-            val text = Copier.getMottoDataToCopy(
-                context = requireContext(),
+            val text = Copier(activity as MainActivity, requireContext()).getMottoDataToCopy(
                 quote = clickedMotto.quote,
-                source = clickedMotto.source
+                source = clickedMotto.source,
+                isCopyWithAuthor = userPrefs.copySettings.isWithSource()
             )
 
-            Copier.copyText(requireActivity(), text)
+            Copier(activity as MainActivity, requireContext()).copyText(text)
             Toaster.displayTextIsCopiedToast(requireContext())
         }
     }
@@ -240,6 +243,8 @@ class FilmsDashboardFragment : Fragment(R.layout.fragment_films_dashboard) {
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
         ).get(MottosViewModel(application = requireActivity().application)::class.java)
+
+        userPrefs = UserPrefs(activity as MainActivity)
     }
 
     private fun initViews() {

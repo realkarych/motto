@@ -20,7 +20,9 @@ import github.karchx.motto.viewmodels.MottosViewModel
 import github.karchx.motto.views.tools.adapters.FromDbMottosRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
-import github.karchx.motto.views.tools.managers.Copier
+import github.karchx.motto.copying.Copier
+import github.karchx.motto.models.user_settings.UserPrefs
+import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.managers.DialogViewer
 import github.karchx.motto.views.tools.managers.Toaster
 import github.karchx.motto.search_engine.citaty_info_website.items.Motto as parsedMotto
@@ -39,6 +41,7 @@ class FavouritesFragment : Fragment() {
     private var _binding: FragmentFavouritesBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var userPrefs: UserPrefs
     private lateinit var savedMottos: List<Motto>
     private lateinit var clickedMotto: Motto
 
@@ -101,13 +104,13 @@ class FavouritesFragment : Fragment() {
 
     private fun setFullMottoCardViewClickListener() {
         mFullMottoCardView.setOnClickListener {
-            val text = Copier.getMottoDataToCopy(
-                context = requireContext(),
+            val text = Copier(activity as MainActivity, requireContext()).getMottoDataToCopy(
                 quote = clickedMotto.quote,
-                source = clickedMotto.source
+                source = clickedMotto.source,
+                isCopyWithAuthor = userPrefs.copySettings.isWithSource()
             )
 
-            Copier.copyText(requireActivity(), text)
+            Copier(activity as MainActivity, requireContext()).copyText(text)
             Toaster.displayTextIsCopiedToast(requireContext())
         }
     }
@@ -157,6 +160,8 @@ class FavouritesFragment : Fragment() {
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
         ).get(MottosViewModel(application = requireActivity().application)::class.java)
+
+        userPrefs = UserPrefs(activity as MainActivity)
     }
 
     private fun initViews() {

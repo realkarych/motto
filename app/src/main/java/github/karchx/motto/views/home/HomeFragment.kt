@@ -3,6 +3,7 @@ package github.karchx.motto.views.home
 import android.app.Activity
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +29,8 @@ import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.ads.AdViewer
-import github.karchx.motto.views.tools.managers.Copier
+import github.karchx.motto.copying.Copier
+import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.views.tools.managers.DialogViewer
 import github.karchx.motto.views.tools.managers.Toaster
 import java.util.*
@@ -37,6 +39,7 @@ import github.karchx.motto.models.db.Motto as dbMotto
 
 class HomeFragment : Fragment() {
 
+    private lateinit var userPrefs: UserPrefs
     private lateinit var mottos: ArrayList<Motto>
     private lateinit var clickedMotto: Motto
     private lateinit var allDbMottos: List<dbMotto>
@@ -155,13 +158,12 @@ class HomeFragment : Fragment() {
 
     private fun setFullMottoCardViewClickListener() {
         mFullMottoCardView.setOnClickListener {
-            val text = Copier.getMottoDataToCopy(
-                context = requireContext(),
+            val text = Copier(activity as MainActivity, requireContext()).getMottoDataToCopy(
                 quote = clickedMotto.quote,
-                source = clickedMotto.source
+                source = clickedMotto.source,
+                isCopyWithAuthor = userPrefs.copySettings.isWithSource()
             )
-
-            Copier.copyText(requireActivity(), text)
+            Copier(activity as MainActivity, requireContext()).copyText(text)
             Toaster.displayTextIsCopiedToast(requireContext())
         }
     }
@@ -280,6 +282,8 @@ class HomeFragment : Fragment() {
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
         ).get(MottosViewModel(application = requireActivity().application)::class.java)
+
+        userPrefs = UserPrefs(activity as MainActivity)
     }
 
     private fun initViews() {
