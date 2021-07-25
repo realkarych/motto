@@ -8,7 +8,7 @@ import android.os.Vibrator
 import android.widget.ImageView
 import androidx.appcompat.content.res.AppCompatResources
 import github.karchx.motto.R
-import github.karchx.motto.search_engine.citaty_info_website.data.Motto
+import github.karchx.motto.search_engine.citaty_info_website.items.Motto
 import github.karchx.motto.viewmodels.MottosViewModel
 import java.text.SimpleDateFormat
 import java.util.*
