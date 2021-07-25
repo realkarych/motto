@@ -23,7 +23,7 @@ import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.Copier
 import github.karchx.motto.views.tools.managers.DialogViewer
 import github.karchx.motto.views.tools.managers.Toaster
-import github.karchx.motto.search_engine.citaty_info_website.data.Motto as parsedMotto
+import github.karchx.motto.search_engine.citaty_info_website.items.Motto as parsedMotto
 
 class FavouritesFragment : Fragment() {
 

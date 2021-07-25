@@ -18,8 +18,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
 import github.karchx.motto.databinding.FragmentTopicsDashboardBinding
-import github.karchx.motto.search_engine.citaty_info_website.data.Motto
-import github.karchx.motto.search_engine.citaty_info_website.data.Topic
+import github.karchx.motto.search_engine.citaty_info_website.items.Motto
+import github.karchx.motto.search_engine.citaty_info_website.items.Topic
 import github.karchx.motto.viewmodels.MottosViewModel
 import github.karchx.motto.viewmodels.dashboard.TopicsDashboardViewModel
 import github.karchx.motto.views.MainActivity

@@ -1,6 +1,6 @@
 package github.karchx.motto.models.storages
 
-import github.karchx.motto.search_engine.citaty_info_website.data.Film
+import github.karchx.motto.search_engine.citaty_info_website.items.Film
 
 class FilmsStorage {
 

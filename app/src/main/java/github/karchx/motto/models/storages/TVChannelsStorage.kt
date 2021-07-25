@@ -1,6 +1,6 @@
 package github.karchx.motto.models.storages
 
-import github.karchx.motto.search_engine.citaty_info_website.data.TVChannel
+import github.karchx.motto.search_engine.citaty_info_website.items.TVChannel
 
 class TVChannelsStorage {
 
