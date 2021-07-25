@@ -3,6 +3,7 @@
     <string name="title_search">Search</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_favourites">Favourites</string>
+    <string name="title_settings">Settings</string>
     <string name="unknown_author">Unknown author</string>
     <string name="motto_about">Click motto to copy it</string>
     <string name="motto_copied">Motto copied!</string>
