@@ -106,6 +106,7 @@ class HomeFragment : Fragment() {
                 homeViewModel.putRequestMottosPostValue(request)
                 hideKeyboard()
                 mMottosLoadingProgressBar.visibility = View.VISIBLE
+                mMottosFoundTextView.visibility = View.VISIBLE
                 mMottosFoundTextView.text = getString(R.string.found_on_request)
             }
         }
@@ -115,6 +116,7 @@ class HomeFragment : Fragment() {
             if (request != "") {
                 homeViewModel.putRequestMottosPostValue(request)
                 hideKeyboard()
+                mMottosFoundTextView.visibility = View.VISIBLE
                 mMottosLoadingProgressBar.visibility = View.VISIBLE
                 mMottosFoundTextView.text = getString(R.string.found_on_request)
             }
@@ -215,11 +217,14 @@ class HomeFragment : Fragment() {
         val adapter = MottosRecyclerAdapter(mottos)
         mMottosRecycler.adapter = adapter
 
-        if (mottos.isEmpty())
+        if (mottos.isEmpty()) {
+            mMottosFoundTextView.visibility = View.VISIBLE
             mMottosFoundTextView.text = getString(R.string.not_found_on_request)
+        }
     }
 
     private fun displayRandomMottosRecycler(mottos: ArrayList<Motto>) {
+        mMottosFoundTextView.visibility = View.VISIBLE
         mMottosLoadingProgressBar.visibility = View.INVISIBLE
         hideKeyboard()
 
@@ -245,6 +250,7 @@ class HomeFragment : Fragment() {
 
         if (mottos.isEmpty()) {
             mMottosLoadingProgressBar.visibility = View.INVISIBLE
+            mMottosFoundTextView.visibility = View.VISIBLE
             mMottosFoundTextView.text = getString(R.string.not_found_random_mottos)
         }
     }
