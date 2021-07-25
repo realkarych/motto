@@ -27,7 +27,7 @@ import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
-import github.karchx.motto.views.tools.managers.AdViewer
+import github.karchx.motto.ads.AdViewer
 import github.karchx.motto.views.tools.managers.Copier
 import github.karchx.motto.views.tools.managers.DialogViewer
 import github.karchx.motto.views.tools.managers.Toaster
@@ -185,7 +185,7 @@ class HomeFragment : Fragment() {
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = mottos[position]
 
-                    AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
+                    AdViewer(activity as MainActivity, requireContext()).displayFullMottoAd()
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         mFullMottoDialog,
@@ -198,7 +198,7 @@ class HomeFragment : Fragment() {
                 override fun onItemLongClick(view: View, position: Int) {
                     clickedMotto = mottos[position]
 
-                    AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
+                    AdViewer(activity as MainActivity, requireContext()).displayFullMottoAd()
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         mFullMottoDialog,

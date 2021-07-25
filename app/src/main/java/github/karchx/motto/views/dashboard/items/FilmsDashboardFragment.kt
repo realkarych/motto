@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
+import github.karchx.motto.ads.AdViewer
 import github.karchx.motto.databinding.FragmentFilmsDashboardBinding
 import github.karchx.motto.search_engine.citaty_info_website.items.Film
 import github.karchx.motto.search_engine.citaty_info_website.items.Motto
@@ -184,7 +185,7 @@ class FilmsDashboardFragment : Fragment(R.layout.fragment_films_dashboard) {
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = filmMottos[position]
 
-                    AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
+                    AdViewer(activity as MainActivity, requireContext()).displayFullMottoAd()
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         fullMottoDialog,
@@ -197,7 +198,7 @@ class FilmsDashboardFragment : Fragment(R.layout.fragment_films_dashboard) {
                 override fun onItemLongClick(view: View, position: Int) {
                     clickedMotto = filmMottos[position]
 
-                    AdViewer.displayFullMottoAd(activity as MainActivity, requireContext())
+                    AdViewer(activity as MainActivity, requireContext()).displayFullMottoAd()
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         fullMottoDialog,
