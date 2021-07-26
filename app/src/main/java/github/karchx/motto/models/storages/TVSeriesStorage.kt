@@ -9,6 +9,34 @@ class TVSeriesStorage(private val shuffle: Boolean) {
 
         series.add(
             TVSeries(
+                "big_bang_theory",
+                "Теория большого взрыва",
+                "/series/teoriya-bolshogo-vzryva-the-big-bang-theory"
+            )
+        )
+        series.add(
+            TVSeries(
+                "true_detective",
+                "Настоящий детектив",
+                "/series/nastoyashii-detektiv-true-detective"
+            )
+        )
+        series.add(
+            TVSeries(
+                "futurama",
+                "Футурама",
+                "/cartoon/futurama-futurama"
+            )
+        )
+        series.add(
+            TVSeries(
+                "klan_soprano",
+                "Клан Сопрано",
+                "/series/klan-soprano-the-sopranos"
+            )
+        )
+        series.add(
+            TVSeries(
                 "reasons_why_13",
                 "13 причин, почему",
                 "/series/13-prichin-pochemu-13-reasons-why"
