@@ -23,8 +23,9 @@ import github.karchx.motto.databinding.FragmentAnimeDashboardBinding
 import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.items.Anime
 import github.karchx.motto.search_engine.citaty_info_website.items.Motto
-import github.karchx.motto.viewmodels.dashboard.AnimeDashboardViewModel
 import github.karchx.motto.viewmodels.MottosViewModel
+import github.karchx.motto.viewmodels.dashboard.anime.AnimeDashboardViewModel
+import github.karchx.motto.viewmodels.dashboard.anime.AnimeFactory
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.AnimeRecyclerAdapter
 import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
@@ -32,6 +33,7 @@ import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.*
 import github.karchx.motto.models.db.Motto as dbMotto
+
 
 class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
 
@@ -64,7 +66,6 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        animeDashboardViewModel = ViewModelProvider(this).get(AnimeDashboardViewModel::class.java)
         _binding = FragmentAnimeDashboardBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -238,12 +239,17 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
     }
 
     private fun initData() {
+        userPrefs = UserPrefs(activity as MainActivity)
+        animeDashboardViewModel =
+            ViewModelProvider(
+                this,
+                AnimeFactory(requireActivity().application, userPrefs)
+            )[AnimeDashboardViewModel::class.java]
+
         mottosViewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
         ).get(MottosViewModel(application = requireActivity().application)::class.java)
-
-        userPrefs = UserPrefs(activity as MainActivity)
     }
 
     private fun initViews() {

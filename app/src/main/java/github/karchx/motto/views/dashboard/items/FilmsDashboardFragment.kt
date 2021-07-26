@@ -23,8 +23,9 @@ import github.karchx.motto.databinding.FragmentFilmsDashboardBinding
 import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.items.Film
 import github.karchx.motto.search_engine.citaty_info_website.items.Motto
-import github.karchx.motto.viewmodels.dashboard.FilmsDashboardViewModel
+import github.karchx.motto.viewmodels.dashboard.films.FilmsDashboardViewModel
 import github.karchx.motto.viewmodels.MottosViewModel
+import github.karchx.motto.viewmodels.dashboard.films.FilmsFactory
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.FilmsRecyclerAdapter
 import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
@@ -64,7 +65,6 @@ class FilmsDashboardFragment : Fragment(R.layout.fragment_films_dashboard) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        filmsDashboardViewModel = ViewModelProvider(this).get(FilmsDashboardViewModel::class.java)
         _binding = FragmentFilmsDashboardBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -239,12 +239,16 @@ class FilmsDashboardFragment : Fragment(R.layout.fragment_films_dashboard) {
 
 
     private fun initData() {
+        userPrefs = UserPrefs(activity as MainActivity)
+        filmsDashboardViewModel = ViewModelProvider(
+            this,
+            FilmsFactory(requireActivity().application, userPrefs)
+        )[FilmsDashboardViewModel::class.java]
+
         mottosViewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
         ).get(MottosViewModel(application = requireActivity().application)::class.java)
-
-        userPrefs = UserPrefs(activity as MainActivity)
     }
 
     private fun initViews() {

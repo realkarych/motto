@@ -2,7 +2,7 @@ package github.karchx.motto.models.storages
 
 import github.karchx.motto.search_engine.citaty_info_website.items.Anime
 
-class AnimeStorage {
+class AnimeStorage(private val shuffle: Boolean) {
 
     fun getAnime(): ArrayList<Anime> {
         val anime = ArrayList<Anime>()
@@ -104,7 +104,10 @@ class AnimeStorage {
         anime.add(Anime("hacksign", ".хак//ЗНАК", "/anime/hakznak-hacksign"))
         anime.add(Anime("samurai_7", "7 самураев", "/anime/7-samuraev-7-samurai"))
 
-        anime.shuffle()
+        if (shuffle) {
+            anime.shuffle()
+            return anime
+        }
         return anime
     }
 }

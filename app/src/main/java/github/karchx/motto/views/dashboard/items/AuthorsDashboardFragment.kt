@@ -23,8 +23,9 @@ import github.karchx.motto.databinding.FragmentAuthorsDashboardBinding
 import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.items.Author
 import github.karchx.motto.search_engine.citaty_info_website.items.Motto
-import github.karchx.motto.viewmodels.dashboard.AuthorsDashboardViewModel
+import github.karchx.motto.viewmodels.dashboard.authors.AuthorsDashboardViewModel
 import github.karchx.motto.viewmodels.MottosViewModel
+import github.karchx.motto.viewmodels.dashboard.authors.AuthorsFactory
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.AuthorsRecyclerAdapter
 import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
@@ -64,8 +65,6 @@ class AuthorsDashboardFragment : Fragment(R.layout.fragment_authors_dashboard) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        authorsDashboardViewModel =
-            ViewModelProvider(this).get(AuthorsDashboardViewModel::class.java)
         _binding = FragmentAuthorsDashboardBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -240,12 +239,17 @@ class AuthorsDashboardFragment : Fragment(R.layout.fragment_authors_dashboard) {
 
 
     private fun initData() {
+        userPrefs = UserPrefs(activity as MainActivity)
+        authorsDashboardViewModel = ViewModelProvider(
+            this,
+            AuthorsFactory(requireActivity().application, userPrefs)
+        )[AuthorsDashboardViewModel::class.java]
+
         mottosViewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
         ).get(MottosViewModel(application = requireActivity().application)::class.java)
 
-        userPrefs = UserPrefs(activity as MainActivity)
     }
 
     private fun initViews() {

@@ -2,7 +2,7 @@ package github.karchx.motto.models.storages
 
 import github.karchx.motto.search_engine.citaty_info_website.items.TVSeries
 
-class TVSeriesStorage {
+class TVSeriesStorage(private val shuffle: Boolean) {
 
     fun getSeries(): ArrayList<TVSeries> {
         val series = ArrayList<TVSeries>()
@@ -80,7 +80,10 @@ class TVSeriesStorage {
             )
         )
 
-        series.shuffle()
+        if (shuffle) {
+            series.shuffle()
+            return series
+        }
         return series
     }
 }

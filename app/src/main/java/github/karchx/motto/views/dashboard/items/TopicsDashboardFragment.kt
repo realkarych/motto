@@ -24,7 +24,8 @@ import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.items.Motto
 import github.karchx.motto.search_engine.citaty_info_website.items.Topic
 import github.karchx.motto.viewmodels.MottosViewModel
-import github.karchx.motto.viewmodels.dashboard.TopicsDashboardViewModel
+import github.karchx.motto.viewmodels.dashboard.topics.TopicsDashboardViewModel
+import github.karchx.motto.viewmodels.dashboard.topics.TopicsFactory
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
 import github.karchx.motto.views.tools.adapters.TopicsRecyclerAdapter
@@ -64,7 +65,6 @@ class TopicsDashboardFragment : Fragment(R.layout.fragment_topics_dashboard) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        topicsDashboardViewModel = ViewModelProvider(this).get(TopicsDashboardViewModel::class.java)
         _binding = FragmentTopicsDashboardBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -238,12 +238,16 @@ class TopicsDashboardFragment : Fragment(R.layout.fragment_topics_dashboard) {
     }
 
     private fun initData() {
+        userPrefs = UserPrefs(activity as MainActivity)
+        topicsDashboardViewModel = ViewModelProvider(
+            this,
+            TopicsFactory(requireActivity().application, userPrefs)
+        )[TopicsDashboardViewModel::class.java]
+
         mottosViewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
         ).get(MottosViewModel(application = requireActivity().application)::class.java)
-
-        userPrefs = UserPrefs(activity as MainActivity)
     }
 
     private fun initViews() {

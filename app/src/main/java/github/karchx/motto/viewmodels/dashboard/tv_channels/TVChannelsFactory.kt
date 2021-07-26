@@ -1,0 +1,16 @@
+package github.karchx.motto.viewmodels.dashboard.tv_channels
+
+import android.app.Application
+import androidx.lifecycle.ViewModel
+
+import androidx.lifecycle.ViewModelProvider
+import github.karchx.motto.models.user_settings.UserPrefs
+
+
+class TVChannelsFactory(application: Application, private val userPrefs: UserPrefs) :
+    ViewModelProvider.Factory {
+    private val mApplication = application
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        return TVChannelsDashboardViewModel(mApplication, userPrefs) as T
+    }
+}
