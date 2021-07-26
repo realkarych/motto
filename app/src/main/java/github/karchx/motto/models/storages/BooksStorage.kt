@@ -2,7 +2,7 @@ package github.karchx.motto.models.storages
 
 import github.karchx.motto.search_engine.citaty_info_website.items.Book
 
-class BooksStorage {
+class BooksStorage(private val shuffle: Boolean) {
 
     fun getBooks(): ArrayList<Book> {
         val books = ArrayList<Book>()
@@ -34,7 +34,10 @@ class BooksStorage {
         books.add(Book("dao_cze_czin", "Дао дэ Цзин", "Лао-Цзы", "/book/lao-czy/dao-de-czin-kniga-o-puti-i-sile"))
         books.add(Book("naedine_s_soboi", "Наедине с собой", "М.Аврелий", "/book/mark-avrelii/naedine-s-soboi"))
 
-        books.shuffle()
+        if (shuffle) {
+            books.shuffle()
+            return books
+        }
         return books
     }
 }

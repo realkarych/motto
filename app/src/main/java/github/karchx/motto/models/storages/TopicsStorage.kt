@@ -2,7 +2,7 @@ package github.karchx.motto.models.storages
 
 import github.karchx.motto.search_engine.citaty_info_website.items.Topic
 
-class TopicsStorage {
+class TopicsStorage(private val shuffle: Boolean) {
 
     fun getTopics(): ArrayList<Topic> {
         val topics = ArrayList<Topic>()
@@ -26,7 +26,10 @@ class TopicsStorage {
         topics.add(Topic("mudrost", "Мудрость", "/topic/mudrost"))
         topics.add(Topic("razum", "Разум", "/topic/razum"))
 
-        topics.shuffle()
+        if (shuffle) {
+            topics.shuffle()
+            return topics
+        }
         return topics
     }
 }

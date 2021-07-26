@@ -23,8 +23,11 @@ import github.karchx.motto.databinding.FragmentBooksDashboardBinding
 import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.items.Book
 import github.karchx.motto.search_engine.citaty_info_website.items.Motto
-import github.karchx.motto.viewmodels.dashboard.BooksDashboardViewModel
+import github.karchx.motto.viewmodels.dashboard.books.BooksDashboardViewModel
 import github.karchx.motto.viewmodels.MottosViewModel
+import github.karchx.motto.viewmodels.dashboard.anime.AnimeDashboardViewModel
+import github.karchx.motto.viewmodels.dashboard.anime.AnimeFactory
+import github.karchx.motto.viewmodels.dashboard.books.BooksFactory
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.BooksRecyclerAdapter
 import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
@@ -64,8 +67,6 @@ class BooksDashboardFragment : Fragment(R.layout.fragment_books_dashboard) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        booksDashboardViewModel =
-            ViewModelProvider(this).get(BooksDashboardViewModel::class.java)
         _binding = FragmentBooksDashboardBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -239,12 +240,16 @@ class BooksDashboardFragment : Fragment(R.layout.fragment_books_dashboard) {
     }
 
     private fun initData() {
+        userPrefs = UserPrefs(activity as MainActivity)
+        booksDashboardViewModel = ViewModelProvider(
+            this,
+            BooksFactory(requireActivity().application, userPrefs)
+        )[BooksDashboardViewModel::class.java]
+
         mottosViewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
         ).get(MottosViewModel(application = requireActivity().application)::class.java)
-
-        userPrefs = UserPrefs(activity as MainActivity)
     }
 
     private fun initViews() {

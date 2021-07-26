@@ -1,19 +1,21 @@
-package github.karchx.motto.viewmodels.dashboard
+package github.karchx.motto.viewmodels.dashboard.films
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import github.karchx.motto.models.storages.Constants
 import github.karchx.motto.models.storages.FilmsStorage
+import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.items.Film
 import github.karchx.motto.search_engine.citaty_info_website.items.Motto
 import github.karchx.motto.search_engine.citaty_info_website.parsers.by_sources.ByFilmMottosParser
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class FilmsDashboardViewModel : ViewModel() {
+class FilmsDashboardViewModel(application: Application, private val prefs: UserPrefs) : AndroidViewModel(application) {
 
-    private val filmsStorage = FilmsStorage()
+    private val filmsStorage = FilmsStorage(prefs.sourcesRandomness.isRandom())
 
     private val _films = MutableLiveData<ArrayList<Film>>().apply {
         value = filmsStorage.getFilms()
@@ -22,7 +24,7 @@ class FilmsDashboardViewModel : ViewModel() {
     private val _filmMottos = MutableLiveData<ArrayList<Motto>>().apply {}
 
     fun putFilmMottosPostValue(film: Film) {
-        val parser = ByFilmMottosParser(film)
+        val parser = ByFilmMottosParser(film, prefs.mottosRandomness.isRandom())
         GlobalScope.launch {
             _filmMottos.postValue(parser.getMottos(Constants.QUANTITY_MOTTOS_IN_LIST))
         }

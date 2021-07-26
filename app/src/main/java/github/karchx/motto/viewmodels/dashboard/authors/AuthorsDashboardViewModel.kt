@@ -1,19 +1,21 @@
-package github.karchx.motto.viewmodels.dashboard
+package github.karchx.motto.viewmodels.dashboard.authors
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import github.karchx.motto.models.storages.AuthorsStorage
 import github.karchx.motto.models.storages.Constants
+import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.items.Author
 import github.karchx.motto.search_engine.citaty_info_website.items.Motto
 import github.karchx.motto.search_engine.citaty_info_website.parsers.by_sources.ByAuthorMottosParser
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class AuthorsDashboardViewModel : ViewModel() {
+class AuthorsDashboardViewModel(application: Application, private val prefs: UserPrefs) : AndroidViewModel(application) {
 
-    private val authorsStorage = AuthorsStorage()
+    private val authorsStorage = AuthorsStorage(prefs.sourcesRandomness.isRandom())
 
     private val _authors = MutableLiveData<ArrayList<Author>>().apply {
         value = authorsStorage.getAuthors()
@@ -22,7 +24,7 @@ class AuthorsDashboardViewModel : ViewModel() {
     private val _authorMottos = MutableLiveData<ArrayList<Motto>>().apply {}
 
     fun putAuthorMottosPostValue(author: Author) {
-        val parser = ByAuthorMottosParser(author)
+        val parser = ByAuthorMottosParser(author, prefs.mottosRandomness.isRandom())
         GlobalScope.launch {
             _authorMottos.postValue(parser.getMottos(Constants.QUANTITY_MOTTOS_IN_LIST))
         }

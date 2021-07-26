@@ -2,7 +2,7 @@ package github.karchx.motto.models.storages
 
 import github.karchx.motto.search_engine.citaty_info_website.items.TVChannel
 
-class TVChannelsStorage {
+class TVChannelsStorage(private val shuffle: Boolean) {
 
     fun getChannels(): ArrayList<TVChannel> {
         val channels = ArrayList<TVChannel>()
@@ -22,7 +22,10 @@ class TVChannelsStorage {
         channels.add(TVChannel("uralskie_pelmeni", "Уральские пельмени", "/tv/uralskie-pelmeni"))
         channels.add(TVChannel("vechernii_urgant", "Вечерний Ургант", "/tv/vechernii-urgant"))
 
-        channels.shuffle()
+        if (shuffle) {
+            channels.shuffle()
+            return channels
+        }
         return channels
     }
 }
