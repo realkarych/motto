@@ -2,7 +2,7 @@ package github.karchx.motto.models.storages
 
 import github.karchx.motto.search_engine.citaty_info_website.items.Film
 
-class FilmsStorage {
+class FilmsStorage(private val shuffle: Boolean) {
 
     fun getFilms(): ArrayList<Film> {
         val films = ArrayList<Film>()
@@ -142,7 +142,11 @@ class FilmsStorage {
             )
         )
 
-        films.shuffle()
+        if (shuffle) {
+            films.shuffle()
+            return films
+        }
+
         return films
     }
 }

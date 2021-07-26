@@ -24,7 +24,8 @@ import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.items.Motto
 import github.karchx.motto.search_engine.citaty_info_website.items.TVChannel
 import github.karchx.motto.viewmodels.MottosViewModel
-import github.karchx.motto.viewmodels.dashboard.TVChannelsDashboardViewModel
+import github.karchx.motto.viewmodels.dashboard.tv_channels.TVChannelsDashboardViewModel
+import github.karchx.motto.viewmodels.dashboard.tv_channels.TVChannelsFactory
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.ChannelsRecyclerAdapter
 import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
@@ -64,8 +65,6 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        tvChannelsDashboardViewModel =
-            ViewModelProvider(this).get(TVChannelsDashboardViewModel::class.java)
         _binding = FragmentTvChannelsDashboardBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -241,12 +240,16 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
     }
 
     private fun initData() {
+        userPrefs = UserPrefs(activity as MainActivity)
+        tvChannelsDashboardViewModel = ViewModelProvider(
+            this,
+            TVChannelsFactory(requireActivity().application, userPrefs)
+        )[TVChannelsDashboardViewModel::class.java]
+
         mottosViewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
         ).get(MottosViewModel(application = requireActivity().application)::class.java)
-
-        userPrefs = UserPrefs(activity as MainActivity)
     }
 
     private fun initViews() {

@@ -11,7 +11,7 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
 
-class ByTopicMottosParser(private val topic: Topic) : MottosParser {
+class ByTopicMottosParser(private val topic: Topic, private val shuffle: Boolean) : MottosParser {
 
     override fun getMottos(quantityMottos: Int): ArrayList<Motto> {
         val mottos = ArrayList<Motto>()
@@ -32,6 +32,10 @@ class ByTopicMottosParser(private val topic: Topic) : MottosParser {
                 }
             }
 
+            if (shuffle) {
+                mottos.shuffle()
+                return mottos
+            }
             return mottos
         } catch (ex: Exception) {
             return mottos

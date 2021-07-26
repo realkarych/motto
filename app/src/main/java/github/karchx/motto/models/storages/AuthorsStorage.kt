@@ -2,7 +2,7 @@ package github.karchx.motto.models.storages
 
 import github.karchx.motto.search_engine.citaty_info_website.items.Author
 
-class AuthorsStorage {
+class AuthorsStorage(private val shuffle: Boolean) {
 
     fun getAuthors(): ArrayList<Author> {
         val authors = ArrayList<Author>()
@@ -25,7 +25,10 @@ class AuthorsStorage {
         authors.add(Author("kerroll", "Льюис", "Кэрролл", "/book/lyuis-kerroll"))
         authors.add(Author("palanik", "Чак", "Паланик", "/book/chak-palanik"))
 
-        authors.shuffle()
+        if (shuffle) {
+            authors.shuffle()
+            return authors
+        }
         return authors
     }
 }
