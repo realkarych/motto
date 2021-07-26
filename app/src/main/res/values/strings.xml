@@ -27,4 +27,7 @@
     <string name="restart">Restart</string>
     <string name="is_copy_with_source">Copy with source</string>
     <string name="with_source">With source</string>
+    <string name="is_sort_sources_by_random">Sort sources by random</string>
+    <string name="with_random">By random</string>
+    <string name="is_sort_mottos_by_random">Sort mottos by random instead of rating</string>
 </resources>
