@@ -172,11 +172,7 @@ class TopicsDashboardFragment : Fragment(R.layout.fragment_topics_dashboard) {
                     mottosLoadingProgressBar.visibility = View.VISIBLE
                 }
 
-                override fun onItemLongClick(view: View, position: Int) {
-                    clickedTopic = topics[position]
-                    topicsDashboardViewModel.putTopicMottosPostValue(clickedTopic)
-                    mottosLoadingProgressBar.visibility = View.VISIBLE
-                }
+                override fun onItemLongClick(view: View, position: Int) {}
             })
         )
     }
@@ -198,18 +194,7 @@ class TopicsDashboardFragment : Fragment(R.layout.fragment_topics_dashboard) {
                     observeDbMottos()
                 }
 
-                override fun onItemLongClick(view: View, position: Int) {
-                    clickedMotto = topicMottos[position]
-
-                    AdViewer(activity as MainActivity, requireContext()).displayFullMottoAd()
-                    DialogViewer.displayFullMottoDialog(
-                        requireContext(),
-                        fullMottoDialog,
-                        clickedMotto,
-                        allDbMottos
-                    )
-                    observeDbMottos()
-                }
+                override fun onItemLongClick(view: View, position: Int) {}
             })
         )
     }
