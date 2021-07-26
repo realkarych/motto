@@ -172,11 +172,7 @@ class FilmsDashboardFragment : Fragment(R.layout.fragment_films_dashboard) {
                     mottosLoadingProgressBar.visibility = View.VISIBLE
                 }
 
-                override fun onItemLongClick(view: View, position: Int) {
-                    clickedFilm = films[position]
-                    filmsDashboardViewModel.putFilmMottosPostValue(clickedFilm)
-                    mottosLoadingProgressBar.visibility = View.VISIBLE
-                }
+                override fun onItemLongClick(view: View, position: Int) {}
             })
         )
     }
@@ -198,18 +194,7 @@ class FilmsDashboardFragment : Fragment(R.layout.fragment_films_dashboard) {
                     observeDbMottos()
                 }
 
-                override fun onItemLongClick(view: View, position: Int) {
-                    clickedMotto = filmMottos[position]
-
-                    AdViewer(activity as MainActivity, requireContext()).displayFullMottoAd()
-                    DialogViewer.displayFullMottoDialog(
-                        requireContext(),
-                        fullMottoDialog,
-                        clickedMotto,
-                        allDbMottos
-                    )
-                    observeDbMottos()
-                }
+                override fun onItemLongClick(view: View, position: Int) {}
             })
         )
     }

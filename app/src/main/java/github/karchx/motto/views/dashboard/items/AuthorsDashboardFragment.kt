@@ -172,11 +172,7 @@ class AuthorsDashboardFragment : Fragment(R.layout.fragment_authors_dashboard) {
                     mottosLoadingProgressBar.visibility = View.VISIBLE
                 }
 
-                override fun onItemLongClick(view: View, position: Int) {
-                    clickedAuthor = authors[position]
-                    authorsDashboardViewModel.putAuthorMottosPostValue(clickedAuthor)
-                    mottosLoadingProgressBar.visibility = View.VISIBLE
-                }
+                override fun onItemLongClick(view: View, position: Int) {}
             })
         )
     }
@@ -198,18 +194,7 @@ class AuthorsDashboardFragment : Fragment(R.layout.fragment_authors_dashboard) {
                     observeDbMottos()
                 }
 
-                override fun onItemLongClick(view: View, position: Int) {
-                    clickedMotto = authorMottos[position]
-
-                    AdViewer(activity as MainActivity, requireContext()).displayFullMottoAd()
-                    DialogViewer.displayFullMottoDialog(
-                        requireContext(),
-                        fullMottoDialog,
-                        clickedMotto,
-                        allDbMottos
-                    )
-                    observeDbMottos()
-                }
+                override fun onItemLongClick(view: View, position: Int) {}
             })
         )
     }

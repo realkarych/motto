@@ -172,11 +172,7 @@ class SeriesDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashboard
                     mottosLoadingProgressBar.visibility = View.VISIBLE
                 }
 
-                override fun onItemLongClick(view: View, position: Int) {
-                    clickedSeries = series[position]
-                    seriesDashboardViewModel.putTVSeriesMottosPostValue(clickedSeries)
-                    mottosLoadingProgressBar.visibility = View.VISIBLE
-                }
+                override fun onItemLongClick(view: View, position: Int) {}
             })
         )
     }
@@ -198,18 +194,7 @@ class SeriesDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashboard
                     observeDbMottos()
                 }
 
-                override fun onItemLongClick(view: View, position: Int) {
-                    clickedMotto = seriesMottos[position]
-
-                    AdViewer(activity as MainActivity, requireContext()).displayFullMottoAd()
-                    DialogViewer.displayFullMottoDialog(
-                        requireContext(),
-                        fullMottoDialog,
-                        clickedMotto,
-                        allDbMottos
-                    )
-                    observeDbMottos()
-                }
+                override fun onItemLongClick(view: View, position: Int) {}
             })
         )
     }

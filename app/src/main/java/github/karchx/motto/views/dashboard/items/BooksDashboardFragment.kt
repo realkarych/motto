@@ -172,11 +172,7 @@ class BooksDashboardFragment : Fragment(R.layout.fragment_books_dashboard) {
                     mottosLoadingProgressBar.visibility = View.VISIBLE
                 }
 
-                override fun onItemLongClick(view: View, position: Int) {
-                    clickedBook = books[position]
-                    booksDashboardViewModel.putBookMottosPostValue(clickedBook)
-                    mottosLoadingProgressBar.visibility = View.VISIBLE
-                }
+                override fun onItemLongClick(view: View, position: Int) {}
             })
         )
     }
@@ -198,18 +194,7 @@ class BooksDashboardFragment : Fragment(R.layout.fragment_books_dashboard) {
                     observeDbMottos()
                 }
 
-                override fun onItemLongClick(view: View, position: Int) {
-                    clickedMotto = bookMottos[position]
-
-                    AdViewer(activity as MainActivity, requireContext()).displayFullMottoAd()
-                    DialogViewer.displayFullMottoDialog(
-                        requireContext(),
-                        fullMottoDialog,
-                        clickedMotto,
-                        allDbMottos
-                    )
-                    observeDbMottos()
-                }
+                override fun onItemLongClick(view: View, position: Int) {}
             })
         )
     }
