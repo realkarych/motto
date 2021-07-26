@@ -14,6 +14,34 @@ class AnimeStorage(private val shuffle: Boolean) {
                 "/anime/ataka-titanov-vtorzhenie-titanov-shingeki-no-kyojin"
             )
         )
+        anime.add(
+            Anime(
+                "kimetsu",
+                "Клинок, рассекающий демонов",
+                "/anime/klinok-rassekayushii-demonov-kimetsu-no-yaiba"
+            )
+        )
+        anime.add(
+            Anime(
+                "gurren_lagann",
+                "Гуррен Лаганн",
+                "/anime/gurren-lagann-proch-iz-etogo-mira-tengen-toppa-gurren-lagann"
+            )
+        )
+        anime.add(
+            Anime(
+                "vanpanchmen",
+                "Ванпанчмен",
+                "/anime/vanpanchmen-one-punch-man"
+            )
+        )
+        anime.add(
+            Anime(
+                "bebop",
+                "Ковбой Бибоп",
+                "/anime/kovboi-bibop-cowboy-bebop"
+            )
+        )
         anime.add(Anime("bezdomnyi_bog", "Бездомный Бог", "/anime/bezdomnyi-bog-noragami"))
         anime.add(Anime("berserk_kenpuu", "Берсерк", "/anime/berserk-kenpuu-denki-berserk"))
         anime.add(Anime("blich_bleach", "Блич", "/anime/blich-bleach"))
