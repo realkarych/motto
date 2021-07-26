@@ -30,7 +30,6 @@ class DashboardLayoutFragment : Fragment() {
     private lateinit var sharedPrefs: SharedPreferences
     private var mAdView: AdView? = null
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -59,7 +58,6 @@ class DashboardLayoutFragment : Fragment() {
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-
                 sharedPrefs.edit().putInt(Constants.LAST_TAB_SELECTED, position).apply()
             }
         })
