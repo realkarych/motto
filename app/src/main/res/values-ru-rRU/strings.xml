@@ -27,4 +27,7 @@
     <string name="title_settings">Настройки</string>
     <string name="is_copy_with_source">Копировать с источником</string>
     <string name="with_source">С источником</string>
+    <string name="with_random">Рандомно</string>
+    <string name="is_sort_sources_by_random">Сортировать источники рандомно (список книг, сериалов и тп)</string>
+    <string name="is_sort_mottos_by_random">Сортировать цитаты рандомно (иначе — сортируются по нашему рейтингу, по популярности)</string>
 </resources>

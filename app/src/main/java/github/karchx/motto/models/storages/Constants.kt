@@ -37,6 +37,8 @@ class Constants {
 
         const val LAST_TAB_SELECTED = "selected_tab"
         const val NUMBER_OF_DISPLAYED_ADS = "num_of_displayed_ads"
-        const val IS_COPY_WITH_AUTHOR = "is_copy_with_author"
+        const val IS_COPY_WITH_SOURCE = "is_copy_with_source"
+        const val IS_SORT_SOURCES_BY_RANDOM = "is_sort_sources_by_random"
+        const val IS_SORT_MOTTOS_BY_RANDOM = "is_sort_mottos_by_random"
     }
 }
