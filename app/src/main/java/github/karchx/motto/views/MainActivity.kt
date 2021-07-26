@@ -33,7 +33,10 @@ class MainActivity : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_favourites, R.id.navigation_settings
+                R.id.navigation_home,
+                R.id.navigation_dashboard,
+                R.id.navigation_favourites,
+                R.id.navigation_settings
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -50,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        inAppUpdate.onActivityResult(requestCode,resultCode, data)
+        inAppUpdate.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun onResume() {

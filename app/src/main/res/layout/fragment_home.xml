@@ -24,10 +24,10 @@
             android:layout_height="wrap_content"
             android:layout_toStartOf="@+id/find_random_mottos_button_container"
             android:background="@drawable/back_with_border_text_input"
+            android:cursorVisible="false"
             android:hint="@string/enter_request"
             android:textColorHint="@color/soft_white"
             app:boxBackgroundMode="outline"
-            android:cursorVisible="false"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
             app:startIconDrawable="@drawable/ic_search_white"
@@ -35,19 +35,19 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edittext_global_scope_mottos"
-                android:imeOptions="actionDone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/roboto"
-                android:focusableInTouchMode="true"
                 android:clickable="true"
+                android:cursorVisible="true"
                 android:focusable="true"
-                android:textCursorDrawable="@drawable/color_cursor"
+                android:focusableInTouchMode="true"
+                android:fontFamily="@font/roboto"
+                android:imeOptions="actionDone"
                 android:maxLength="100"
                 android:singleLine="true"
-                android:cursorVisible="true"
                 android:textColor="@color/soft_white"
                 android:textColorHint="@color/soft_white"
+                android:textCursorDrawable="@drawable/color_cursor"
                 android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
