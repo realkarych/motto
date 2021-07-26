@@ -9,62 +9,109 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="12dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textview_is_copy_with_source"
-            android:layout_width="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/settings_card1"
+            style="@style/mottoCardView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/is_copy_with_source"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switch_is_copy_with_source"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/with_source"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_is_copy_with_source" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textview_is_sort_sources_by_random"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/is_sort_sources_by_random"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch_is_copy_with_source" />
+                <TextView
+                    android:id="@+id/textview_is_copy_with_source"
+                    style="@style/textViewSettingsRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/is_copy_with_source" />
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switch_is_sort_sources_by_random"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/with_random"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_is_sort_sources_by_random" />
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_is_copy_with_source"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textview_is_copy_with_source"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/with_source"
+                    android:textColor="@color/soft_white"
+                    android:theme="@style/settingsNormalSwitch" />
 
-        <TextView
-            android:id="@+id/textview_is_sort_mottos_by_random"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/is_sort_mottos_by_random"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch_is_sort_sources_by_random" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switch_is_sort_mottos_by_random"
-            android:layout_width="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/settings_card2"
+            style="@style/mottoCardView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/with_random"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_is_sort_mottos_by_random" />
+            app:layout_constraintTop_toBottomOf="@+id/settings_card1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textview_is_sort_sources_by_random"
+                    style="@style/textViewSettingsRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/is_sort_sources_by_random" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_is_sort_sources_by_random"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textview_is_sort_sources_by_random"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/with_random"
+                    android:textColor="@color/soft_white"
+                    android:theme="@style/settingsNormalSwitch" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/settings_card3"
+            style="@style/mottoCardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settings_card2">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textview_is_sort_mottos_by_random"
+                    style="@style/textViewSettingsRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/is_sort_mottos_by_random" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_is_sort_mottos_by_random"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textview_is_sort_mottos_by_random"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/with_random"
+                    android:textColor="@color/soft_white"
+                    android:theme="@style/settingsNormalSwitch" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
