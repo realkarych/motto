@@ -23,10 +23,8 @@ import github.karchx.motto.databinding.FragmentBooksDashboardBinding
 import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.items.Book
 import github.karchx.motto.search_engine.citaty_info_website.items.Motto
-import github.karchx.motto.viewmodels.dashboard.books.BooksDashboardViewModel
 import github.karchx.motto.viewmodels.MottosViewModel
-import github.karchx.motto.viewmodels.dashboard.anime.AnimeDashboardViewModel
-import github.karchx.motto.viewmodels.dashboard.anime.AnimeFactory
+import github.karchx.motto.viewmodels.dashboard.books.BooksDashboardViewModel
 import github.karchx.motto.viewmodels.dashboard.books.BooksFactory
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.BooksRecyclerAdapter

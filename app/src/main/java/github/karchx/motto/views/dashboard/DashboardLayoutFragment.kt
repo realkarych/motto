@@ -13,12 +13,12 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.gms.ads.AdView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import github.karchx.motto.ads.AdViewer
 import github.karchx.motto.databinding.FragmentDashboardLayoutBinding
 import github.karchx.motto.models.storages.Constants
 import github.karchx.motto.models.storages.Constants.Companion.MOTTO_TYPES_ICONS
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.ViewPagerAdapter
-import github.karchx.motto.ads.AdViewer
 
 class DashboardLayoutFragment : Fragment() {
 

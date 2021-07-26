@@ -23,8 +23,8 @@ import github.karchx.motto.databinding.FragmentFilmsDashboardBinding
 import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.items.Film
 import github.karchx.motto.search_engine.citaty_info_website.items.Motto
-import github.karchx.motto.viewmodels.dashboard.films.FilmsDashboardViewModel
 import github.karchx.motto.viewmodels.MottosViewModel
+import github.karchx.motto.viewmodels.dashboard.films.FilmsDashboardViewModel
 import github.karchx.motto.viewmodels.dashboard.films.FilmsFactory
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.FilmsRecyclerAdapter

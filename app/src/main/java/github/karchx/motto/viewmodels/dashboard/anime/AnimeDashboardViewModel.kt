@@ -13,7 +13,8 @@ import github.karchx.motto.search_engine.citaty_info_website.parsers.by_sources.
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class AnimeDashboardViewModel(application: Application, private val prefs: UserPrefs) : AndroidViewModel(application) {
+class AnimeDashboardViewModel(application: Application, private val prefs: UserPrefs) :
+    AndroidViewModel(application) {
 
     private val animeStorage = AnimeStorage(prefs.sourcesRandomness.isRandom())
 
