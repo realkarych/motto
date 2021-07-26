@@ -3,7 +3,6 @@ package github.karchx.motto.copying
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.util.Log
 import github.karchx.motto.R
 import github.karchx.motto.views.MainActivity
 

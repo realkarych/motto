@@ -11,7 +11,8 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
 
-class BySeriesMottosParser(private val series: TVSeries, private val shuffle: Boolean) : MottosParser {
+class BySeriesMottosParser(private val series: TVSeries, private val shuffle: Boolean) :
+    MottosParser {
 
     override fun getMottos(quantityMottos: Int): ArrayList<Motto> {
         val mottos = ArrayList<Motto>()

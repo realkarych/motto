@@ -13,7 +13,8 @@ import github.karchx.motto.search_engine.citaty_info_website.parsers.by_sources.
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class TVSeriesDashboardViewModel(application: Application, private val prefs: UserPrefs) : AndroidViewModel(application) {
+class TVSeriesDashboardViewModel(application: Application, private val prefs: UserPrefs) :
+    AndroidViewModel(application) {
 
     private val tvSeriesStorage = TVSeriesStorage(prefs.sourcesRandomness.isRandom())
 
