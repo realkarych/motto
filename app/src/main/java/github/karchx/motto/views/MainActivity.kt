@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        navView.selectedItemId = navView.menu.getItem(1).itemId
+        navView.selectedItemId = navView.menu.getItem(2).itemId
 
         window.navigationBarColor = ContextCompat.getColor(this, R.color.soft_black)
 
