@@ -19,7 +19,7 @@ import github.karchx.motto.R
 class InAppUpdate(activity: Activity) : InstallStateUpdatedListener {
 
     private var appUpdateManager: AppUpdateManager
-    private val MY_REQUEST_CODE = 500
+    private val REQUEST_CODE = 500
     private var parentActivity: Activity = activity
 
     private var currentType = AppUpdateType.FLEXIBLE
@@ -45,7 +45,7 @@ class InAppUpdate(activity: Activity) : InstallStateUpdatedListener {
 
 
     private fun startUpdate(info: AppUpdateInfo, type: Int) {
-        appUpdateManager.startUpdateFlowForResult(info, type, parentActivity, MY_REQUEST_CODE)
+        appUpdateManager.startUpdateFlowForResult(info, type, parentActivity, REQUEST_CODE)
         currentType = type
     }
 
@@ -65,7 +65,7 @@ class InAppUpdate(activity: Activity) : InstallStateUpdatedListener {
     }
 
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == MY_REQUEST_CODE) {
+        if (requestCode == REQUEST_CODE) {
             if (resultCode != AppCompatActivity.RESULT_OK) {
                 // If the update is cancelled or fails, you can request to start the update again.
                 Log.e("ERROR", "Update flow failed! Result code: $resultCode")
