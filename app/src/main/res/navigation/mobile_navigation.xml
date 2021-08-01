@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/navigation_notes"
+        android:name="github.karchx.motto.views.notes.NotesFragment"
+        android:label="@string/title_notes"
+        tools:layout="@layout/fragment_notes" />
+
+    <fragment
         android:id="@+id/navigation_dashboard"
         android:name="github.karchx.motto.views.dashboard.DashboardLayoutFragment"
         android:label="@string/title_dashboard"
