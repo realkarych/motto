@@ -9,6 +9,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.views.MainActivity
+import java.lang.Exception
 
 
 class AdViewer(private val activity: MainActivity, private val context: Context) {
@@ -27,7 +28,11 @@ class AdViewer(private val activity: MainActivity, private val context: Context)
             userPrefs.mottoOpenings.updateNumberOfOpens()
         } else {
             userPrefs.mottoOpenings.resetNumberOfOpens()
-            _displayFullMottoAd()
+            try {
+                _displayFullMottoAd()
+            } catch (ex: Exception) {
+            }
+
         }
     }
 
