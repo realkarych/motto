@@ -19,7 +19,7 @@ import github.karchx.motto.views.tools.InAppUpdate
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var inAppUpdate: InAppUpdate
+    private var inAppUpdate: InAppUpdate? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,23 +47,31 @@ class MainActivity : AppCompatActivity() {
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-        MobileAds.initialize(this)
+        try {
+            MobileAds.initialize(this)
+        } catch (ex: Exception) {
+        }
 
-        inAppUpdate = InAppUpdate(this)
+        // Caused crashes on Xiaomi
+        try {
+            inAppUpdate = InAppUpdate(this)
+        } catch (ex: Exception) {
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        inAppUpdate.onActivityResult(requestCode, resultCode, data)
+        inAppUpdate?.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun onResume() {
         super.onResume()
-        inAppUpdate.onResume()
+        inAppUpdate?.onResume()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        inAppUpdate.onDestroy()
+        inAppUpdate?.onDestroy()
     }
 }
