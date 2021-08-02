@@ -22,7 +22,7 @@ import github.karchx.motto.copying.Copier
 import github.karchx.motto.databinding.FragmentFilmsDashboardBinding
 import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.items.Film
-import github.karchx.motto.search_engine.citaty_info_website.items.Motto
+import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
 import github.karchx.motto.viewmodels.MottosViewModel
 import github.karchx.motto.viewmodels.dashboard.films.FilmsDashboardViewModel
 import github.karchx.motto.viewmodels.dashboard.films.FilmsFactory
@@ -32,7 +32,7 @@ import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.*
-import github.karchx.motto.models.db.Motto as dbMotto
+import github.karchx.motto.models.db.SavedMotto
 
 class FilmsDashboardFragment : Fragment(R.layout.fragment_films_dashboard) {
 
@@ -56,9 +56,9 @@ class FilmsDashboardFragment : Fragment(R.layout.fragment_films_dashboard) {
     private lateinit var userPrefs: UserPrefs
     private lateinit var films: ArrayList<Film>
     private lateinit var clickedFilm: Film
-    private lateinit var allDbMottos: List<dbMotto>
-    private lateinit var filmMottos: ArrayList<Motto>
-    private lateinit var clickedMotto: Motto
+    private lateinit var allDbMottos: List<SavedMotto>
+    private lateinit var filmMottos: ArrayList<UIMotto>
+    private lateinit var clickedMotto: UIMotto
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -129,7 +129,7 @@ class FilmsDashboardFragment : Fragment(R.layout.fragment_films_dashboard) {
         filmsRecycler.adapter = adapter
     }
 
-    private fun displayFilmMottosRecycler(filmMottos: ArrayList<Motto>) {
+    private fun displayFilmMottosRecycler(filmMottos: ArrayList<UIMotto>) {
         Arrow.displayBackArrow(activity as MainActivity)
         if (filmMottos.isEmpty()) {
             filmsRecycler.visibility = View.GONE

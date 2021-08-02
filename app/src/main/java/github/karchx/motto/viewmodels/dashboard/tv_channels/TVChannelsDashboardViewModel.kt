@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import github.karchx.motto.models.storages.Constants
 import github.karchx.motto.models.storages.TVChannelsStorage
 import github.karchx.motto.models.user_settings.UserPrefs
-import github.karchx.motto.search_engine.citaty_info_website.items.Motto
+import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
 import github.karchx.motto.search_engine.citaty_info_website.items.TVChannel
 import github.karchx.motto.search_engine.citaty_info_website.parsers.by_sources.ByChannelMottosParser
 import kotlinx.coroutines.GlobalScope
@@ -22,7 +22,7 @@ class TVChannelsDashboardViewModel(application: Application, private val prefs: 
         value = tvChannelsStorage.getChannels()
     }
 
-    private val _tvChannelMottos = MutableLiveData<ArrayList<Motto>>().apply {}
+    private val _tvChannelMottos = MutableLiveData<ArrayList<UIMotto>>().apply {}
 
     fun putTVChannelMottosPostValue(channel: TVChannel) {
         val parser = ByChannelMottosParser(channel, prefs.mottosRandomness.isRandom())
@@ -32,5 +32,5 @@ class TVChannelsDashboardViewModel(application: Application, private val prefs: 
     }
 
     val tvChannels: LiveData<ArrayList<TVChannel>> = _tvChannels
-    val tvChannelMottos: LiveData<ArrayList<Motto>> = _tvChannelMottos
+    val tvChannelMottos: LiveData<ArrayList<UIMotto>> = _tvChannelMottos
 }

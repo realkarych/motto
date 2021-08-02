@@ -22,7 +22,7 @@ import github.karchx.motto.copying.Copier
 import github.karchx.motto.databinding.FragmentAnimeDashboardBinding
 import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.items.Anime
-import github.karchx.motto.search_engine.citaty_info_website.items.Motto
+import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
 import github.karchx.motto.viewmodels.MottosViewModel
 import github.karchx.motto.viewmodels.dashboard.anime.AnimeDashboardViewModel
 import github.karchx.motto.viewmodels.dashboard.anime.AnimeFactory
@@ -32,7 +32,7 @@ import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.*
-import github.karchx.motto.models.db.Motto as dbMotto
+import github.karchx.motto.models.db.SavedMotto
 
 
 class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
@@ -57,9 +57,9 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
     private lateinit var userPrefs: UserPrefs
     private lateinit var anime: ArrayList<Anime>
     private lateinit var clickedAnime: Anime
-    private lateinit var allDbMottos: List<dbMotto>
-    private lateinit var animeMottos: ArrayList<Motto>
-    private lateinit var clickedMotto: Motto
+    private lateinit var allDbMottos: List<SavedMotto>
+    private lateinit var animeMottos: ArrayList<UIMotto>
+    private lateinit var clickedMotto: UIMotto
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -130,7 +130,7 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
         animeRecycler.adapter = adapter
     }
 
-    private fun displayAnimeMottosRecycler(animeMottos: ArrayList<Motto>) {
+    private fun displayAnimeMottosRecycler(animeMottos: ArrayList<UIMotto>) {
         Arrow.displayBackArrow(activity as MainActivity)
         if (animeMottos.isEmpty()) {
             animeRecycler.visibility = View.GONE

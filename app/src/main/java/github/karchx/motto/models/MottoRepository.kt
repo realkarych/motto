@@ -2,15 +2,15 @@ package github.karchx.motto.models
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
-import github.karchx.motto.models.db.Motto
-import github.karchx.motto.models.db.MottoDao
+import github.karchx.motto.models.db.SavedMotto
+import github.karchx.motto.models.db.SavedMottoDao
 
-class MottoRepository(private val mottoDao: MottoDao) {
+class MottoRepository(private val mottoDao: SavedMottoDao) {
 
-    val allMottos: LiveData<List<Motto>> = mottoDao.getAllMottos()
+    val allMottos: LiveData<List<SavedMotto>> = mottoDao.getAllMottos()
 
     @WorkerThread
-    suspend fun insertMotto(motto: Motto) {
+    suspend fun insertMotto(motto: SavedMotto) {
         mottoDao.insertMotto(motto)
     }
 

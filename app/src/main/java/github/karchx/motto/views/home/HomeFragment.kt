@@ -22,8 +22,9 @@ import github.karchx.motto.R
 import github.karchx.motto.ads.AdViewer
 import github.karchx.motto.copying.Copier
 import github.karchx.motto.databinding.FragmentHomeBinding
+import github.karchx.motto.models.db.SavedMotto
 import github.karchx.motto.models.user_settings.UserPrefs
-import github.karchx.motto.search_engine.citaty_info_website.items.Motto
+import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
 import github.karchx.motto.viewmodels.MottosViewModel
 import github.karchx.motto.viewmodels.home.HomeViewModel
 import github.karchx.motto.views.MainActivity
@@ -33,15 +34,14 @@ import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.DialogViewer
 import github.karchx.motto.views.tools.managers.Toaster
 import java.util.*
-import github.karchx.motto.models.db.Motto as dbMotto
 
 
 class HomeFragment : Fragment() {
 
     private lateinit var userPrefs: UserPrefs
-    private lateinit var mottos: ArrayList<Motto>
-    private lateinit var clickedMotto: Motto
-    private lateinit var allDbMottos: List<dbMotto>
+    private lateinit var mottos: ArrayList<UIMotto>
+    private lateinit var clickedMotto: UIMotto
+    private lateinit var allDbMottos: List<SavedMotto>
 
     private lateinit var mottosViewModel: MottosViewModel
     private lateinit var mMottosLoadingProgressBar: ProgressBar
@@ -212,7 +212,7 @@ class HomeFragment : Fragment() {
         )
     }
 
-    private fun displayRequestMottosRecycler(mottos: ArrayList<Motto>) {
+    private fun displayRequestMottosRecycler(mottos: ArrayList<UIMotto>) {
         mMottosLoadingProgressBar.visibility = View.INVISIBLE
 
         val adapter = MottosRecyclerAdapter(mottos)
@@ -224,7 +224,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun displayRandomMottosRecycler(mottos: ArrayList<Motto>) {
+    private fun displayRandomMottosRecycler(mottos: ArrayList<UIMotto>) {
         mMottosFoundTextView.visibility = View.VISIBLE
         mMottosLoadingProgressBar.visibility = View.INVISIBLE
         hideKeyboard()

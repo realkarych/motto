@@ -1,13 +1,13 @@
 package github.karchx.motto.search_engine.citaty_info_website.parsers
 
-import github.karchx.motto.search_engine.citaty_info_website.items.Motto
+import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
 import org.jsoup.nodes.Element
 
 class HtmlMottosParser {
 
     companion object {
 
-        fun getMottoFromHtml(articlesElement: Element, mottoIndex: Int): Motto {
+        fun getMottoFromHtml(articlesElement: Element, mottoIndex: Int): UIMotto {
             val parser = HtmlMottosParser()
             val rootContentElement = parser.getRootContentElement(articlesElement, mottoIndex)
 
@@ -17,7 +17,7 @@ class HtmlMottosParser {
             } catch (ex: NullPointerException) {
                 "Автор неизвестен"
             }
-            return Motto(reformatQuote(quote), source)
+            return UIMotto(reformatQuote(quote), source)
         }
 
         private fun reformatQuote(quote: String): String {

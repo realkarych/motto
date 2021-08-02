@@ -5,10 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Motto::class], version = 1, exportSchema = false)
+@Database(entities = [SavedMotto::class], version = 1, exportSchema = false)
 abstract class MottoDatabase : RoomDatabase() {
 
-    abstract fun mottoDao(): MottoDao
+    abstract fun mottoDao(): SavedMottoDao
 
     companion object {
         @Volatile

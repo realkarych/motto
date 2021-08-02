@@ -10,8 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import github.karchx.motto.R
-import github.karchx.motto.search_engine.citaty_info_website.items.Motto
-import github.karchx.motto.models.db.Motto as dbMotto
+import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
+import github.karchx.motto.models.db.SavedMotto
 
 
 class DialogViewer {
@@ -19,8 +19,8 @@ class DialogViewer {
         fun displayFullMottoDialog(
             context: Context,
             dialog: Dialog,
-            clickedMotto: Motto,
-            allDbMottos: List<dbMotto>
+            clickedMotto: UIMotto,
+            allDbMottos: List<SavedMotto>
         ) {
             dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             val lp = dialog.window!!.attributes

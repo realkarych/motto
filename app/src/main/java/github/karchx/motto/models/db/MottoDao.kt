@@ -7,13 +7,13 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
-interface MottoDao {
+interface SavedMottoDao {
 
     @Query("SELECT * FROM motto_table")
-    fun getAllMottos(): LiveData<List<Motto>>
+    fun getAllMottos(): LiveData<List<SavedMotto>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertMotto(motto: Motto)
+    suspend fun insertMotto(motto: SavedMotto)
 
     @Query("DELETE FROM motto_table WHERE quote = :mottoQuote AND source = :mottoSource")
     suspend fun deleteMotto(mottoQuote: String, mottoSource: String)
