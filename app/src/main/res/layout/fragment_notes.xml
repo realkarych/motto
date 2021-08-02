@@ -82,15 +82,15 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
                 android:background="@drawable/back_with_border_text_input"
                 android:cursorVisible="false"
                 android:hint="@string/enter_note_quote"
-                android:layout_marginTop="40dp"
                 android:textColorHint="@color/soft_white"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeWidth="0dp"
-                app:hintTextColor="@color/dark_item_not_transp"
                 app:boxStrokeWidthFocused="0dp"
+                app:hintTextColor="@color/dark_item_not_transp"
                 app:startIconDrawable="@drawable/ic_baseline_text_fields_24"
                 app:startIconTint="@color/red">
 
@@ -106,8 +106,8 @@
                     android:imeOptions="actionDone"
                     android:maxLength="500"
                     android:singleLine="true"
-                    android:textColorHighlight="@color/dark_item_not_transp"
                     android:textColor="@color/soft_white"
+                    android:textColorHighlight="@color/dark_item_not_transp"
                     android:textCursorDrawable="@drawable/color_cursor"
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -118,7 +118,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                app:hintTextColor="@color/dark_item_not_transp"
                 android:background="@drawable/back_with_border_text_input"
                 android:cursorVisible="false"
                 android:hint="@string/enter_note_source"
@@ -126,6 +125,7 @@
                 app:boxBackgroundMode="outline"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
+                app:hintTextColor="@color/dark_item_not_transp"
                 app:startIconDrawable="@drawable/ic_baseline_person_24"
                 app:startIconTint="@color/red">
 
