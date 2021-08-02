@@ -21,7 +21,7 @@ class TopicsRecyclerAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopicsViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.motto_tab_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.motto_source_item, parent, false)
         return TopicsViewHolder(view)
     }
 

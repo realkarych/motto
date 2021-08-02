@@ -25,7 +25,7 @@ class BooksRecyclerAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BooksViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.motto_tab_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.motto_source_item, parent, false)
         return BooksViewHolder(view)
     }
 
