@@ -8,7 +8,7 @@ import github.karchx.motto.models.storages.BooksStorage
 import github.karchx.motto.models.storages.Constants
 import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.items.Book
-import github.karchx.motto.search_engine.citaty_info_website.items.Motto
+import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
 import github.karchx.motto.search_engine.citaty_info_website.parsers.by_sources.ByBookMottosParser
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -22,7 +22,7 @@ class BooksDashboardViewModel(application: Application, private val prefs: UserP
         value = booksStorage.getBooks()
     }
 
-    private val _bookMottos = MutableLiveData<ArrayList<Motto>>().apply {}
+    private val _bookMottos = MutableLiveData<ArrayList<UIMotto>>().apply {}
 
     fun putBookMottosPostValue(book: Book) {
         val parser = ByBookMottosParser(book, prefs.mottosRandomness.isRandom())
@@ -32,5 +32,5 @@ class BooksDashboardViewModel(application: Application, private val prefs: UserP
     }
 
     val books: LiveData<ArrayList<Book>> = _books
-    val bookMottos: LiveData<ArrayList<Motto>> = _bookMottos
+    val bookMottos: LiveData<ArrayList<UIMotto>> = _bookMottos
 }

@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
 import github.karchx.motto.copying.Copier
 import github.karchx.motto.databinding.FragmentFavouritesBinding
-import github.karchx.motto.models.db.Motto
+import github.karchx.motto.models.db.SavedMotto
 import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.viewmodels.MottosViewModel
 import github.karchx.motto.viewmodels.favourites.FavouritesViewModel
@@ -25,7 +25,7 @@ import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.DialogViewer
 import github.karchx.motto.views.tools.managers.Toaster
-import github.karchx.motto.search_engine.citaty_info_website.items.Motto as parsedMotto
+import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
 
 class FavouritesFragment : Fragment() {
 
@@ -42,8 +42,8 @@ class FavouritesFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var userPrefs: UserPrefs
-    private lateinit var savedMottos: List<Motto>
-    private lateinit var clickedMotto: Motto
+    private lateinit var savedMottos: List<SavedMotto>
+    private lateinit var clickedMotto: SavedMotto
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -87,7 +87,7 @@ class FavouritesFragment : Fragment() {
                     DialogViewer.displayFullMottoDialog(
                         requireContext(),
                         mFullMottoDialog,
-                        parsedMotto(clickedMotto.quote, clickedMotto.source),
+                        UIMotto(clickedMotto.quote, clickedMotto.source),
                         savedMottos
                     )
                     observeDbMottos()
@@ -122,7 +122,7 @@ class FavouritesFragment : Fragment() {
                 mottosViewModel,
                 mAddToFavouritesImageView,
                 savedMottos,
-                parsedMotto(clickedMotto.quote, clickedMotto.source)
+                UIMotto(clickedMotto.quote, clickedMotto.source)
             )
         }
     }
@@ -132,7 +132,7 @@ class FavouritesFragment : Fragment() {
         _binding = null
     }
 
-    private fun displayFavouriteMottos(mottos: List<Motto>) {
+    private fun displayFavouriteMottos(mottos: List<SavedMotto>) {
         val layoutManager = GridLayoutManager(context, 1)
         val adapter = FromDbMottosRecyclerAdapter(mottos)
         mFavouriteMottosRecycler.setHasFixedSize(true)

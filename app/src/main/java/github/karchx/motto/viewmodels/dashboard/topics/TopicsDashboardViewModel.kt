@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import github.karchx.motto.models.storages.Constants
 import github.karchx.motto.models.storages.TopicsStorage
 import github.karchx.motto.models.user_settings.UserPrefs
-import github.karchx.motto.search_engine.citaty_info_website.items.Motto
+import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
 import github.karchx.motto.search_engine.citaty_info_website.items.Topic
 import github.karchx.motto.search_engine.citaty_info_website.parsers.by_sources.ByTopicMottosParser
 import kotlinx.coroutines.GlobalScope
@@ -22,7 +22,7 @@ class TopicsDashboardViewModel(application: Application, private val prefs: User
         value = topicsStorage.getTopics()
     }
 
-    private val _topicMottos = MutableLiveData<ArrayList<Motto>>().apply {}
+    private val _topicMottos = MutableLiveData<ArrayList<UIMotto>>().apply {}
 
     fun putTopicMottosPostValue(topic: Topic) {
         val parser = ByTopicMottosParser(topic, prefs.mottosRandomness.isRandom())
@@ -32,5 +32,5 @@ class TopicsDashboardViewModel(application: Application, private val prefs: User
     }
 
     val topics: LiveData<ArrayList<Topic>> = _topics
-    val topicMottos: LiveData<ArrayList<Motto>> = _topicMottos
+    val topicMottos: LiveData<ArrayList<UIMotto>> = _topicMottos
 }

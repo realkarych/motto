@@ -2,7 +2,7 @@ package github.karchx.motto.search_engine.citaty_info_website.parsers.by_sources
 
 import github.karchx.motto.models.storages.Constants
 import github.karchx.motto.search_engine.citaty_info_website.items.Author
-import github.karchx.motto.search_engine.citaty_info_website.items.Motto
+import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
 import github.karchx.motto.search_engine.citaty_info_website.parsers.HtmlMottosParser
 import github.karchx.motto.search_engine.citaty_info_website.parsers.MottosParser
 import okhttp3.OkHttpClient
@@ -14,8 +14,8 @@ import org.jsoup.select.Elements
 class ByAuthorMottosParser(private val author: Author, private val shuffle: Boolean) :
     MottosParser {
 
-    override fun getMottos(quantityMottos: Int): ArrayList<Motto> {
-        val mottos = ArrayList<Motto>()
+    override fun getMottos(quantityMottos: Int): ArrayList<UIMotto> {
+        val mottos = ArrayList<UIMotto>()
         val uriToParse = getUriToParse(author)
 
         try {

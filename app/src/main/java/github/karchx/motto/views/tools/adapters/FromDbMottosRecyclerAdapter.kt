@@ -5,11 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
-import github.karchx.motto.models.db.Motto
+import github.karchx.motto.models.db.SavedMotto
 import github.karchx.motto.models.storages.Constants
 
 class FromDbMottosRecyclerAdapter(
-    private val mottos: List<Motto>
+    private val mottos: List<SavedMotto>
 ) : RecyclerView.Adapter<MottosRecyclerAdapter.MottosViewHolder>() {
 
     override fun onCreateViewHolder(
