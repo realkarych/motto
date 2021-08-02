@@ -9,14 +9,14 @@
     <string name="authors">Авторы</string>
     <string name="topics">Темы</string>
     <string name="found_random_mottos">Наша подборка</string>
-    <string name="enter_request">Введите часть цитаты</string>
-    <string name="found_on_request">Найдено по вашему запросу</string>
-    <string name="not_found_on_request">Ничего не найдено. Нажмите тут для просмотра нашей подборки</string>
-    <string name="not_found_random_mottos">Цитаты из нашей подборки не найдены. Проверьте интернет-соединение</string>
-    <string name="not_saved_any_mottos">У вас нет сохранённых цитат. Нажмите на любую цитату, кликните по кнопке \"Лайк\", и цитата отобразится здесь</string>
-    <string name="not_found_any_mottos">Цитаты не найдены. Проверьте интернет-соединение</string>
-    <string name="motto_about">Чтобы скопировать, кликните по цитате</string>
-    <string name="how_to_delete_motto">Чтобы удалить цитату, долго кликните по ней</string>
+    <string name="enter_request">Введи часть цитаты</string>
+    <string name="found_on_request">Найдено по запросу</string>
+    <string name="not_found_on_request">Ничего не найдено. Нажми тут для просмотра нашей подборки</string>
+    <string name="not_found_random_mottos">Цитаты из нашей подборки не найдены. Проверь интернет-соединение</string>
+    <string name="not_saved_any_mottos">У тебя нет сохранённых цитат. Нажми на любую цитату, кликни по кнопке \"Лайк\", и цитата отобразится здесь</string>
+    <string name="not_found_any_mottos">Цитаты не найдены. Проверь интернет-соединение</string>
+    <string name="motto_about">Чтобы скопировать, кликни по цитате</string>
+    <string name="how_to_delete_motto">Чтобы удалить цитату, долго кликни по ней</string>
     <string name="films">Фильмы</string>
     <string name="anime">Аниме</string>
     <string name="channels">Каналы</string>
@@ -31,4 +31,8 @@
     <string name="is_sort_sources_by_random">Сортировать источники рандомно (список книг, сериалов и тп)</string>
     <string name="is_sort_mottos_by_random">Сортировать цитаты рандомно (иначе — сортируются по нашему рейтингу, по популярности). Касается только подборок</string>
     <string name="title_notes">Заметки</string>
+    <string name="enter_note_quote">Введи цитату</string>
+    <string name="enter_note_source">Введи источник (автора)</string>
+    <string name="lets_create_your_motto">Давай добавим твою цитату</string>
+    <string name="submit">Добавить</string>
 </resources>
