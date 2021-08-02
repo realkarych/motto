@@ -13,7 +13,6 @@ import com.google.android.gms.ads.MobileAds
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import github.karchx.motto.R
 import github.karchx.motto.databinding.ActivityMainBinding
-import github.karchx.motto.models.db.MottoDatabase
 import github.karchx.motto.views.tools.InAppUpdate
 
 

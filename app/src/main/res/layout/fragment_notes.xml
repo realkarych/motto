@@ -10,22 +10,22 @@
         android:id="@+id/notes_bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="450dp"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        android:background="@drawable/rounded">
+        android:background="@drawable/rounded"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
         <androidx.cardview.widget.CardView
             android:layout_width="40dp"
-            android:backgroundTint="@color/pink"
             android:layout_height="4dp"
+            android:layout_gravity="center|top"
             android:layout_marginTop="4dp"
-            app:cardCornerRadius="4dp"
-            android:layout_gravity="center|top">
+            android:backgroundTint="@color/pink"
+            app:cardCornerRadius="4dp">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
                 android:background="@color/pink"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_baseline_remove_24" />
 
         </androidx.cardview.widget.CardView>

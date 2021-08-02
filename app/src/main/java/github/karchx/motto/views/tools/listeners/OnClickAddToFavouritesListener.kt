@@ -8,12 +8,12 @@ import android.os.Vibrator
 import android.widget.ImageView
 import androidx.appcompat.content.res.AppCompatResources
 import github.karchx.motto.R
+import github.karchx.motto.models.db.saved_motto.SavedMotto
 import github.karchx.motto.search_engine.citaty_info_website.UIMotto
 import github.karchx.motto.viewmodels.SavedMottosViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import github.karchx.motto.models.db.saved_motto.SavedMotto
 
 class OnClickAddToFavouritesListener {
 
