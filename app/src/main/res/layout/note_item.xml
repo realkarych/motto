@@ -50,12 +50,12 @@
             android:id="@+id/imageview_note_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_more_vert_24"
+            android:layout_alignParentEnd="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_alignParentEnd="true" />
+            android:src="@drawable/ic_baseline_more_vert_24" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
