@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
-import github.karchx.motto.models.db.SavedMotto
+import github.karchx.motto.models.db.saved_motto.SavedMotto
 import github.karchx.motto.models.storages.Constants
 
 class FromDbMottosRecyclerAdapter(

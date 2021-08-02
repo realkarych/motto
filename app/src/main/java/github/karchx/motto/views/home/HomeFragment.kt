@@ -22,10 +22,10 @@ import github.karchx.motto.R
 import github.karchx.motto.ads.AdViewer
 import github.karchx.motto.copying.Copier
 import github.karchx.motto.databinding.FragmentHomeBinding
-import github.karchx.motto.models.db.SavedMotto
+import github.karchx.motto.models.db.saved_motto.SavedMotto
 import github.karchx.motto.models.user_settings.UserPrefs
-import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
-import github.karchx.motto.viewmodels.MottosViewModel
+import github.karchx.motto.search_engine.citaty_info_website.UIMotto
+import github.karchx.motto.viewmodels.SavedMottosViewModel
 import github.karchx.motto.viewmodels.home.HomeViewModel
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
@@ -43,7 +43,7 @@ class HomeFragment : Fragment() {
     private lateinit var clickedMotto: UIMotto
     private lateinit var allDbMottos: List<SavedMotto>
 
-    private lateinit var mottosViewModel: MottosViewModel
+    private lateinit var savedMottosViewModel: SavedMottosViewModel
     private lateinit var mMottosLoadingProgressBar: ProgressBar
     private lateinit var mMottosRecycler: RecyclerView
     private lateinit var mSwipeRefreshLayoutRandomMottos: SwipeRefreshLayout
@@ -150,7 +150,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun observeDbMottos() {
-        mottosViewModel.allMottos.observe(viewLifecycleOwner) { allMottos ->
+        savedMottosViewModel.allMottos.observe(viewLifecycleOwner) { allMottos ->
             allDbMottos = allMottos
         }
     }
@@ -171,7 +171,7 @@ class HomeFragment : Fragment() {
         mAddToFavouritesImageView.setOnClickListener {
             OnClickAddToFavouritesListener.handleMotto(
                 requireContext(),
-                mottosViewModel,
+                savedMottosViewModel,
                 mAddToFavouritesImageView,
                 allDbMottos,
                 clickedMotto
@@ -277,10 +277,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun initData() {
-        mottosViewModel = ViewModelProvider(
+        savedMottosViewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        ).get(MottosViewModel(application = requireActivity().application)::class.java)
+        ).get(SavedMottosViewModel(application = requireActivity().application)::class.java)
 
         userPrefs = UserPrefs(activity as MainActivity)
     }

@@ -8,12 +8,12 @@ import android.os.Vibrator
 import android.widget.ImageView
 import androidx.appcompat.content.res.AppCompatResources
 import github.karchx.motto.R
-import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
-import github.karchx.motto.viewmodels.MottosViewModel
+import github.karchx.motto.search_engine.citaty_info_website.UIMotto
+import github.karchx.motto.viewmodels.SavedMottosViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import github.karchx.motto.models.db.SavedMotto
+import github.karchx.motto.models.db.saved_motto.SavedMotto
 
 class OnClickAddToFavouritesListener {
 
@@ -21,7 +21,7 @@ class OnClickAddToFavouritesListener {
 
         fun handleMotto(
             context: Context,
-            mottosViewModel: MottosViewModel,
+            savedMottosViewModel: SavedMottosViewModel,
             addToFavouritesImageView: ImageView,
             allDbMottos: List<SavedMotto>,
             clickedMotto: UIMotto
@@ -34,12 +34,12 @@ class OnClickAddToFavouritesListener {
             }
 
             if (clickedMotto.quote in allQuotes && clickedMotto.source in allSources) {
-                mottosViewModel.deleteMotto(clickedMotto.quote, clickedMotto.source)
+                savedMottosViewModel.deleteMotto(clickedMotto.quote, clickedMotto.source)
                 addToFavouritesImageView.setImageDrawable(getNotAddedMottoIcon(context))
             } else {
                 val currentDate = getCurrentDate()
 
-                mottosViewModel.insertMotto(
+                savedMottosViewModel.insertMotto(
                     SavedMotto(
                         0,
                         clickedMotto.quote,

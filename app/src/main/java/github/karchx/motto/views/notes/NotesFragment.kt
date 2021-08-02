@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import github.karchx.motto.databinding.FragmentNotesBinding
-import github.karchx.motto.viewmodels.notes.NotesViewModel
+import github.karchx.motto.viewmodels.notes.SavedNotesViewModel
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.managers.Arrow
 
 
 class NotesFragment : Fragment() {
 
-    private lateinit var notesViewModel: NotesViewModel
+    private lateinit var notesViewModel: SavedNotesViewModel
 
     private var _binding: FragmentNotesBinding? = null
     private val binding get() = _binding!!
@@ -24,8 +24,6 @@ class NotesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        notesViewModel = ViewModelProvider(this).get(NotesViewModel::class.java)
-
         _binding = FragmentNotesBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -42,6 +40,7 @@ class NotesFragment : Fragment() {
     }
 
     private fun initData() {
+        notesViewModel = ViewModelProvider(this).get(SavedNotesViewModel::class.java)
     }
 
     private fun initViews() {
