@@ -17,6 +17,7 @@ import github.karchx.motto.copying.Copier
 import github.karchx.motto.databinding.FragmentFavouritesBinding
 import github.karchx.motto.models.db.saved_motto.SavedMotto
 import github.karchx.motto.models.user_settings.UserPrefs
+import github.karchx.motto.search_engine.citaty_info_website.UIMotto
 import github.karchx.motto.viewmodels.SavedMottosViewModel
 import github.karchx.motto.viewmodels.favourites.FavouritesViewModel
 import github.karchx.motto.views.MainActivity
@@ -25,7 +26,6 @@ import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.DialogViewer
 import github.karchx.motto.views.tools.managers.Toaster
-import github.karchx.motto.search_engine.citaty_info_website.UIMotto
 
 class FavouritesFragment : Fragment() {
 
