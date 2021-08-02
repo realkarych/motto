@@ -35,4 +35,5 @@
     <string name="enter_note_source">Введи источник (автора)</string>
     <string name="lets_create_your_motto">Давай добавим твою цитату</string>
     <string name="submit">Добавить</string>
+    <string name="saved_notes">Твои цитаты</string>
 </resources>
