@@ -22,8 +22,8 @@ import github.karchx.motto.copying.Copier
 import github.karchx.motto.databinding.FragmentAnimeDashboardBinding
 import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.items.Anime
-import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
-import github.karchx.motto.viewmodels.MottosViewModel
+import github.karchx.motto.search_engine.citaty_info_website.UIMotto
+import github.karchx.motto.viewmodels.SavedMottosViewModel
 import github.karchx.motto.viewmodels.dashboard.anime.AnimeDashboardViewModel
 import github.karchx.motto.viewmodels.dashboard.anime.AnimeFactory
 import github.karchx.motto.views.MainActivity
@@ -32,7 +32,7 @@ import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.*
-import github.karchx.motto.models.db.SavedMotto
+import github.karchx.motto.models.db.saved_motto.SavedMotto
 
 
 class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
@@ -42,7 +42,7 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
 
     // ViewModels
     private lateinit var animeDashboardViewModel: AnimeDashboardViewModel
-    private lateinit var mottosViewModel: MottosViewModel
+    private lateinit var savedMottosViewModel: SavedMottosViewModel
 
     // Views
     private lateinit var animeRecycler: RecyclerView
@@ -114,7 +114,7 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
     }
 
     private fun observeDbMottos() {
-        mottosViewModel.allMottos.observe(viewLifecycleOwner) { allMottos ->
+        savedMottosViewModel.allMottos.observe(viewLifecycleOwner) { allMottos ->
             allDbMottos = allMottos
         }
     }
@@ -155,7 +155,7 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
         addToFavouritesImageView.setOnClickListener {
             OnClickAddToFavouritesListener.handleMotto(
                 requireContext(),
-                mottosViewModel,
+                savedMottosViewModel,
                 addToFavouritesImageView,
                 allDbMottos,
                 clickedMotto
@@ -231,10 +231,10 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
                 AnimeFactory(requireActivity().application, userPrefs)
             )[AnimeDashboardViewModel::class.java]
 
-        mottosViewModel = ViewModelProvider(
+        savedMottosViewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        ).get(MottosViewModel(application = requireActivity().application)::class.java)
+        ).get(SavedMottosViewModel(application = requireActivity().application)::class.java)
     }
 
     private fun initViews() {

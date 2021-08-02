@@ -13,6 +13,7 @@ import com.google.android.gms.ads.MobileAds
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import github.karchx.motto.R
 import github.karchx.motto.databinding.ActivityMainBinding
+import github.karchx.motto.models.db.MottoDatabase
 import github.karchx.motto.views.tools.InAppUpdate
 
 
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home,
+                R.id.navigation_notes,
                 R.id.navigation_dashboard,
                 R.id.navigation_favourites,
                 R.id.navigation_settings

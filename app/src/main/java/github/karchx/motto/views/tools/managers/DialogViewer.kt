@@ -10,8 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import github.karchx.motto.R
-import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
-import github.karchx.motto.models.db.SavedMotto
+import github.karchx.motto.search_engine.citaty_info_website.UIMotto
+import github.karchx.motto.models.db.saved_motto.SavedMotto
 
 
 class DialogViewer {

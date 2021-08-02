@@ -1,7 +1,7 @@
 package github.karchx.motto.search_engine.citaty_info_website.parsers.by_sources
 
 import github.karchx.motto.models.storages.Constants
-import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
+import github.karchx.motto.search_engine.citaty_info_website.UIMotto
 import github.karchx.motto.search_engine.citaty_info_website.items.Topic
 import github.karchx.motto.search_engine.citaty_info_website.parsers.HtmlMottosParser
 import github.karchx.motto.search_engine.citaty_info_website.parsers.MottosParser
