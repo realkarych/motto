@@ -21,7 +21,7 @@ class FilmsRecyclerAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmsViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.motto_tab_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.motto_source_item, parent, false)
         return FilmsViewHolder(view)
     }
 
