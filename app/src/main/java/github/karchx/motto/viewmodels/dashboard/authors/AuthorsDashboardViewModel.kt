@@ -8,7 +8,7 @@ import github.karchx.motto.models.storages.AuthorsStorage
 import github.karchx.motto.models.storages.Constants
 import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.items.Author
-import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
+import github.karchx.motto.search_engine.citaty_info_website.UIMotto
 import github.karchx.motto.search_engine.citaty_info_website.parsers.by_sources.ByAuthorMottosParser
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

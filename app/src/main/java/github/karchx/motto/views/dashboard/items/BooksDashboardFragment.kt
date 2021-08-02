@@ -20,11 +20,11 @@ import github.karchx.motto.R
 import github.karchx.motto.ads.AdViewer
 import github.karchx.motto.copying.Copier
 import github.karchx.motto.databinding.FragmentBooksDashboardBinding
-import github.karchx.motto.models.db.SavedMotto
+import github.karchx.motto.models.db.saved_motto.SavedMotto
 import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.items.Book
-import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
-import github.karchx.motto.viewmodels.MottosViewModel
+import github.karchx.motto.search_engine.citaty_info_website.UIMotto
+import github.karchx.motto.viewmodels.SavedMottosViewModel
 import github.karchx.motto.viewmodels.dashboard.books.BooksDashboardViewModel
 import github.karchx.motto.viewmodels.dashboard.books.BooksFactory
 import github.karchx.motto.views.MainActivity
@@ -41,7 +41,7 @@ class BooksDashboardFragment : Fragment(R.layout.fragment_books_dashboard) {
 
     // ViewModels
     private lateinit var booksDashboardViewModel: BooksDashboardViewModel
-    private lateinit var mottosViewModel: MottosViewModel
+    private lateinit var savedMottosViewModel: SavedMottosViewModel
 
     // Views
     private lateinit var booksRecycler: RecyclerView
@@ -113,7 +113,7 @@ class BooksDashboardFragment : Fragment(R.layout.fragment_books_dashboard) {
     }
 
     private fun observeDbMottos() {
-        mottosViewModel.allMottos.observe(viewLifecycleOwner) { allMottos ->
+        savedMottosViewModel.allMottos.observe(viewLifecycleOwner) { allMottos ->
             allDbMottos = allMottos
         }
     }
@@ -154,7 +154,7 @@ class BooksDashboardFragment : Fragment(R.layout.fragment_books_dashboard) {
         addToFavouritesImageView.setOnClickListener {
             OnClickAddToFavouritesListener.handleMotto(
                 requireContext(),
-                mottosViewModel,
+                savedMottosViewModel,
                 addToFavouritesImageView,
                 allDbMottos,
                 clickedMotto
@@ -229,10 +229,10 @@ class BooksDashboardFragment : Fragment(R.layout.fragment_books_dashboard) {
             BooksFactory(requireActivity().application, userPrefs)
         )[BooksDashboardViewModel::class.java]
 
-        mottosViewModel = ViewModelProvider(
+        savedMottosViewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        ).get(MottosViewModel(application = requireActivity().application)::class.java)
+        ).get(SavedMottosViewModel(application = requireActivity().application)::class.java)
     }
 
     private fun initViews() {

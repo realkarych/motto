@@ -1,6 +1,6 @@
 package github.karchx.motto.search_engine.citaty_info_website.parsers
 
-import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
+import github.karchx.motto.search_engine.citaty_info_website.UIMotto
 import org.jsoup.nodes.Element
 
 class HtmlMottosParser {

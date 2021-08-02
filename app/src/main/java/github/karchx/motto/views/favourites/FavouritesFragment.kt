@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
 import github.karchx.motto.copying.Copier
 import github.karchx.motto.databinding.FragmentFavouritesBinding
-import github.karchx.motto.models.db.SavedMotto
+import github.karchx.motto.models.db.saved_motto.SavedMotto
 import github.karchx.motto.models.user_settings.UserPrefs
-import github.karchx.motto.viewmodels.MottosViewModel
+import github.karchx.motto.viewmodels.SavedMottosViewModel
 import github.karchx.motto.viewmodels.favourites.FavouritesViewModel
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.FromDbMottosRecyclerAdapter
@@ -25,12 +25,12 @@ import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.DialogViewer
 import github.karchx.motto.views.tools.managers.Toaster
-import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
+import github.karchx.motto.search_engine.citaty_info_website.UIMotto
 
 class FavouritesFragment : Fragment() {
 
     private lateinit var favouritesViewModel: FavouritesViewModel
-    private lateinit var mottosViewModel: MottosViewModel
+    private lateinit var savedMottosViewModel: SavedMottosViewModel
     private lateinit var mFullMottoDialog: Dialog
     private lateinit var mFullMottoCardView: CardView
 
@@ -65,7 +65,7 @@ class FavouritesFragment : Fragment() {
     }
 
     private fun observeDbMottos() {
-        mottosViewModel.allMottos.observe(viewLifecycleOwner) { mottos ->
+        savedMottosViewModel.allMottos.observe(viewLifecycleOwner) { mottos ->
             savedMottos = mottos.reversed()
             if (mottos.isEmpty()) {
                 mSavedMottosInfoTextView.text = getString(R.string.not_saved_any_mottos)
@@ -95,7 +95,7 @@ class FavouritesFragment : Fragment() {
 
                 override fun onItemLongClick(view: View, position: Int) {
                     clickedMotto = savedMottos[position]
-                    mottosViewModel.deleteMotto(clickedMotto.quote, clickedMotto.source)
+                    savedMottosViewModel.deleteMotto(clickedMotto.quote, clickedMotto.source)
                     observeDbMottos()
                 }
             })
@@ -119,7 +119,7 @@ class FavouritesFragment : Fragment() {
         mAddToFavouritesImageView.setOnClickListener {
             OnClickAddToFavouritesListener.handleMotto(
                 requireContext(),
-                mottosViewModel,
+                savedMottosViewModel,
                 mAddToFavouritesImageView,
                 savedMottos,
                 UIMotto(clickedMotto.quote, clickedMotto.source)
@@ -156,10 +156,10 @@ class FavouritesFragment : Fragment() {
     private fun initData() {
         favouritesViewModel = ViewModelProvider(this).get(FavouritesViewModel::class.java)
 
-        mottosViewModel = ViewModelProvider(
+        savedMottosViewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        ).get(MottosViewModel(application = requireActivity().application)::class.java)
+        ).get(SavedMottosViewModel(application = requireActivity().application)::class.java)
 
         userPrefs = UserPrefs(activity as MainActivity)
     }

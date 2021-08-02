@@ -20,11 +20,11 @@ import github.karchx.motto.R
 import github.karchx.motto.ads.AdViewer
 import github.karchx.motto.copying.Copier
 import github.karchx.motto.databinding.FragmentSeriesDashboardBinding
-import github.karchx.motto.models.db.SavedMotto
+import github.karchx.motto.models.db.saved_motto.SavedMotto
 import github.karchx.motto.models.user_settings.UserPrefs
-import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
+import github.karchx.motto.search_engine.citaty_info_website.UIMotto
 import github.karchx.motto.search_engine.citaty_info_website.items.TVSeries
-import github.karchx.motto.viewmodels.MottosViewModel
+import github.karchx.motto.viewmodels.SavedMottosViewModel
 import github.karchx.motto.viewmodels.dashboard.tv_series.TVSeriesDashboardViewModel
 import github.karchx.motto.viewmodels.dashboard.tv_series.TVSeriesFactory
 import github.karchx.motto.views.MainActivity
@@ -41,7 +41,7 @@ class SeriesDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashboard
 
     // ViewModels
     private lateinit var seriesDashboardViewModel: TVSeriesDashboardViewModel
-    private lateinit var mottosViewModel: MottosViewModel
+    private lateinit var savedMottosViewModel: SavedMottosViewModel
 
     // Views
     private lateinit var seriesRecycler: RecyclerView
@@ -113,7 +113,7 @@ class SeriesDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashboard
     }
 
     private fun observeDbMottos() {
-        mottosViewModel.allMottos.observe(viewLifecycleOwner) { allMottos ->
+        savedMottosViewModel.allMottos.observe(viewLifecycleOwner) { allMottos ->
             allDbMottos = allMottos
         }
     }
@@ -154,7 +154,7 @@ class SeriesDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashboard
         addToFavouritesImageView.setOnClickListener {
             OnClickAddToFavouritesListener.handleMotto(
                 requireContext(),
-                mottosViewModel,
+                savedMottosViewModel,
                 addToFavouritesImageView,
                 allDbMottos,
                 clickedMotto
@@ -229,10 +229,10 @@ class SeriesDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashboard
             TVSeriesFactory(requireActivity().application, userPrefs)
         )[TVSeriesDashboardViewModel::class.java]
 
-        mottosViewModel = ViewModelProvider(
+        savedMottosViewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        ).get(MottosViewModel(application = requireActivity().application)::class.java)
+        ).get(SavedMottosViewModel(application = requireActivity().application)::class.java)
     }
 
     private fun initViews() {
