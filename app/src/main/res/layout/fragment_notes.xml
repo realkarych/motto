@@ -6,6 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".views.notes.NotesFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textview_saved_notes"
+            style="@style/textViewTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/saved_notes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_saved_notes"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="15dp"
+            android:layoutAnimation="@anim/recycler_animation"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_saved_notes" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <FrameLayout
         android:id="@+id/notes_bottom_sheet"
         android:layout_width="match_parent"
@@ -52,13 +82,14 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:background="@drawable/back_with_border_text_input"
                 android:cursorVisible="false"
                 android:hint="@string/enter_note_quote"
+                android:layout_marginTop="40dp"
                 android:textColorHint="@color/soft_white"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeWidth="0dp"
+                app:hintTextColor="@color/dark_item_not_transp"
                 app:boxStrokeWidthFocused="0dp"
                 app:startIconDrawable="@drawable/ic_baseline_text_fields_24"
                 app:startIconTint="@color/red">
@@ -75,8 +106,8 @@
                     android:imeOptions="actionDone"
                     android:maxLength="500"
                     android:singleLine="true"
+                    android:textColorHighlight="@color/dark_item_not_transp"
                     android:textColor="@color/soft_white"
-                    android:textColorHint="@color/soft_white"
                     android:textCursorDrawable="@drawable/color_cursor"
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -86,7 +117,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="12dp"
+                app:hintTextColor="@color/dark_item_not_transp"
                 android:background="@drawable/back_with_border_text_input"
                 android:cursorVisible="false"
                 android:hint="@string/enter_note_source"
@@ -110,7 +142,6 @@
                     android:maxLength="150"
                     android:singleLine="true"
                     android:textColor="@color/soft_white"
-                    android:textColorHint="@color/soft_white"
                     android:textColorLink="@color/pink"
                     android:textCursorDrawable="@drawable/color_cursor"
                     android:textSize="14sp" />
@@ -121,7 +152,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:backgroundTint="@color/dark_item_not_transp"
+                android:backgroundTint="@color/darker_item"
                 android:text="@string/submit"
                 android:textColor="@color/pink"
                 app:layout_constraintEnd_toEndOf="parent"
