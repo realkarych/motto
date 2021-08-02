@@ -7,8 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import github.karchx.motto.models.storages.BooksStorage
 import github.karchx.motto.models.storages.Constants
 import github.karchx.motto.models.user_settings.UserPrefs
-import github.karchx.motto.search_engine.citaty_info_website.items.Book
 import github.karchx.motto.search_engine.citaty_info_website.UIMotto
+import github.karchx.motto.search_engine.citaty_info_website.items.Book
 import github.karchx.motto.search_engine.citaty_info_website.parsers.by_sources.ByBookMottosParser
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
