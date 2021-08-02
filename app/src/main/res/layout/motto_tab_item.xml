@@ -14,26 +14,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/imageview_motto_tab_image"
+        <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="0dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="8dp"
             android:layout_marginBottom="0dp"
-            android:adjustViewBounds="true"
-            android:alpha=".5"
-            android:contentDescription="Stub"
-            android:maxWidth="85dp"
-            android:maxHeight="85dp"
-            android:minWidth="85dp"
-            android:minHeight="85dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="HardcodedText"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:id="@+id/imageview_motto_tab_image_container">
+
+            <ImageView
+                android:id="@+id/imageview_motto_tab_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:contentDescription="Stub"
+                android:maxWidth="85dp"
+                android:maxHeight="85dp"
+                android:alpha="0.5"
+                android:minWidth="85dp"
+                android:minHeight="85dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="HardcodedText"
+                tools:srcCompat="@tools:sample/avatars" />
+        </androidx.cardview.widget.CardView>
+
 
         <TextView
             android:id="@+id/textview_motto_tab_title"
@@ -46,7 +56,7 @@
             android:gravity="center_vertical"
             android:text="Stub"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageview_motto_tab_image"
+            app:layout_constraintEnd_toStartOf="@+id/imageview_motto_tab_image_container"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="HardcodedText" />
