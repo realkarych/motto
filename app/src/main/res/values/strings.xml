@@ -31,4 +31,8 @@
     <string name="is_sort_sources_by_random">Sort sources by random</string>
     <string name="with_random">By random</string>
     <string name="is_sort_mottos_by_random">Sort mottos by random instead of rating (only in dashboard)</string>
+    <string name="enter_note_quote">Enter quote</string>
+    <string name="enter_note_source">Enter source (author)</string>
+    <string name="lets_create_your_motto">Let\'s create your motto</string>
+    <string name="submit">Submit</string>
 </resources>
