@@ -20,9 +20,10 @@ import github.karchx.motto.R
 import github.karchx.motto.ads.AdViewer
 import github.karchx.motto.copying.Copier
 import github.karchx.motto.databinding.FragmentFilmsDashboardBinding
+import github.karchx.motto.models.db.saved_motto.SavedMotto
 import github.karchx.motto.models.user_settings.UserPrefs
-import github.karchx.motto.search_engine.citaty_info_website.items.Film
 import github.karchx.motto.search_engine.citaty_info_website.UIMotto
+import github.karchx.motto.search_engine.citaty_info_website.items.Film
 import github.karchx.motto.viewmodels.SavedMottosViewModel
 import github.karchx.motto.viewmodels.dashboard.films.FilmsDashboardViewModel
 import github.karchx.motto.viewmodels.dashboard.films.FilmsFactory
@@ -32,7 +33,6 @@ import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.*
-import github.karchx.motto.models.db.saved_motto.SavedMotto
 
 class FilmsDashboardFragment : Fragment(R.layout.fragment_films_dashboard) {
 

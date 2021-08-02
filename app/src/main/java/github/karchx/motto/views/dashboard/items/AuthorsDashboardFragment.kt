@@ -22,8 +22,8 @@ import github.karchx.motto.copying.Copier
 import github.karchx.motto.databinding.FragmentAuthorsDashboardBinding
 import github.karchx.motto.models.db.saved_motto.SavedMotto
 import github.karchx.motto.models.user_settings.UserPrefs
-import github.karchx.motto.search_engine.citaty_info_website.items.Author
 import github.karchx.motto.search_engine.citaty_info_website.UIMotto
+import github.karchx.motto.search_engine.citaty_info_website.items.Author
 import github.karchx.motto.viewmodels.SavedMottosViewModel
 import github.karchx.motto.viewmodels.dashboard.authors.AuthorsDashboardViewModel
 import github.karchx.motto.viewmodels.dashboard.authors.AuthorsFactory
