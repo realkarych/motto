@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.ads.AdView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import github.karchx.motto.ads.AdViewer
 import github.karchx.motto.databinding.FragmentNotesBinding
 import github.karchx.motto.viewmodels.notes.SavedNotesViewModel
 import github.karchx.motto.views.MainActivity
@@ -17,6 +19,7 @@ import github.karchx.motto.views.tools.managers.Arrow
 class NotesFragment : Fragment() {
 
     private lateinit var notesViewModel: SavedNotesViewModel
+    private lateinit var mAddNoteAdView: AdView
     private lateinit var notesBottomSheet: BottomSheetBehavior<FrameLayout>
 
     private var _binding: FragmentNotesBinding? = null
@@ -35,11 +38,17 @@ class NotesFragment : Fragment() {
         Arrow.hideBackArrow(activity as MainActivity)
         initData()
         initViews()
+
+        displayAd()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun displayAd() {
+        AdViewer(activity as MainActivity, requireContext()).displayUnderDashboardAd(mAddNoteAdView)
     }
 
     private fun initData() {
@@ -52,5 +61,7 @@ class NotesFragment : Fragment() {
             this.state = BottomSheetBehavior.STATE_COLLAPSED
             isHideable = false
         }
+
+        mAddNoteAdView = binding.adViewAddNote
     }
 }
