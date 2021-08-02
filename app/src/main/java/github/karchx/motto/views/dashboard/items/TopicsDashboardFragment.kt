@@ -20,8 +20,9 @@ import github.karchx.motto.R
 import github.karchx.motto.ads.AdViewer
 import github.karchx.motto.copying.Copier
 import github.karchx.motto.databinding.FragmentTopicsDashboardBinding
+import github.karchx.motto.models.db.SavedMotto
 import github.karchx.motto.models.user_settings.UserPrefs
-import github.karchx.motto.search_engine.citaty_info_website.items.Motto
+import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
 import github.karchx.motto.search_engine.citaty_info_website.items.Topic
 import github.karchx.motto.viewmodels.MottosViewModel
 import github.karchx.motto.viewmodels.dashboard.topics.TopicsDashboardViewModel
@@ -32,7 +33,6 @@ import github.karchx.motto.views.tools.adapters.TopicsRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.*
-import github.karchx.motto.models.db.Motto as dbMotto
 
 class TopicsDashboardFragment : Fragment(R.layout.fragment_topics_dashboard) {
 
@@ -56,9 +56,9 @@ class TopicsDashboardFragment : Fragment(R.layout.fragment_topics_dashboard) {
     private lateinit var userPrefs: UserPrefs
     private lateinit var topics: ArrayList<Topic>
     private lateinit var clickedTopic: Topic
-    private lateinit var allDbMottos: List<dbMotto>
-    private lateinit var topicMottos: ArrayList<Motto>
-    private lateinit var clickedMotto: Motto
+    private lateinit var allDbMottos: List<SavedMotto>
+    private lateinit var topicMottos: ArrayList<UIMotto>
+    private lateinit var clickedMotto: UIMotto
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -129,7 +129,7 @@ class TopicsDashboardFragment : Fragment(R.layout.fragment_topics_dashboard) {
         topicsRecycler.adapter = adapter
     }
 
-    private fun displayTopicMottosRecycler(topicMottos: ArrayList<Motto>) {
+    private fun displayTopicMottosRecycler(topicMottos: ArrayList<UIMotto>) {
         Arrow.displayBackArrow(activity as MainActivity)
         if (topicMottos.isEmpty()) {
             topicsRecycler.visibility = View.GONE

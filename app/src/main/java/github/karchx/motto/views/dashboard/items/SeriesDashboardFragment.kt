@@ -20,8 +20,9 @@ import github.karchx.motto.R
 import github.karchx.motto.ads.AdViewer
 import github.karchx.motto.copying.Copier
 import github.karchx.motto.databinding.FragmentSeriesDashboardBinding
+import github.karchx.motto.models.db.SavedMotto
 import github.karchx.motto.models.user_settings.UserPrefs
-import github.karchx.motto.search_engine.citaty_info_website.items.Motto
+import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
 import github.karchx.motto.search_engine.citaty_info_website.items.TVSeries
 import github.karchx.motto.viewmodels.MottosViewModel
 import github.karchx.motto.viewmodels.dashboard.tv_series.TVSeriesDashboardViewModel
@@ -32,7 +33,6 @@ import github.karchx.motto.views.tools.adapters.SeriesRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.*
-import github.karchx.motto.models.db.Motto as dbMotto
 
 class SeriesDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashboard) {
 
@@ -56,9 +56,9 @@ class SeriesDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashboard
     private lateinit var userPrefs: UserPrefs
     private lateinit var series: ArrayList<TVSeries>
     private lateinit var clickedSeries: TVSeries
-    private lateinit var allDbMottos: List<dbMotto>
-    private lateinit var seriesMottos: ArrayList<Motto>
-    private lateinit var clickedMotto: Motto
+    private lateinit var allDbMottos: List<SavedMotto>
+    private lateinit var seriesMottos: ArrayList<UIMotto>
+    private lateinit var clickedMotto: UIMotto
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -129,7 +129,7 @@ class SeriesDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashboard
         seriesRecycler.adapter = adapter
     }
 
-    private fun displaySeriesMottosRecycler(seriesMottos: ArrayList<Motto>) {
+    private fun displaySeriesMottosRecycler(seriesMottos: ArrayList<UIMotto>) {
         Arrow.displayBackArrow(activity as MainActivity)
         if (seriesMottos.isEmpty()) {
             seriesRecycler.visibility = View.GONE

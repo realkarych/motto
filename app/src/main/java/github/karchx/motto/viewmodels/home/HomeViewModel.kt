@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import github.karchx.motto.models.storages.Constants
-import github.karchx.motto.search_engine.citaty_info_website.items.Motto
+import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
 import github.karchx.motto.search_engine.citaty_info_website.parsers.by_sources.ByRandomMottosParser
 import github.karchx.motto.search_engine.citaty_info_website.parsers.by_sources.ByRequestMottosParser
 import kotlinx.coroutines.GlobalScope
@@ -14,12 +14,12 @@ class HomeViewModel : ViewModel() {
 
     private val byRandomParser = ByRandomMottosParser()
 
-    private val _randomMottos = MutableLiveData<ArrayList<Motto>>().apply {
+    private val _randomMottos = MutableLiveData<ArrayList<UIMotto>>().apply {
         GlobalScope.launch {
             putRandomMottosPostValue()
         }
     }
-    private val _requestMottos = MutableLiveData<ArrayList<Motto>>().apply {}
+    private val _requestMottos = MutableLiveData<ArrayList<UIMotto>>().apply {}
     fun putRequestMottosPostValue(request: String) {
         val parser = ByRequestMottosParser(request)
         GlobalScope.launch {
@@ -36,6 +36,6 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    val randomMottos: LiveData<ArrayList<Motto>> = _randomMottos
-    val requestMottos: LiveData<ArrayList<Motto>> = _requestMottos
+    val randomMottos: LiveData<ArrayList<UIMotto>> = _randomMottos
+    val requestMottos: LiveData<ArrayList<UIMotto>> = _requestMottos
 }

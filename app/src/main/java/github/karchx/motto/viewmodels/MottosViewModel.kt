@@ -6,7 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import github.karchx.motto.models.MottoRepository
-import github.karchx.motto.models.db.Motto
+import github.karchx.motto.models.db.SavedMotto
 import github.karchx.motto.models.db.MottoDatabase
 import kotlinx.coroutines.launch
 
@@ -18,9 +18,9 @@ class MottosViewModel(application: Application) : AndroidViewModel(application) 
     private val database = MottoDatabase.getDatabase(context)
     private val repository = MottoRepository(database.mottoDao())
 
-    val allMottos: LiveData<List<Motto>> = repository.allMottos
+    val allMottos: LiveData<List<SavedMotto>> = repository.allMottos
 
-    fun insertMotto(motto: Motto) = viewModelScope.launch {
+    fun insertMotto(motto: SavedMotto) = viewModelScope.launch {
         repository.insertMotto(motto)
     }
 

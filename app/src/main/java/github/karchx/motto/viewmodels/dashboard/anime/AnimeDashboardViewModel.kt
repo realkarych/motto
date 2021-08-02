@@ -8,7 +8,7 @@ import github.karchx.motto.models.storages.AnimeStorage
 import github.karchx.motto.models.storages.Constants
 import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.items.Anime
-import github.karchx.motto.search_engine.citaty_info_website.items.Motto
+import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
 import github.karchx.motto.search_engine.citaty_info_website.parsers.by_sources.ByAnimeMottosParser
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -22,7 +22,7 @@ class AnimeDashboardViewModel(application: Application, private val prefs: UserP
         value = animeStorage.getAnime()
     }
 
-    private val _animeMottos = MutableLiveData<ArrayList<Motto>>().apply {}
+    private val _animeMottos = MutableLiveData<ArrayList<UIMotto>>().apply {}
 
     fun putAnimeMottosPostValue(anime: Anime) {
         val parser = ByAnimeMottosParser(anime, prefs.mottosRandomness.isRandom())
@@ -32,5 +32,5 @@ class AnimeDashboardViewModel(application: Application, private val prefs: UserP
     }
 
     val anime: LiveData<ArrayList<Anime>> = _anime
-    val animeMottos: LiveData<ArrayList<Motto>> = _animeMottos
+    val animeMottos: LiveData<ArrayList<UIMotto>> = _animeMottos
 }

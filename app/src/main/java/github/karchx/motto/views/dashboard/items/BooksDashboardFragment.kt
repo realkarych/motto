@@ -20,9 +20,10 @@ import github.karchx.motto.R
 import github.karchx.motto.ads.AdViewer
 import github.karchx.motto.copying.Copier
 import github.karchx.motto.databinding.FragmentBooksDashboardBinding
+import github.karchx.motto.models.db.SavedMotto
 import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.items.Book
-import github.karchx.motto.search_engine.citaty_info_website.items.Motto
+import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
 import github.karchx.motto.viewmodels.MottosViewModel
 import github.karchx.motto.viewmodels.dashboard.books.BooksDashboardViewModel
 import github.karchx.motto.viewmodels.dashboard.books.BooksFactory
@@ -32,7 +33,6 @@ import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.*
-import github.karchx.motto.models.db.Motto as dbMotto
 
 class BooksDashboardFragment : Fragment(R.layout.fragment_books_dashboard) {
 
@@ -56,9 +56,9 @@ class BooksDashboardFragment : Fragment(R.layout.fragment_books_dashboard) {
     private lateinit var userPrefs: UserPrefs
     private lateinit var books: ArrayList<Book>
     private lateinit var clickedBook: Book
-    private lateinit var allDbMottos: List<dbMotto>
-    private lateinit var bookMottos: ArrayList<Motto>
-    private lateinit var clickedMotto: Motto
+    private lateinit var allDbMottos: List<SavedMotto>
+    private lateinit var bookMottos: ArrayList<UIMotto>
+    private lateinit var clickedMotto: UIMotto
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -129,7 +129,7 @@ class BooksDashboardFragment : Fragment(R.layout.fragment_books_dashboard) {
         booksRecycler.adapter = adapter
     }
 
-    private fun displayBookMottosRecycler(bookMottos: ArrayList<Motto>) {
+    private fun displayBookMottosRecycler(bookMottos: ArrayList<UIMotto>) {
         Arrow.displayBackArrow(activity as MainActivity)
         if (bookMottos.isEmpty()) {
             booksRecycler.visibility = View.GONE

@@ -7,10 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
 import github.karchx.motto.models.storages.Constants
-import github.karchx.motto.search_engine.citaty_info_website.items.Motto
+import github.karchx.motto.search_engine.citaty_info_website.items.UIMotto
 
 class MottosRecyclerAdapter(
-    private val mottos: ArrayList<Motto>
+    private val mottos: ArrayList<UIMotto>
 ) : RecyclerView.Adapter<MottosRecyclerAdapter.MottosViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MottosViewHolder {
