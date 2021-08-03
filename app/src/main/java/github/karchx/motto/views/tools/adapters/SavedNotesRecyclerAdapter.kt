@@ -14,7 +14,7 @@ class SavedNotesRecyclerAdapter(
 ) : RecyclerView.Adapter<SavedNotesRecyclerAdapter.SavedNotesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SavedNotesViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.motto_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.note_item, parent, false)
         return SavedNotesViewHolder(view)
     }
 

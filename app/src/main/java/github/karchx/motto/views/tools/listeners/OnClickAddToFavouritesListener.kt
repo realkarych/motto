@@ -8,6 +8,7 @@ import android.os.Vibrator
 import android.widget.ImageView
 import androidx.appcompat.content.res.AppCompatResources
 import github.karchx.motto.R
+import github.karchx.motto.models.date.DateManager
 import github.karchx.motto.models.db.saved_motto.SavedMotto
 import github.karchx.motto.search_engine.citaty_info_website.UIMotto
 import github.karchx.motto.viewmodels.SavedMottosViewModel
@@ -37,7 +38,7 @@ class OnClickAddToFavouritesListener {
                 savedMottosViewModel.deleteMotto(clickedMotto.quote, clickedMotto.source)
                 addToFavouritesImageView.setImageDrawable(getNotAddedMottoIcon(context))
             } else {
-                val currentDate = getCurrentDate()
+                val currentDate = DateManager().getCurrentDate()
 
                 savedMottosViewModel.insertMotto(
                     SavedMotto(
@@ -51,10 +52,6 @@ class OnClickAddToFavouritesListener {
                 setVibration(context)
                 addToFavouritesImageView.setImageDrawable(getAddedMottoIcon(context))
             }
-        }
-
-        private fun getCurrentDate(): String {
-            return SimpleDateFormat("dd.MM, HH:mm", Locale.getDefault()).format(Date())
         }
 
         private fun getNotAddedMottoIcon(context: Context): Drawable? {

@@ -12,5 +12,19 @@ class Toaster {
             val toast = Toast.makeText(context.applicationContext, text, duration)
             toast.show()
         }
+
+        fun displayNoteAddedToast(context: Context, isAdded: Boolean) {
+            var text = ""
+            if (isAdded) {
+                text = context.getString(R.string.note_added)
+            }
+            else {
+                text = context.getString(R.string.note_not_added)
+            }
+
+            val duration = Toast.LENGTH_SHORT
+            val toast = Toast.makeText(context.applicationContext, text, duration)
+            toast.show()
+        }
     }
 }
