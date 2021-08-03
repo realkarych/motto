@@ -14,12 +14,10 @@ class Toaster {
         }
 
         fun displayNoteAddedToast(context: Context, isAdded: Boolean) {
-            var text = ""
-            if (isAdded) {
-                text = context.getString(R.string.note_added)
-            }
-            else {
-                text = context.getString(R.string.note_not_added)
+            var text: String = if (isAdded) {
+                context.getString(R.string.note_added)
+            } else {
+                context.getString(R.string.note_not_added)
             }
 
             val duration = Toast.LENGTH_SHORT

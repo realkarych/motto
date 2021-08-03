@@ -126,9 +126,7 @@ class NotesFragment : Fragment() {
                 )
 
                 Toaster.displayNoteAddedToast(requireContext(), isAdded = true)
-            }
-
-            else {
+            } else {
                 Toaster.displayNoteAddedToast(requireContext(), isAdded = false)
             }
         }
