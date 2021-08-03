@@ -12,9 +12,6 @@ import github.karchx.motto.models.date.DateManager
 import github.karchx.motto.models.db.saved_motto.SavedMotto
 import github.karchx.motto.search_engine.citaty_info_website.UIMotto
 import github.karchx.motto.viewmodels.SavedMottosViewModel
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
 
 class OnClickAddToFavouritesListener {
 
