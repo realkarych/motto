@@ -7,6 +7,7 @@ class UserPrefs(activity: MainActivity) {
     private val userPrefs = activity.getPreferences(Context.MODE_PRIVATE)
 
     val mottoOpenings = MottoOpenings(userPrefs)
+    val noteOpenings = NoteOpenings(userPrefs)
     val copySettings = CopySettings(userPrefs)
     val mottosRandomness = MottosRandomness(userPrefs)
     val sourcesRandomness = SourcesRandomness(userPrefs)
