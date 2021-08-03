@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -12,14 +13,17 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.textfield.TextInputEditText
 import github.karchx.motto.R
 import github.karchx.motto.ads.AdViewer
 import github.karchx.motto.databinding.FragmentNotesBinding
+import github.karchx.motto.models.date.DateManager
 import github.karchx.motto.models.db.user_notes.UserNote
 import github.karchx.motto.viewmodels.notes.SavedNotesViewModel
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.SavedNotesRecyclerAdapter
 import github.karchx.motto.views.tools.managers.Arrow
+import github.karchx.motto.views.tools.managers.Toaster
 
 
 class NotesFragment : Fragment() {
@@ -33,6 +37,9 @@ class NotesFragment : Fragment() {
     private lateinit var mNotesBottomSheet: BottomSheetBehavior<FrameLayout>
     private lateinit var mSavedNotesTextView: TextView
     private lateinit var mSavedNotesRecyclerView: RecyclerView
+    private lateinit var mSubmitNoteButton: Button
+    private lateinit var mNoteQuoteTextInput: TextInputEditText
+    private lateinit var mNoteSourceTextInput: TextInputEditText
 
     private var _binding: FragmentNotesBinding? = null
     private val binding get() = _binding!!
@@ -54,12 +61,17 @@ class NotesFragment : Fragment() {
         observeSavedNotes()
 
         handleRecyclerScrollAction()
+        handleSubmitNoteButton()
         displayAd()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun saveNote(note: UserNote) {
+        notesViewModel.insertNote(note)
     }
 
     private fun observeSavedNotes() {
@@ -95,6 +107,33 @@ class NotesFragment : Fragment() {
         })
     }
 
+    private fun handleSubmitNoteButton() {
+        mSubmitNoteButton.setOnClickListener {
+            val inputNoteQuote = mNoteQuoteTextInput.text?.trim().toString()
+            var inputNoteSource = mNoteSourceTextInput.text?.trim().toString()
+
+            if (inputNoteQuote != "") {
+                if (inputNoteSource == "") {
+                    inputNoteSource = getString(R.string.unknown_author)
+                }
+                saveNote(
+                    UserNote(
+                        id = 0,
+                        quote = inputNoteQuote,
+                        source = inputNoteSource,
+                        dateSaved = DateManager().getCurrentDate()
+                    )
+                )
+
+                Toaster.displayNoteAddedToast(requireContext(), isAdded = true)
+            }
+
+            else {
+                Toaster.displayNoteAddedToast(requireContext(), isAdded = false)
+            }
+        }
+    }
+
     private fun displayAd() {
         AdViewer(activity as MainActivity, requireContext()).displayBanner(mAddNoteAdView)
     }
@@ -106,18 +145,25 @@ class NotesFragment : Fragment() {
         mSavedNotesRecyclerView.setHasFixedSize(true)
     }
 
-    private fun initData() {
-        notesViewModel = ViewModelProvider(this).get(SavedNotesViewModel::class.java)
-    }
-
-    private fun initViews() {
+    private fun initBottomSheet() {
         mNotesBottomSheet = BottomSheetBehavior.from(binding.notesBottomSheet).apply {
             peekHeight = 100
             this.state = BottomSheetBehavior.STATE_COLLAPSED
             isHideable = false
         }
+    }
+
+    private fun initData() {
+        notesViewModel = ViewModelProvider(this).get(SavedNotesViewModel::class.java)
+    }
+
+    private fun initViews() {
+        initBottomSheet()
+        initSavedNotesRecycler()
         mAddNoteAdView = binding.adViewAddNote
         mSavedNotesTextView = binding.textviewSavedNotes
-        initSavedNotesRecycler()
+        mNoteQuoteTextInput = binding.edittextNoteQuote
+        mNoteSourceTextInput = binding.edittextNoteSource
+        mSubmitNoteButton = binding.buttonSubmitNewNote
     }
 }
