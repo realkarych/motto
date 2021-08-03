@@ -10,7 +10,7 @@ import github.karchx.motto.models.db.user_notes.UserNote
 import github.karchx.motto.models.storages.Constants
 
 class SavedNotesRecyclerAdapter(
-    private val notes: ArrayList<UserNote>
+    private val notes: List<UserNote>
 ) : RecyclerView.Adapter<SavedNotesRecyclerAdapter.SavedNotesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SavedNotesViewHolder {
