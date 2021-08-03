@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.ads.AdView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.textfield.TextInputEditText
 import github.karchx.motto.R
@@ -24,7 +23,6 @@ import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.SavedNotesRecyclerAdapter
 import github.karchx.motto.views.tools.managers.Arrow
 import github.karchx.motto.views.tools.managers.Toaster
-
 
 class NotesFragment : Fragment() {
 
