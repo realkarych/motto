@@ -64,7 +64,7 @@ class DashboardLayoutFragment : Fragment() {
         })
 
         mAdView = binding.adViewUnderDashboard
-        AdViewer(activity as MainActivity, requireContext()).displayUnderDashboardAd(mAdView)
+        AdViewer(activity as MainActivity, requireContext()).displayBanner(mAdView)
     }
 
     private fun setViewPagerAndTabLayout() {
