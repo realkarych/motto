@@ -20,10 +20,25 @@ class AdViewer(private val activity: MainActivity, private val context: Context)
         adView?.loadAd(adRequest)
     }
 
+    fun displayFullNoteAd() {
+        val numberOfDisplayedAds = userPrefs.noteOpenings.getNumberOfOpens()
+
+        if (numberOfDisplayedAds < 3) {
+            userPrefs.noteOpenings.updateNumberOfOpens()
+        } else {
+            userPrefs.noteOpenings.resetNumberOfOpens()
+            try {
+                _displayFullNoteAd()
+            } catch (ex: Exception) {
+            }
+
+        }
+    }
+
     fun displayFullMottoAd() {
         val numberOfDisplayedAds = userPrefs.mottoOpenings.getNumberOfOpens()
 
-        if (numberOfDisplayedAds < 3) {
+        if (numberOfDisplayedAds < 5) {
             userPrefs.mottoOpenings.updateNumberOfOpens()
         } else {
             userPrefs.mottoOpenings.resetNumberOfOpens()
@@ -33,6 +48,29 @@ class AdViewer(private val activity: MainActivity, private val context: Context)
             }
 
         }
+    }
+
+    private fun _displayFullNoteAd() {
+        var mInterstitialAd: InterstitialAd?
+
+        MobileAds.initialize(context) { }
+        val adRequest: AdRequest = AdRequest.Builder().build()
+
+        InterstitialAd.load(activity, AdIds.fullNoteId, adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    mInterstitialAd = interstitialAd
+
+                    if (mInterstitialAd != null) {
+                        mInterstitialAd!!.show(activity)
+                    } else {
+                        mInterstitialAd = null
+                    }
+                }
+
+                override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+                }
+            })
     }
 
     private fun _displayFullMottoAd() {
