@@ -15,7 +15,7 @@ class SavedNotesViewModel(application: Application) : AndroidViewModel(applicati
         MottoDatabase.getDatabase(getApplication<Application>().applicationContext)
     private val repository = UserNoteRepository(database.userNoteDao())
 
-    val allMottos: LiveData<List<UserNote>> = repository.allNotes
+    val allNotes: LiveData<List<UserNote>> = repository.allNotes
 
     fun insertNote(note: UserNote) = viewModelScope.launch {
         repository.insertNote(note)
