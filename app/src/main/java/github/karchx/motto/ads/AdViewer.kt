@@ -15,7 +15,7 @@ class AdViewer(private val activity: MainActivity, private val context: Context)
 
     private val userPrefs = UserPrefs(activity)
 
-    fun displayUnderDashboardAd(adView: AdView?) {
+    fun displayBanner(adView: AdView?) {
         val adRequest: AdRequest = AdRequest.Builder().build()
         adView?.loadAd(adRequest)
     }
