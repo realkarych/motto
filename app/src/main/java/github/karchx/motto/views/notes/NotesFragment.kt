@@ -33,7 +33,6 @@ class NotesFragment : Fragment() {
     private var savedNotes: List<UserNote>? = null
 
     // Views
-    private lateinit var mAddNoteAdView: AdView
     private lateinit var mNotesBottomSheet: BottomSheetBehavior<FrameLayout>
     private lateinit var mSavedNotesTextView: TextView
     private lateinit var mSavedNotesRecyclerView: RecyclerView
@@ -62,7 +61,6 @@ class NotesFragment : Fragment() {
 
         handleRecyclerScrollAction()
         handleSubmitNoteButton()
-        displayAd()
     }
 
     override fun onDestroyView() {
@@ -126,14 +124,17 @@ class NotesFragment : Fragment() {
                 )
 
                 Toaster.displayNoteAddedToast(requireContext(), isAdded = true)
+                mNotesBottomSheet.state = BottomSheetBehavior.STATE_COLLAPSED
             } else {
                 Toaster.displayNoteAddedToast(requireContext(), isAdded = false)
             }
+
+            displayFullNoteAd()
         }
     }
 
-    private fun displayAd() {
-        AdViewer(activity as MainActivity, requireContext()).displayBanner(mAddNoteAdView)
+    private fun displayFullNoteAd() {
+        AdViewer(activity as MainActivity, requireContext()).displayFullNoteAd()
     }
 
     private fun initSavedNotesRecycler() {
@@ -158,7 +159,6 @@ class NotesFragment : Fragment() {
     private fun initViews() {
         initBottomSheet()
         initSavedNotesRecycler()
-        mAddNoteAdView = binding.adViewAddNote
         mSavedNotesTextView = binding.textviewSavedNotes
         mNoteQuoteTextInput = binding.edittextNoteQuote
         mNoteSourceTextInput = binding.edittextNoteSource
