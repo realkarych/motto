@@ -90,7 +90,7 @@
                 app:boxBackgroundMode="outline"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
-                app:hintTextColor="@color/dark_item_not_transp"
+                app:hintTextColor="@color/darker_item"
                 app:startIconDrawable="@drawable/ic_baseline_text_fields_24"
                 app:startIconTint="@color/red">
 
@@ -107,7 +107,7 @@
                     android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/soft_white"
-                    android:textColorHighlight="@color/dark_item_not_transp"
+                    android:textColorHighlight="@color/darker_item"
                     android:textCursorDrawable="@drawable/color_cursor"
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -125,7 +125,7 @@
                 app:boxBackgroundMode="outline"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
-                app:hintTextColor="@color/dark_item_not_transp"
+                app:hintTextColor="@color/darker_item"
                 app:startIconDrawable="@drawable/ic_baseline_person_24"
                 app:startIconTint="@color/red">
 
