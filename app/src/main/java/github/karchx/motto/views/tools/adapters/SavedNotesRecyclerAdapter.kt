@@ -1,8 +1,10 @@
 package github.karchx.motto.views.tools.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
@@ -26,6 +28,10 @@ class SavedNotesRecyclerAdapter(
         holder.noteTitle.text = noteTitle
         holder.noteSource.text = noteSource
         holder.noteDateAdded.text = noteDateSaved
+
+        holder.openMenuBtn.setOnClickListener {
+            Log.d("кнопка", "нажата")
+        }
     }
 
     override fun getItemCount(): Int {
@@ -50,5 +56,6 @@ class SavedNotesRecyclerAdapter(
         val noteTitle: TextView = itemView.findViewById(R.id.textview_note_title)
         val noteSource: TextView = itemView.findViewById(R.id.textview_note_source)
         val noteDateAdded: TextView = itemView.findViewById(R.id.textview_note_time_added)
+        val openMenuBtn: ImageView = itemView.findViewById(R.id.imageview_note_menu)
     }
 }
