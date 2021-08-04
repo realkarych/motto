@@ -1,11 +1,14 @@
 package github.karchx.motto.views.notes
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -18,10 +21,13 @@ import github.karchx.motto.ads.AdViewer
 import github.karchx.motto.databinding.FragmentNotesBinding
 import github.karchx.motto.models.date.DateManager
 import github.karchx.motto.models.db.user_notes.UserNote
+import github.karchx.motto.search_engine.citaty_info_website.UIMotto
 import github.karchx.motto.viewmodels.notes.SavedNotesViewModel
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.SavedNotesRecyclerAdapter
+import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.Arrow
+import github.karchx.motto.views.tools.managers.DialogViewer
 import github.karchx.motto.views.tools.managers.Toaster
 
 class NotesFragment : Fragment() {
@@ -59,6 +65,7 @@ class NotesFragment : Fragment() {
 
         handleRecyclerScrollAction()
         handleSubmitNoteButton()
+        handleNotesRecyclerItemClick()
     }
 
     override fun onDestroyView() {
@@ -123,6 +130,9 @@ class NotesFragment : Fragment() {
 
                 Toaster.displayNoteAddedToast(requireContext(), isAdded = true)
                 mNotesBottomSheet.state = BottomSheetBehavior.STATE_COLLAPSED
+                hideKeyboard()
+                mNoteQuoteTextInput.text?.clear()
+                mNoteSourceTextInput.text?.clear()
             } else {
                 Toaster.displayNoteAddedToast(requireContext(), isAdded = false)
             }
@@ -131,8 +141,31 @@ class NotesFragment : Fragment() {
         }
     }
 
+    private fun handleNotesRecyclerItemClick() {
+        mSavedNotesRecyclerView.addOnItemTouchListener(
+            OnClickRecyclerItemListener(requireContext(), mSavedNotesRecyclerView, object :
+                OnClickRecyclerItemListener.OnItemClickListener {
+                override fun onItemClick(view: View, position: Int) {
+                }
+
+                override fun onItemLongClick(view: View, position: Int) {
+                }
+            })
+        )
+    }
+
     private fun displayFullNoteAd() {
         AdViewer(activity as MainActivity, requireContext()).displayFullNoteAd()
+    }
+
+    private fun hideKeyboard() {
+        val imm =
+            requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        var view = requireActivity().currentFocus
+        if (view == null) {
+            view = View(activity)
+        }
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun initSavedNotesRecycler() {
