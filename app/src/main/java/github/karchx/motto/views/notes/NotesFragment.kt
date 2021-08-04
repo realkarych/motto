@@ -177,7 +177,7 @@ class NotesFragment : Fragment() {
 
     private fun initBottomSheet() {
         mNotesBottomSheet = BottomSheetBehavior.from(binding.notesBottomSheet).apply {
-            peekHeight = 100
+            peekHeight = 70
             this.state = BottomSheetBehavior.STATE_COLLAPSED
             isHideable = false
         }
