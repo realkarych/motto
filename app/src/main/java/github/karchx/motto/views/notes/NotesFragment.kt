@@ -2,6 +2,7 @@ package github.karchx.motto.views.notes
 
 import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -27,11 +29,13 @@ import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.Arrow
 import github.karchx.motto.views.tools.managers.Toaster
 
+
 class NotesFragment : Fragment() {
 
     // Data
     private lateinit var notesViewModel: SavedNotesViewModel
     private var savedNotes: List<UserNote>? = null
+    private lateinit var lastClickedMenuNote: UserNote
 
     // Views
     private lateinit var mNotesBottomSheet: BottomSheetBehavior<FrameLayout>
@@ -87,7 +91,7 @@ class NotesFragment : Fragment() {
         } else {
             mSavedNotesTextView.text = getString(R.string.saved_notes)
 
-            val adapter = SavedNotesRecyclerAdapter(notes)
+            val adapter = SavedNotesRecyclerAdapter(this, notes)
             mSavedNotesRecyclerView.adapter = adapter
         }
     }
@@ -136,6 +140,28 @@ class NotesFragment : Fragment() {
 
             displayFullNoteAd()
         }
+    }
+
+    // Вызывается из adapter-а. ИМХО bad practise. Будущий я -- исправь это.
+    fun handleClickNoteMenu(note: UserNote) {
+        lastClickedMenuNote = note
+        Log.d("note", note.toString())
+        showNoteMenuDialog()
+    }
+
+    private fun showNoteMenuDialog() {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        builder.setMessage(getString(R.string.choose_action))
+            .setCancelable(true)
+            .setPositiveButton(getString(R.string.edit)) { _, _ ->
+
+            }
+            .setNegativeButton(getString(R.string.delete)) { _, _ ->
+
+            }
+
+        val alert: AlertDialog = builder.create()
+        alert.show()
     }
 
     private fun handleNotesRecyclerItemClick() {
