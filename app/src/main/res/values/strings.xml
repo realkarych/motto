@@ -39,4 +39,7 @@
     <string name="no_saved_notes">You have no saved mottos. Swipe the menu below to add first</string>
     <string name="note_added">Motto added</string>
     <string name="note_not_added">Motto not added. Fields filled incorrectly</string>
+    <string name="choose_action">Choose action</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
 </resources>

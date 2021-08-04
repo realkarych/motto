@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
 import github.karchx.motto.models.db.user_notes.UserNote
 import github.karchx.motto.models.storages.Constants
+import github.karchx.motto.views.notes.NotesFragment
 
 class SavedNotesRecyclerAdapter(
+    private val frag: NotesFragment,
     private val notes: List<UserNote>
 ) : RecyclerView.Adapter<SavedNotesRecyclerAdapter.SavedNotesViewHolder>() {
 
@@ -30,7 +32,7 @@ class SavedNotesRecyclerAdapter(
         holder.noteDateAdded.text = noteDateSaved
 
         holder.openMenuBtn.setOnClickListener {
-            Log.d("кнопка", "нажата")
+            frag.handleClickNoteMenu(UserNote(0, noteTitle, noteSource, noteDateSaved))
         }
     }
 
