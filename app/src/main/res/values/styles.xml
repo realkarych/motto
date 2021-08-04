@@ -80,4 +80,20 @@
         <item name="fontFamily">@font/roboto</item>
         <item name="trackTint">@color/darker_item</item>
     </style>
+
+    <style name="normalDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/darker_item</item>
+        <item name="android:textColor">@color/pink</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="@style/Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/soft_white</item>
+        <item name="backgroundTint">@color/darker_item</item>
+    </style>
+    <style name="NegativeButtonStyle" parent="@style/Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/red</item>
+        <item name="backgroundTint">@color/darker_item</item>
+    </style>
 </resources>

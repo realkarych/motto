@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import github.karchx.motto.R
 import github.karchx.motto.ads.AdViewer
@@ -35,7 +36,6 @@ class NotesFragment : Fragment() {
     // Data
     private lateinit var notesViewModel: SavedNotesViewModel
     private var savedNotes: List<UserNote>? = null
-    private lateinit var lastClickedMenuNote: UserNote
 
     // Views
     private lateinit var mNotesBottomSheet: BottomSheetBehavior<FrameLayout>
@@ -78,6 +78,10 @@ class NotesFragment : Fragment() {
         notesViewModel.insertNote(note)
     }
 
+    private fun deleteNote(note: UserNote) {
+        notesViewModel.deleteNote(note.quote, note.source)
+    }
+
     private fun observeSavedNotes() {
         notesViewModel.allNotes.observe(viewLifecycleOwner) { notes ->
             savedNotes = notes.reversed()
@@ -91,6 +95,7 @@ class NotesFragment : Fragment() {
         } else {
             mSavedNotesTextView.text = getString(R.string.saved_notes)
 
+            Log.d("notes", notes.toString())
             val adapter = SavedNotesRecyclerAdapter(this, notes)
             mSavedNotesRecyclerView.adapter = adapter
         }
@@ -144,20 +149,19 @@ class NotesFragment : Fragment() {
 
     // Вызывается из adapter-а. ИМХО bad practise. Будущий я -- исправь это.
     fun handleClickNoteMenu(note: UserNote) {
-        lastClickedMenuNote = note
         Log.d("note", note.toString())
-        showNoteMenuDialog()
+        showNoteMenuDialog(note)
     }
 
-    private fun showNoteMenuDialog() {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
-        builder.setMessage(getString(R.string.choose_action))
+    private fun showNoteMenuDialog(note: UserNote) {
+        val builder = MaterialAlertDialogBuilder(requireContext(), R.style.normalDialog)
+        builder.setTitle(getString(R.string.choose_action))
             .setCancelable(true)
             .setPositiveButton(getString(R.string.edit)) { _, _ ->
 
             }
             .setNegativeButton(getString(R.string.delete)) { _, _ ->
-
+                deleteNote(note)
             }
 
         val alert: AlertDialog = builder.create()
@@ -200,7 +204,7 @@ class NotesFragment : Fragment() {
 
     private fun initBottomSheet() {
         mNotesBottomSheet = BottomSheetBehavior.from(binding.notesBottomSheet).apply {
-            peekHeight = 70
+            peekHeight = 100
             this.state = BottomSheetBehavior.STATE_COLLAPSED
             isHideable = false
         }
