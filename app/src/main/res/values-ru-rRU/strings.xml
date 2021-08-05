@@ -44,4 +44,5 @@
     <string name="choose_action">Выбери действие</string>
     <string name="note_updated">Цитата изменена</string>
     <string name="note_not_updated">Цитата не изменена. Поля заполнены некорректно</string>
+    <string name="lets_edit_your_motto">Давай изменим твою цитату</string>
 </resources>
