@@ -41,5 +41,6 @@ class Constants {
         const val IS_COPY_WITH_SOURCE = "is_copy_with_source"
         const val IS_SORT_SOURCES_BY_RANDOM = "is_sort_sources_by_random"
         const val IS_SORT_MOTTOS_BY_RANDOM = "is_sort_mottos_by_random"
+        const val IS_SAVE_NOTE = "is_note_save"
     }
 }

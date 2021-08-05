@@ -42,4 +42,6 @@
     <string name="choose_action">Choose action</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
+    <string name="note_updated">Note updated</string>
+    <string name="note_not_updated">Note not updated. Fields filled incorrectly</string>
 </resources>
