@@ -150,9 +150,7 @@ class NotesFragment : Fragment() {
                 } else {
                     Toaster.displayNoteAddedToast(requireContext(), isAdded = false)
                 }
-            }
-
-            else {
+            } else {
                 if (inputNoteQuote != "") {
 
                     updateNote(
