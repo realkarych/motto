@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import github.karchx.motto.R
 import github.karchx.motto.models.db.saved_motto.SavedMotto
+import github.karchx.motto.models.db.user_notes.UserNote
 import github.karchx.motto.search_engine.citaty_info_website.UIMotto
 
 
@@ -60,6 +61,24 @@ class DialogViewer {
                 )
                 ivAddToFavourites.visibility = View.VISIBLE
             }
+        }
+
+        fun displayFullNoteDialog(
+            dialog: Dialog,
+            clickedNote: UserNote
+        ) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            val lp = dialog.window!!.attributes
+            lp.dimAmount = 0.9f
+            dialog.window!!.attributes = lp
+            dialog.window!!.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+            dialog.setCancelable(true)
+            dialog.show()
+
+            val tvFullMottoQuote = dialog.findViewById<TextView>(R.id.textview_note_full_quote)
+            val tvFullMottoSource = dialog.findViewById<TextView>(R.id.textview_note_full_source)
+            tvFullMottoQuote.text = clickedNote.quote
+            tvFullMottoSource.text = clickedNote.source
         }
     }
 }
