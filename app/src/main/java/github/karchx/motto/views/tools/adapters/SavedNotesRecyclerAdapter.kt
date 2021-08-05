@@ -31,7 +31,7 @@ class SavedNotesRecyclerAdapter(
         holder.noteDateAdded.text = noteDateSaved
 
         holder.openMenuBtn.setOnClickListener {
-            frag.handleClickNoteMenu(UserNote(0, noteTitle, noteSource, noteDateSaved))
+            frag.handleClickNoteMenu(UserNote(0, notes[position].quote, noteSource, noteDateSaved))
         }
     }
 
