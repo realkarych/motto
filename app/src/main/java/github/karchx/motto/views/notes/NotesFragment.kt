@@ -1,6 +1,7 @@
 package github.karchx.motto.views.notes
 
 import android.app.Activity
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -19,6 +21,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import github.karchx.motto.R
 import github.karchx.motto.ads.AdViewer
+import github.karchx.motto.copying.Copier
 import github.karchx.motto.databinding.FragmentNotesBinding
 import github.karchx.motto.models.date.DateManager
 import github.karchx.motto.models.db.user_notes.UserNote
@@ -28,6 +31,7 @@ import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.SavedNotesRecyclerAdapter
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.Arrow
+import github.karchx.motto.views.tools.managers.DialogViewer
 import github.karchx.motto.views.tools.managers.Toaster
 
 
@@ -37,6 +41,7 @@ class NotesFragment : Fragment() {
     private lateinit var notesViewModel: SavedNotesViewModel
     private lateinit var userPrefs: UserPrefs
     private var savedNotes: List<UserNote>? = null
+    private var clickedNote: UserNote? = null
     private var oldNote: UserNote? = null
 
     // Views
@@ -47,6 +52,8 @@ class NotesFragment : Fragment() {
     private lateinit var mNoteQuoteTextInput: TextInputEditText
     private lateinit var mNoteSourceTextInput: TextInputEditText
     private lateinit var mAddMoteTextView: TextView
+    private lateinit var mFullNoteDialog: Dialog
+    private lateinit var mFullNoteCardView: CardView
 
     private var _binding: FragmentNotesBinding? = null
     private val binding get() = _binding!!
@@ -70,6 +77,8 @@ class NotesFragment : Fragment() {
         handleRecyclerScrollAction()
         handleSubmitNoteButton()
         handleNotesRecyclerItemClick()
+
+        setFullNoteCardViewClickListener()
     }
 
     override fun onDestroyView() {
@@ -122,6 +131,19 @@ class NotesFragment : Fragment() {
         })
     }
 
+    private fun setFullNoteCardViewClickListener() {
+        mFullNoteCardView.setOnClickListener {
+            val text = Copier(activity as MainActivity, requireContext()).getMottoDataToCopy(
+                quote = clickedNote!!.quote,
+                source = clickedNote!!.source,
+                isCopyWithAuthor = userPrefs.copySettings.isWithSource()
+            )
+
+            Copier(activity as MainActivity, requireContext()).copyText(text)
+            Toaster.displayTextIsCopiedToast(requireContext())
+        }
+    }
+
     private fun handleSubmitNoteButton() {
         mSubmitNoteButton.setOnClickListener {
             val inputNoteQuote = mNoteQuoteTextInput.text?.trim().toString()
@@ -152,7 +174,6 @@ class NotesFragment : Fragment() {
                 }
             } else {
                 if (inputNoteQuote != "") {
-
                     updateNote(
                         oldNote!!,
                         UserNote(
@@ -176,7 +197,6 @@ class NotesFragment : Fragment() {
                     Toaster.displayNoteUpdatedToast(requireContext(), isUpdated = false)
                 }
             }
-
 
             displayFullNoteAd()
         }
@@ -215,6 +235,8 @@ class NotesFragment : Fragment() {
             OnClickRecyclerItemListener(requireContext(), mSavedNotesRecyclerView, object :
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
+                    clickedNote = savedNotes?.get(position)
+                    DialogViewer.displayFullNoteDialog(mFullNoteDialog, clickedNote!!)
                 }
 
                 override fun onItemLongClick(view: View, position: Int) {
@@ -265,5 +287,8 @@ class NotesFragment : Fragment() {
         mNoteSourceTextInput = binding.edittextNoteSource
         mSubmitNoteButton = binding.buttonSubmitNewNote
         mAddMoteTextView = binding.textviewAddNote
+        mFullNoteDialog = Dialog(requireActivity())
+        mFullNoteDialog.setContentView(R.layout.dialog_full_note)
+        mFullNoteCardView = mFullNoteDialog.findViewById(R.id.cardview_full_note_item)
     }
 }
