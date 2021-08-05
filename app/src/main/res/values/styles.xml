@@ -92,6 +92,7 @@
         <item name="android:textColor">@color/soft_white</item>
         <item name="backgroundTint">@color/darker_item</item>
     </style>
+
     <style name="NegativeButtonStyle" parent="@style/Widget.MaterialComponents.Button">
         <item name="android:textColor">@color/red</item>
         <item name="backgroundTint">@color/darker_item</item>
