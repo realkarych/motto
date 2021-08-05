@@ -46,6 +46,7 @@ class NotesFragment : Fragment() {
     private lateinit var mSubmitNoteButton: Button
     private lateinit var mNoteQuoteTextInput: TextInputEditText
     private lateinit var mNoteSourceTextInput: TextInputEditText
+    private lateinit var mAddMoteTextView: TextView
 
     private var _binding: FragmentNotesBinding? = null
     private val binding get() = _binding!!
@@ -169,6 +170,8 @@ class NotesFragment : Fragment() {
                     hideKeyboard()
                     mNoteQuoteTextInput.text?.clear()
                     mNoteSourceTextInput.text?.clear()
+                    mSubmitNoteButton.setText(R.string.submit)
+                    mAddMoteTextView.setText(R.string.lets_create_your_motto)
 
                     userPrefs.noteSaves.setNoteMode(isSave = true)
                 } else {
@@ -196,6 +199,8 @@ class NotesFragment : Fragment() {
 
                 mNoteQuoteTextInput.setText(note.quote)
                 mNoteSourceTextInput.setText(note.source)
+                mSubmitNoteButton.setText(R.string.edit)
+                mAddMoteTextView.setText(R.string.lets_edit_your_motto)
 
                 mNotesBottomSheet.state = BottomSheetBehavior.STATE_EXPANDED
             }
@@ -261,5 +266,6 @@ class NotesFragment : Fragment() {
         mNoteQuoteTextInput = binding.edittextNoteQuote
         mNoteSourceTextInput = binding.edittextNoteSource
         mSubmitNoteButton = binding.buttonSubmitNewNote
+        mAddMoteTextView = binding.textviewAddNote
     }
 }
