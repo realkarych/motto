@@ -13,6 +13,7 @@
         <TextView
             android:id="@+id/textview_saved_notes"
             style="@style/textViewTitle"
+            android:textSize="20sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
