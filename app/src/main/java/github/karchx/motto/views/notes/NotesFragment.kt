@@ -235,11 +235,11 @@ class NotesFragment : Fragment() {
             OnClickRecyclerItemListener(requireContext(), mSavedNotesRecyclerView, object :
                 OnClickRecyclerItemListener.OnItemClickListener {
                 override fun onItemClick(view: View, position: Int) {
-                    clickedNote = savedNotes?.get(position)
-                    DialogViewer.displayFullNoteDialog(mFullNoteDialog, clickedNote!!)
                 }
 
                 override fun onItemLongClick(view: View, position: Int) {
+                    clickedNote = savedNotes?.get(position)
+                    DialogViewer.displayFullNoteDialog(mFullNoteDialog, clickedNote!!)
                 }
             })
         )

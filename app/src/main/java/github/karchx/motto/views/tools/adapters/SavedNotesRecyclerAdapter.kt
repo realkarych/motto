@@ -1,5 +1,6 @@
 package github.karchx.motto.views.tools.adapters
 
+import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import github.karchx.motto.R
 import github.karchx.motto.models.db.user_notes.UserNote
 import github.karchx.motto.models.storages.Constants
 import github.karchx.motto.views.notes.NotesFragment
+import android.view.TouchDelegate
 
 class SavedNotesRecyclerAdapter(
     private val frag: NotesFragment,
