@@ -22,6 +22,7 @@ import github.karchx.motto.ads.AdViewer
 import github.karchx.motto.databinding.FragmentNotesBinding
 import github.karchx.motto.models.date.DateManager
 import github.karchx.motto.models.db.user_notes.UserNote
+import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.viewmodels.notes.SavedNotesViewModel
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.SavedNotesRecyclerAdapter
@@ -34,7 +35,9 @@ class NotesFragment : Fragment() {
 
     // Data
     private lateinit var notesViewModel: SavedNotesViewModel
+    private lateinit var userPrefs: UserPrefs
     private var savedNotes: List<UserNote>? = null
+    private var oldNote: UserNote? = null
 
     // Views
     private lateinit var mNotesBottomSheet: BottomSheetBehavior<FrameLayout>
@@ -75,6 +78,10 @@ class NotesFragment : Fragment() {
 
     private fun saveNote(note: UserNote) {
         notesViewModel.insertNote(note)
+    }
+
+    private fun updateNote(oldNote: UserNote, note: UserNote) {
+        notesViewModel.updateNote(oldNote.quote, oldNote.source, note.quote, note.source)
     }
 
     private fun deleteNote(note: UserNote) {
@@ -118,28 +125,57 @@ class NotesFragment : Fragment() {
         mSubmitNoteButton.setOnClickListener {
             val inputNoteQuote = mNoteQuoteTextInput.text?.trim().toString()
             var inputNoteSource = mNoteSourceTextInput.text?.trim().toString()
-
-            if (inputNoteQuote != "") {
-                if (inputNoteSource == "") {
-                    inputNoteSource = getString(R.string.unknown_author)
-                }
-                saveNote(
-                    UserNote(
-                        id = 0,
-                        quote = inputNoteQuote,
-                        source = inputNoteSource,
-                        dateSaved = DateManager().getCurrentDate()
-                    )
-                )
-
-                Toaster.displayNoteAddedToast(requireContext(), isAdded = true)
-                mNotesBottomSheet.state = BottomSheetBehavior.STATE_COLLAPSED
-                hideKeyboard()
-                mNoteQuoteTextInput.text?.clear()
-                mNoteSourceTextInput.text?.clear()
-            } else {
-                Toaster.displayNoteAddedToast(requireContext(), isAdded = false)
+            if (inputNoteSource == "") {
+                inputNoteSource = getString(R.string.unknown_author)
             }
+
+            if (userPrefs.noteSaves.noteSaveMode()) {
+                if (inputNoteQuote != "") {
+
+                    saveNote(
+                        UserNote(
+                            id = 0,
+                            quote = inputNoteQuote,
+                            source = inputNoteSource,
+                            dateSaved = DateManager().getCurrentDate()
+                        )
+                    )
+
+                    Toaster.displayNoteAddedToast(requireContext(), isAdded = true)
+                    mNotesBottomSheet.state = BottomSheetBehavior.STATE_COLLAPSED
+                    hideKeyboard()
+                    mNoteQuoteTextInput.text?.clear()
+                    mNoteSourceTextInput.text?.clear()
+                } else {
+                    Toaster.displayNoteAddedToast(requireContext(), isAdded = false)
+                }
+            }
+
+            else {
+                if (inputNoteQuote != "") {
+
+                    updateNote(
+                        oldNote!!,
+                        UserNote(
+                            id = 0,
+                            quote = inputNoteQuote,
+                            source = inputNoteSource,
+                            dateSaved = DateManager().getCurrentDate()
+                        )
+                    )
+
+                    Toaster.displayNoteUpdatedToast(requireContext(), isUpdated = true)
+                    mNotesBottomSheet.state = BottomSheetBehavior.STATE_COLLAPSED
+                    hideKeyboard()
+                    mNoteQuoteTextInput.text?.clear()
+                    mNoteSourceTextInput.text?.clear()
+
+                    userPrefs.noteSaves.setNoteMode(isSave = true)
+                } else {
+                    Toaster.displayNoteUpdatedToast(requireContext(), isUpdated = false)
+                }
+            }
+
 
             displayFullNoteAd()
         }
@@ -147,6 +183,7 @@ class NotesFragment : Fragment() {
 
     // Вызывается из adapter-а. ИМХО bad practise. Будущий я -- исправь это.
     fun handleClickNoteMenu(note: UserNote) {
+        oldNote = note
         showNoteMenuDialog(note)
     }
 
@@ -155,7 +192,12 @@ class NotesFragment : Fragment() {
         builder.setTitle(getString(R.string.choose_action))
             .setCancelable(true)
             .setPositiveButton(getString(R.string.edit)) { _, _ ->
+                userPrefs.noteSaves.setNoteMode(isSave = false)
 
+                mNoteQuoteTextInput.setText(note.quote)
+                mNoteSourceTextInput.setText(note.source)
+
+                mNotesBottomSheet.state = BottomSheetBehavior.STATE_EXPANDED
             }
             .setNegativeButton(getString(R.string.delete)) { _, _ ->
                 deleteNote(note)
@@ -209,6 +251,7 @@ class NotesFragment : Fragment() {
 
     private fun initData() {
         notesViewModel = ViewModelProvider(this).get(SavedNotesViewModel::class.java)
+        userPrefs = UserPrefs(activity as MainActivity)
     }
 
     private fun initViews() {

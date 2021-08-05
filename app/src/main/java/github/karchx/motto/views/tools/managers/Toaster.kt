@@ -24,5 +24,17 @@ class Toaster {
             val toast = Toast.makeText(context.applicationContext, text, duration)
             toast.show()
         }
+
+        fun displayNoteUpdatedToast(context: Context, isUpdated: Boolean) {
+            var text: String = if (isUpdated) {
+                context.getString(R.string.note_updated)
+            } else {
+                context.getString(R.string.note_not_updated)
+            }
+
+            val duration = Toast.LENGTH_SHORT
+            val toast = Toast.makeText(context.applicationContext, text, duration)
+            toast.show()
+        }
     }
 }
