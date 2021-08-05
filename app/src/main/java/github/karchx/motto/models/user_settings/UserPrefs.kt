@@ -11,4 +11,5 @@ class UserPrefs(activity: MainActivity) {
     val copySettings = CopySettings(userPrefs)
     val mottosRandomness = MottosRandomness(userPrefs)
     val sourcesRandomness = SourcesRandomness(userPrefs)
+    val noteSaves = NoteSaves(userPrefs)
 }
