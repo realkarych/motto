@@ -2,7 +2,6 @@ package github.karchx.motto.views.notes
 
 import android.app.Activity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -94,11 +93,10 @@ class NotesFragment : Fragment() {
             mSavedNotesTextView.text = getString(R.string.no_saved_notes)
         } else {
             mSavedNotesTextView.text = getString(R.string.saved_notes)
-
-            Log.d("notes", notes.toString())
-            val adapter = SavedNotesRecyclerAdapter(this, notes)
-            mSavedNotesRecyclerView.adapter = adapter
         }
+
+        val adapter = SavedNotesRecyclerAdapter(this, notes)
+        mSavedNotesRecyclerView.adapter = adapter
     }
 
     private fun handleRecyclerScrollAction() {
@@ -149,7 +147,6 @@ class NotesFragment : Fragment() {
 
     // Вызывается из adapter-а. ИМХО bad practise. Будущий я -- исправь это.
     fun handleClickNoteMenu(note: UserNote) {
-        Log.d("note", note.toString())
         showNoteMenuDialog(note)
     }
 
