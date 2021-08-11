@@ -154,9 +154,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:backgroundTint="@color/dark_item"
+                android:backgroundTint="@color/red"
                 android:text="@string/submit"
-                android:textColor="@color/pink"
+                android:textColor="@color/darker_item"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
