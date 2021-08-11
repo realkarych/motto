@@ -1,9 +1,13 @@
 package github.karchx.motto.views.settings
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
@@ -24,6 +28,7 @@ class SettingsFragment : Fragment() {
     private lateinit var switchIsCopyWithSource: SwitchCompat
     private lateinit var switchIsSortSourcesByRandom: SwitchCompat
     private lateinit var switchIsSortMottosByRandom: SwitchCompat
+    private lateinit var buttonRateApp: Button
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
@@ -44,11 +49,25 @@ class SettingsFragment : Fragment() {
 
         setSwitchesStates()
         handleSwitches()
+
+        handleRateAppButtonClick()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun handleRateAppButtonClick() {
+        val packageName = requireActivity().packageName
+
+        buttonRateApp.setOnClickListener {
+            try {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName")))
+            } catch (e: ActivityNotFoundException) {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$packageName")))
+            }
+        }
     }
 
     private fun setSwitchesStates() {
@@ -82,5 +101,6 @@ class SettingsFragment : Fragment() {
         switchIsCopyWithSource = binding.switchIsCopyWithSource
         switchIsSortSourcesByRandom = binding.switchIsSortSourcesByRandom
         switchIsSortMottosByRandom = binding.switchIsSortMottosByRandom
+        buttonRateApp = binding.buttonOpenPlaymarketPage
     }
 }
