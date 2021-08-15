@@ -83,6 +83,7 @@ class NotesFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        userPrefs.noteSaves.setNoteMode(isSave = true)
         _binding = null
     }
 
