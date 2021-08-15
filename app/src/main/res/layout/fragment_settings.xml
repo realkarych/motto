@@ -30,13 +30,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Button
+            android:id="@+id/button_open_tg_channel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/dark_item_not_transp"
+            android:text="@string/open_tg_channel"
+            android:textColor="@color/pink"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_open_playmarket_page" />
+
         <androidx.cardview.widget.CardView
             android:id="@+id/settings_card1"
             style="@style/mottoCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_open_playmarket_page">
+            app:layout_constraintTop_toBottomOf="@+id/button_open_tg_channel">
 
             <RelativeLayout
                 android:layout_width="match_parent"
