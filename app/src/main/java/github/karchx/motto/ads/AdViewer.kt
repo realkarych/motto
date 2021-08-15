@@ -23,7 +23,7 @@ class AdViewer(private val activity: MainActivity, private val context: Context)
     fun displayFullNoteAd() {
         val numberOfDisplayedAds = userPrefs.noteOpenings.getNumberOfOpens()
 
-        if (numberOfDisplayedAds < 3) {
+        if (numberOfDisplayedAds < 2) {
             userPrefs.noteOpenings.updateNumberOfOpens()
         } else {
             userPrefs.noteOpenings.resetNumberOfOpens()
