@@ -31,11 +31,8 @@ class InAppUpdate(activity: Activity) : InstallStateUpdatedListener {
             // Check if update is available
             if (info.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) { // UPDATE IS AVAILABLE
 
-                if (info.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-                    startUpdate(info, AppUpdateType.IMMEDIATE)
-                } else if (info.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
-                    startUpdate(info, AppUpdateType.FLEXIBLE)
-                }
+                startUpdate(info, AppUpdateType.IMMEDIATE)
+
             } else {
                 // UPDATE IS NOT AVAILABLE
             }
