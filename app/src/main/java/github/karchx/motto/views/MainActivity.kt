@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_settings
             )
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         navView.selectedItemId = navView.menu.getItem(2).itemId
@@ -53,26 +54,37 @@ class MainActivity : AppCompatActivity() {
         } catch (ex: Exception) {
         }
 
-        // Caused crashes on Xiaomi
+        // Caused crashes
         try {
             inAppUpdate = InAppUpdate(this)
         } catch (ex: Exception) {
         }
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        inAppUpdate?.onActivityResult(requestCode, resultCode, data)
+        // Caused crashes
+        try {
+            inAppUpdate?.onActivityResult(requestCode, resultCode, data)
+        } catch (ex: Exception) {
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        inAppUpdate?.onResume()
+        // Caused crashes
+        try {
+            inAppUpdate?.onResume()
+        } catch (ex: Exception) {
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        inAppUpdate?.onDestroy()
+        // Caused crashes
+        try {
+            inAppUpdate?.onDestroy()
+        } catch (ex: Exception) {
+        }
     }
 }
