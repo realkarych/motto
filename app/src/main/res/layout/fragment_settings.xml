@@ -18,17 +18,17 @@
 
         <Button
             android:id="@+id/button_open_playmarket_page"
-            android:text="@string/give_feedback_or_rate"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:textColor="@color/pink"
             android:backgroundTint="@color/dark_item_not_transp"
+            android:text="@string/give_feedback_or_rate"
+            android:textColor="@color/pink"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/settings_card1"
