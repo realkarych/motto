@@ -46,4 +46,5 @@
     <string name="note_not_updated">Цитата не изменена. Поля заполнены некорректно</string>
     <string name="lets_edit_your_motto">Давай изменим твою цитату</string>
     <string name="give_feedback_or_rate">Предложить идею | Оценить</string>
+    <string name="open_tg_channel">Канал разработчика</string>
 </resources>

@@ -29,6 +29,7 @@ class SettingsFragment : Fragment() {
     private lateinit var switchIsSortSourcesByRandom: SwitchCompat
     private lateinit var switchIsSortMottosByRandom: SwitchCompat
     private lateinit var buttonRateApp: Button
+    private lateinit var buttonTgChannel: Button
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
@@ -51,6 +52,7 @@ class SettingsFragment : Fragment() {
         handleSwitches()
 
         handleRateAppButtonClick()
+        handleOpenTgChannelButtonClick()
     }
 
     override fun onDestroyView() {
@@ -76,6 +78,21 @@ class SettingsFragment : Fragment() {
                         Uri.parse("https://play.google.com/store/apps/details?id=$packageName")
                     )
                 )
+            }
+        }
+    }
+
+    private fun handleOpenTgChannelButtonClick() {
+        buttonTgChannel.setOnClickListener {
+            val nomPackageInfo = "org.telegram.messenger"
+            val tg_channel_uri = "https://t.me/karchx_blog"
+            try {
+                requireActivity().packageManager.getPackageInfo(nomPackageInfo, 0)
+                val _intent = Intent(Intent.ACTION_VIEW, Uri.parse(tg_channel_uri))
+                requireActivity().startActivity(_intent)
+            } catch (e: Exception) {
+                val _intent = Intent(Intent.ACTION_VIEW, Uri.parse(tg_channel_uri))
+                requireActivity().startActivity(_intent)
             }
         }
     }
@@ -112,5 +129,6 @@ class SettingsFragment : Fragment() {
         switchIsSortSourcesByRandom = binding.switchIsSortSourcesByRandom
         switchIsSortMottosByRandom = binding.switchIsSortMottosByRandom
         buttonRateApp = binding.buttonOpenPlaymarketPage
+        buttonTgChannel = binding.buttonOpenTgChannel
     }
 }
