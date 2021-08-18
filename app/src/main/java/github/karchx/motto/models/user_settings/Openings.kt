@@ -26,7 +26,7 @@ class NoteOpenings(private val prefs: SharedPreferences) {
     }
 
     fun updateNumberOfOpens() {
-        val opensNumber = MottoOpenings(prefs).getNumberOfOpens()
+        val opensNumber = NoteOpenings(prefs).getNumberOfOpens()
         prefs.edit().putInt(Constants.NUMBER_OF_DISPLAYED_ADS_NOTES, opensNumber + 1).apply()
     }
 
