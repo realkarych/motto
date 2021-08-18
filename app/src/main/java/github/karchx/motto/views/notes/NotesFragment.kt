@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import github.karchx.motto.R
 import github.karchx.motto.ads.AdViewer
@@ -54,6 +55,7 @@ class NotesFragment : Fragment() {
     private lateinit var mAddMoteTextView: TextView
     private lateinit var mFullNoteDialog: Dialog
     private lateinit var mFullNoteCardView: CardView
+    private lateinit var mAddNoteFab: FloatingActionButton
 
     private var _binding: FragmentNotesBinding? = null
     private val binding get() = _binding!!
@@ -76,6 +78,7 @@ class NotesFragment : Fragment() {
 
         handleRecyclerScrollAction()
         handleSubmitNoteButton()
+        handleAddNoteFabClick()
         handleNotesRecyclerItemClick()
 
         setFullNoteCardViewClickListener()
@@ -142,6 +145,12 @@ class NotesFragment : Fragment() {
 
             Copier(activity as MainActivity, requireContext()).copyText(text)
             Toaster.displayTextIsCopiedToast(requireContext())
+        }
+    }
+
+    private fun handleAddNoteFabClick() {
+        mAddNoteFab.setOnClickListener {
+            mNotesBottomSheet.state = BottomSheetBehavior.STATE_EXPANDED
         }
     }
 
@@ -269,7 +278,7 @@ class NotesFragment : Fragment() {
 
     private fun initBottomSheet() {
         mNotesBottomSheet = BottomSheetBehavior.from(binding.notesBottomSheet).apply {
-            peekHeight = 100
+            peekHeight = 85
             this.state = BottomSheetBehavior.STATE_COLLAPSED
             isHideable = false
         }
@@ -288,6 +297,7 @@ class NotesFragment : Fragment() {
         mNoteSourceTextInput = binding.edittextNoteSource
         mSubmitNoteButton = binding.buttonSubmitNewNote
         mAddMoteTextView = binding.textviewAddNote
+        mAddNoteFab = binding.addNoteFab
         mFullNoteDialog = Dialog(requireActivity())
         mFullNoteDialog.setContentView(R.layout.dialog_full_note)
         mFullNoteCardView = mFullNoteDialog.findViewById(R.id.cardview_full_note_item)
