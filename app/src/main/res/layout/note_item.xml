@@ -29,8 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/textview_note_title"
             android:layout_margin="8dp"
-            android:fontFamily="@font/patayya"
             android:layout_toStartOf="@+id/textview_note_time_added"
+            android:fontFamily="@font/patayya"
             android:text="Stub"
             tools:ignore="HardcodedText" />
 

@@ -50,10 +50,10 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textview_note_full_quote"
                     android:layout_marginStart="10dp"
-                    android:fontFamily="@font/patayya"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/patayya"
                     android:text="Stub"
                     android:textColor="@color/pink"
                     tools:ignore="HardcodedText" />
