@@ -17,10 +17,7 @@
             style="@style/textViewRegular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_margin="8dp"
             android:layout_toStartOf="@+id/textview_note_time_added"
             android:text="Stub"
             tools:ignore="HardcodedText" />
@@ -31,10 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textview_note_title"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_margin="8dp"
             android:layout_toStartOf="@+id/textview_note_time_added"
             android:text="Stub"
             tools:ignore="HardcodedText" />
@@ -46,8 +40,8 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textview_note_source"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:text="Stub"
             tools:ignore="HardcodedText" />
 
@@ -64,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:foreground="?android:attr/selectableItemBackground"
-                android:padding="8dp"
+                android:padding="6dp"
                 android:scaleType="center"
                 android:src="@drawable/ic_baseline_more_vert_24" />
 
