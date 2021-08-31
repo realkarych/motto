@@ -51,10 +51,10 @@
                     android:layout_below="@id/textview_motto_full_quote"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/patayya"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_toStartOf="@id/imageview_is_saved_motto"
+                    android:fontFamily="@font/patayya"
                     android:text="Stub"
                     android:textColor="@color/pink"
                     tools:ignore="HardcodedText" />
