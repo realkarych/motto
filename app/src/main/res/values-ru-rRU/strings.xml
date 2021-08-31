@@ -36,7 +36,7 @@
     <string name="lets_create_your_motto">Давай добавим твою цитату</string>
     <string name="submit">Добавить</string>
     <string name="saved_notes">Твои цитаты. Долго нажми по карточке, чтобы открыть полностью</string>
-    <string name="no_saved_notes">У тебя нет добавленных цитат. Нажми на кнопку, чтобы добавить первую</string>
+    <string name="no_saved_notes">У тебя нет добавленных цитат. Нажми на кнопку, чтобы добавить</string>
     <string name="note_added">Цитата добавлена</string>
     <string name="note_not_added">Цитата не добавлена. Поля заполнены некорректно</string>
     <string name="delete">Удалить</string>

@@ -15,6 +15,7 @@ import github.karchx.motto.databinding.FragmentSettingsBinding
 import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.managers.Arrow
+import github.karchx.motto.views.tools.managers.Vibrator
 
 class SettingsFragment : Fragment() {
 
@@ -106,14 +107,17 @@ class SettingsFragment : Fragment() {
     private fun handleSwitches() {
         switchIsCopyWithSource.setOnCheckedChangeListener { _, _ ->
             userPrefs.copySettings.updateState()
+            Vibrator().setLowVibration(requireContext())
         }
 
         switchIsSortSourcesByRandom.setOnCheckedChangeListener { _, _ ->
             userPrefs.sourcesRandomness.updateState()
+            Vibrator().setLowVibration(requireContext())
         }
 
         switchIsSortMottosByRandom.setOnCheckedChangeListener { _, _ ->
             userPrefs.mottosRandomness.updateState()
+            Vibrator().setLowVibration(requireContext())
         }
     }
 
