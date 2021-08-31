@@ -4,7 +4,7 @@
     <string name="title_dashboard">Подборки</string>
     <string name="title_favourites">Любимое</string>
     <string name="unknown_author">Автор неизвестен</string>
-    <string name="motto_copied">Цитата скопирована!</string>
+    <string name="motto_copied">Цитата скопирована</string>
     <string name="motto_source">Источник:</string>
     <string name="authors">Авторы</string>
     <string name="topics">Темы</string>
@@ -13,15 +13,15 @@
     <string name="found_on_request">Найдено по запросу</string>
     <string name="not_found_on_request">Ничего не найдено. Нажми тут для просмотра нашей подборки</string>
     <string name="not_found_random_mottos">Цитаты из нашей подборки не найдены. Проверь интернет-соединение</string>
-    <string name="not_saved_any_mottos">У тебя нет сохранённых цитат. Нажми на любую цитату, кликни по кнопке \"Лайк\", и цитата отобразится здесь</string>
+    <string name="not_saved_any_mottos">У тебя нет сохранённых цитат. Нажми на любую цитату, кликни на ❤️, и цитата отобразится здесь</string>
     <string name="not_found_any_mottos">Цитаты не найдены. Проверь интернет-соединение</string>
-    <string name="motto_about">Чтобы скопировать, кликни по цитате</string>
-    <string name="how_to_delete_motto">Чтобы удалить цитату, долго кликни по ней</string>
+    <string name="motto_about">Чтобы скопировать, кликни по карточке</string>
+    <string name="how_to_delete_motto">Чтобы удалить цитату, удерживай карточку</string>
     <string name="films">Фильмы</string>
     <string name="anime">Аниме</string>
     <string name="channels">Каналы</string>
     <string name="series">Сериалы</string>
-    <string name="app_updated">Приложение обновлено.</string>
+    <string name="app_updated">Приложение обновлено</string>
     <string name="restart">Перезапуск</string>
     <string name="books">Книги</string>
     <string name="title_settings">Настройки</string>
@@ -36,7 +36,7 @@
     <string name="lets_create_your_motto">Давай добавим твою цитату</string>
     <string name="submit">Добавить</string>
     <string name="saved_notes">Твои цитаты. Долго нажми по карточке, чтобы открыть полностью</string>
-    <string name="no_saved_notes">У тебя нет добавленных цитат. Свайпни меню внизу и добавь первую</string>
+    <string name="no_saved_notes">У тебя нет добавленных цитат. Нажми на кнопку, чтобы добавить первую</string>
     <string name="note_added">Цитата добавлена</string>
     <string name="note_not_added">Цитата не добавлена. Поля заполнены некорректно</string>
     <string name="delete">Удалить</string>
