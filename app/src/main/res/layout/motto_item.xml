@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/textview_motto_title"
             android:layout_margin="8dp"
+            android:fontFamily="@font/patayya"
             android:layout_toStartOf="@+id/textview_db_motto_time_added"
             android:text="Stub"
             tools:ignore="HardcodedText" />
