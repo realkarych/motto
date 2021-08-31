@@ -26,6 +26,7 @@ import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.DialogViewer
 import github.karchx.motto.views.tools.managers.Toaster
+import github.karchx.motto.views.tools.managers.Vibrator
 
 class FavouritesFragment : Fragment() {
 
@@ -97,6 +98,7 @@ class FavouritesFragment : Fragment() {
                     clickedMotto = savedMottos[position]
                     savedMottosViewModel.deleteMotto(clickedMotto.quote, clickedMotto.source)
                     observeDbMottos()
+                    Vibrator().setLowVibration(requireContext())
                 }
             })
         )

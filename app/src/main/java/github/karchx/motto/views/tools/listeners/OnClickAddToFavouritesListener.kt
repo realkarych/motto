@@ -2,9 +2,6 @@ package github.karchx.motto.views.tools.listeners
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.os.Build
-import android.os.VibrationEffect
-import android.os.Vibrator
 import android.widget.ImageView
 import androidx.appcompat.content.res.AppCompatResources
 import github.karchx.motto.R
@@ -12,6 +9,7 @@ import github.karchx.motto.models.date.DateManager
 import github.karchx.motto.models.db.saved_motto.SavedMotto
 import github.karchx.motto.search_engine.citaty_info_website.UIMotto
 import github.karchx.motto.viewmodels.SavedMottosViewModel
+import github.karchx.motto.views.tools.managers.Vibrator
 
 class OnClickAddToFavouritesListener {
 
@@ -46,7 +44,7 @@ class OnClickAddToFavouritesListener {
                     )
                 )
 
-                setVibration(context)
+                Vibrator().setLowVibration(context)
                 addToFavouritesImageView.setImageDrawable(getAddedMottoIcon(context))
             }
         }
@@ -63,16 +61,6 @@ class OnClickAddToFavouritesListener {
                 context,
                 R.drawable.ic_favorite
             )
-        }
-
-        private fun setVibration(context: Context) {
-            val v = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                v.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE))
-            } else {
-                //deprecated in API 26
-                v.vibrate(50)
-            }
         }
     }
 }

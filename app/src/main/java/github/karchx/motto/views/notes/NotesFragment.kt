@@ -34,6 +34,7 @@ import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.Arrow
 import github.karchx.motto.views.tools.managers.DialogViewer
 import github.karchx.motto.views.tools.managers.Toaster
+import github.karchx.motto.views.tools.managers.Vibrator
 
 
 class NotesFragment : Fragment() {
@@ -250,6 +251,7 @@ class NotesFragment : Fragment() {
                 override fun onItemLongClick(view: View, position: Int) {
                     clickedNote = savedNotes?.get(position)
                     DialogViewer.displayFullNoteDialog(mFullNoteDialog, clickedNote!!)
+                    Vibrator().setLowVibration(requireContext())
                 }
             })
         )
