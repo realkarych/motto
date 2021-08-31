@@ -16,7 +16,7 @@
             style="@style/textViewRegular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="8dp"
             android:text="Stub"
             tools:ignore="HardcodedText" />
 
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textview_motto_title"
-            android:layout_margin="10dp"
+            android:layout_margin="8dp"
             android:layout_toStartOf="@+id/textview_db_motto_time_added"
             android:text="Stub"
             tools:ignore="HardcodedText" />
@@ -38,8 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textview_motto_source"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:text="Stub"
             android:visibility="invisible"
             tools:ignore="HardcodedText" />
