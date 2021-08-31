@@ -15,11 +15,6 @@ class AdViewer(private val activity: MainActivity, private val context: Context)
 
     private val userPrefs = UserPrefs(activity)
 
-    fun displayBanner(adView: AdView?) {
-        val adRequest: AdRequest = AdRequest.Builder().build()
-        adView?.loadAd(adRequest)
-    }
-
     fun displayFullNoteAd() {
         val numberOfDisplayedAds = userPrefs.noteOpenings.getNumberOfOpens()
 
