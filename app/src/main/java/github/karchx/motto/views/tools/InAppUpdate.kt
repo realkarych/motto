@@ -30,8 +30,11 @@ class InAppUpdate(activity: Activity) : InstallStateUpdatedListener {
         appUpdateManager.appUpdateInfo.addOnSuccessListener { info ->
             // Check if update is available
             if (info.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) { // UPDATE IS AVAILABLE
+                try {
+                    startUpdate(info, AppUpdateType.IMMEDIATE)
+                } catch (ex: Exception) {
 
-                startUpdate(info, AppUpdateType.IMMEDIATE)
+                }
 
             } else {
                 // UPDATE IS NOT AVAILABLE
@@ -55,7 +58,11 @@ class InAppUpdate(activity: Activity) : InstallStateUpdatedListener {
             } else if (currentType == AppUpdateType.IMMEDIATE) {
                 // for AppUpdateType.IMMEDIATE only, already executing updater
                 if (info.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
-                    startUpdate(info, AppUpdateType.IMMEDIATE)
+                    try {
+                        startUpdate(info, AppUpdateType.IMMEDIATE)
+                    } catch (ex: Exception) {
+
+                    }
                 }
             }
         }
