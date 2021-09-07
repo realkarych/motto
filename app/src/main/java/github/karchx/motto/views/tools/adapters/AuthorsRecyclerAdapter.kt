@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
 import github.karchx.motto.search_engine.citaty_info_website.items.Author
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 
 class AuthorsRecyclerAdapter(
     fragment: Fragment,
@@ -21,6 +23,7 @@ class AuthorsRecyclerAdapter(
 
     private val context = fragment.requireContext()
     private val activity = fragment.requireActivity()
+    private var lastPosition = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AuthorsViewHolder {
         val view =
@@ -35,6 +38,12 @@ class AuthorsRecyclerAdapter(
 
         setAuthorName(holder, authorName, authorSurname)
         setAuthorImage(holder, authorUniqueID)
+
+        if (position > lastPosition) {
+            val animation: Animation = AnimationUtils.loadAnimation(context, R.anim.slide_in_right)
+            holder.authorImage.startAnimation(animation)
+            lastPosition = holder.adapterPosition
+        }
     }
 
     override fun getItemCount(): Int {
