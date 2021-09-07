@@ -7,6 +7,8 @@ import android.text.style.RelativeSizeSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -22,6 +24,7 @@ class BooksRecyclerAdapter(
 
     private val context = fragment.requireContext()
     private val activity = fragment.requireActivity()
+    private var lastPosition = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BooksViewHolder {
         val view =
@@ -36,6 +39,12 @@ class BooksRecyclerAdapter(
 
         setBookInfo(holder, bookTitle, authorSurname)
         setBookImage(holder, bookUniqueID)
+
+        if (position > lastPosition) {
+            val animation: Animation = AnimationUtils.loadAnimation(context, R.anim.slide_in_right)
+            holder.bookImage.startAnimation(animation)
+            lastPosition = holder.adapterPosition
+        }
     }
 
     override fun getItemCount(): Int {
