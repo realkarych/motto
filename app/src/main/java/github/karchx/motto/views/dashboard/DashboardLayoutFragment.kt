@@ -41,7 +41,7 @@ class DashboardLayoutFragment : Fragment() {
         sharedPrefs = requireActivity().getPreferences(Context.MODE_PRIVATE)
 
         setViewPagerAndTabLayout()
-        viewPager.offscreenPageLimit = 10
+        viewPager.offscreenPageLimit = 3
 
         tabLayout.addOnTabSelectedListener(object :
             TabLayout.OnTabSelectedListener {
