@@ -29,6 +29,7 @@ import github.karchx.motto.viewmodels.SavedMottosViewModel
 import github.karchx.motto.viewmodels.home.HomeViewModel
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.adapters.MottosRecyclerAdapter
+import github.karchx.motto.views.tools.firebase_events.SearchMottoEvent
 import github.karchx.motto.views.tools.listeners.OnClickAddToFavouritesListener
 import github.karchx.motto.views.tools.listeners.OnClickRecyclerItemListener
 import github.karchx.motto.views.tools.managers.DialogViewer
@@ -110,6 +111,9 @@ class HomeFragment : Fragment() {
                 mMottosLoadingProgressBar.visibility = View.VISIBLE
                 mMottosFoundTextView.visibility = View.VISIBLE
                 mMottosFoundTextView.text = getString(R.string.found_on_request)
+
+                val searchMottoEvent = SearchMottoEvent()
+                searchMottoEvent.pushEvent()
             }
         }
 

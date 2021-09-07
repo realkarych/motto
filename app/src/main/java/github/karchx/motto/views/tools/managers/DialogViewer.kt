@@ -13,6 +13,9 @@ import github.karchx.motto.R
 import github.karchx.motto.models.db.saved_motto.SavedMotto
 import github.karchx.motto.models.db.user_notes.UserNote
 import github.karchx.motto.search_engine.citaty_info_website.UIMotto
+import github.karchx.motto.views.tools.firebase_events.MottoLikedEvent
+import github.karchx.motto.views.tools.firebase_events.MottoOpenedEvent
+import github.karchx.motto.views.tools.firebase_events.NoteOpenedEvent
 
 
 class DialogViewer {
@@ -52,6 +55,8 @@ class DialogViewer {
                     )
                 )
                 ivAddToFavourites.visibility = View.VISIBLE
+
+                pushMottoLikedEvent()
             } else {
                 ivAddToFavourites.setImageDrawable(
                     AppCompatResources.getDrawable(
@@ -61,6 +66,8 @@ class DialogViewer {
                 )
                 ivAddToFavourites.visibility = View.VISIBLE
             }
+
+            pushMottoOpenedEvent()
         }
 
         fun displayFullNoteDialog(
@@ -79,6 +86,23 @@ class DialogViewer {
             val tvFullMottoSource = dialog.findViewById<TextView>(R.id.textview_note_full_source)
             tvFullMottoQuote.text = clickedNote.quote
             tvFullMottoSource.text = clickedNote.source
+
+            pushNoteOpenedEvent()
+        }
+
+        private fun pushMottoOpenedEvent() {
+            val mottoOpenedEvent = MottoOpenedEvent()
+            mottoOpenedEvent.pushEvent()
+        }
+
+        private fun pushNoteOpenedEvent() {
+            val noteOpenedEvent = NoteOpenedEvent()
+            noteOpenedEvent.pushEvent()
+        }
+
+        private fun pushMottoLikedEvent() {
+            val mottoLikedEvent = MottoLikedEvent()
+            mottoLikedEvent.pushEvent()
         }
     }
 }
