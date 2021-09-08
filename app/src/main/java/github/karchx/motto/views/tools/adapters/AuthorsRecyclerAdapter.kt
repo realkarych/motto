@@ -6,6 +6,8 @@ import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -13,8 +15,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import github.karchx.motto.R
 import github.karchx.motto.search_engine.citaty_info_website.items.Author
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 
 class AuthorsRecyclerAdapter(
     fragment: Fragment,
