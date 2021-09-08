@@ -86,6 +86,7 @@ class FavouritesFragment : Fragment() {
                 override fun onItemClick(view: View, position: Int) {
                     clickedMotto = savedMottos[position]
                     DialogViewer.displayFullMottoDialog(
+                        requireActivity(),
                         requireContext(),
                         mFullMottoDialog,
                         UIMotto(clickedMotto.quote, clickedMotto.source),

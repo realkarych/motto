@@ -188,6 +188,7 @@ class TVChannelsDashboardFragment : Fragment(R.layout.fragment_tv_channels_dashb
 
                     AdViewer(activity as MainActivity, requireContext()).displayFullMottoAd()
                     DialogViewer.displayFullMottoDialog(
+                        requireActivity(),
                         requireContext(),
                         fullMottoDialog,
                         clickedMotto,

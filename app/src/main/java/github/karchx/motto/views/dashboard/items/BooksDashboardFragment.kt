@@ -186,6 +186,7 @@ class BooksDashboardFragment : Fragment(R.layout.fragment_books_dashboard) {
 
                     AdViewer(activity as MainActivity, requireContext()).displayFullMottoAd()
                     DialogViewer.displayFullMottoDialog(
+                        requireActivity(),
                         requireContext(),
                         fullMottoDialog,
                         clickedMotto,

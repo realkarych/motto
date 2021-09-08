@@ -186,6 +186,7 @@ class FilmsDashboardFragment : Fragment(R.layout.fragment_films_dashboard) {
 
                     AdViewer(activity as MainActivity, requireContext()).displayFullMottoAd()
                     DialogViewer.displayFullMottoDialog(
+                        requireActivity(),
                         requireContext(),
                         fullMottoDialog,
                         clickedMotto,
