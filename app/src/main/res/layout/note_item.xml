@@ -17,20 +17,25 @@
             style="@style/textViewRegular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="5dp"
             android:layout_toStartOf="@+id/textview_note_time_added"
             android:text="Stub"
             tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/textview_note_source"
-            style="@style/textViewUnderRegular"
+            style="@style/textViewUnderRegularItalic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textview_note_title"
-            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_toStartOf="@+id/textview_note_time_added"
-            android:fontFamily="@font/patayya"
             android:text="Stub"
             tools:ignore="HardcodedText" />
 

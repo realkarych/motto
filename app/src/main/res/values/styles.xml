@@ -34,6 +34,13 @@
         <item name="android:fontFamily">@font/roboto</item>
     </style>
 
+    <style name="textViewUnderRegularItalic" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/pink</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">@font/patayya</item>
+    </style>
+
     <style name="textViewMottoTypeRegular" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/pink</item>
         <item name="android:textSize">18sp</item>
