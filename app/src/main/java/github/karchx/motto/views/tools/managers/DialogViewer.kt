@@ -1,18 +1,23 @@
 package github.karchx.motto.views.tools.managers
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
+import com.google.android.play.core.review.ReviewManagerFactory
 import github.karchx.motto.R
 import github.karchx.motto.models.db.saved_motto.SavedMotto
 import github.karchx.motto.models.db.user_notes.UserNote
+import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.UIMotto
+import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.firebase_events.MottoLikedEvent
 import github.karchx.motto.views.tools.firebase_events.MottoOpenedEvent
 import github.karchx.motto.views.tools.firebase_events.NoteOpenedEvent
@@ -21,6 +26,7 @@ import github.karchx.motto.views.tools.firebase_events.NoteOpenedEvent
 class DialogViewer {
     companion object {
         fun displayFullMottoDialog(
+            activity: Activity,
             context: Context,
             dialog: Dialog,
             clickedMotto: UIMotto,
@@ -67,6 +73,15 @@ class DialogViewer {
                 ivAddToFavourites.visibility = View.VISIBLE
             }
 
+            val userPrefs = UserPrefs(activity = activity as MainActivity)
+
+            val counter = userPrefs.rateApp.updateCounter()
+            Log.d("tag", counter.toString())
+            if ((counter == 10L) or (counter == 50L) or (counter == 100L)) {
+                Log.d("taag", "Показано")
+                displayRateAppIntent(activity, context)
+            }
+
             pushMottoOpenedEvent()
         }
 
@@ -103,6 +118,25 @@ class DialogViewer {
         private fun pushMottoLikedEvent() {
             val mottoLikedEvent = MottoLikedEvent()
             mottoLikedEvent.pushEvent()
+        }
+
+        private fun displayRateAppIntent(activity: Activity, context: Context) {
+            val manager = ReviewManagerFactory.create(context)
+            val request = manager.requestReviewFlow()
+            request.addOnCompleteListener { request ->
+                if (request.isSuccessful) {
+                    // We got the ReviewInfo object
+                    val reviewInfo = request.result
+                    val flow = manager.launchReviewFlow(activity, reviewInfo)
+                    flow.addOnCompleteListener { _ ->
+                        // The flow has finished. The API does not indicate whether the user
+                        // reviewed or not, or even whether the review dialog was shown. Thus, no
+                        // matter the result, we continue our app flow.
+                    }
+                } else {
+                    // There was some problem, continue regardless of the result.
+                }
+            }
         }
     }
 }

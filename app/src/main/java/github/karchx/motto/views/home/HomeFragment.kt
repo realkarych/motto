@@ -192,6 +192,7 @@ class HomeFragment : Fragment() {
 
                     AdViewer(activity as MainActivity, requireContext()).displayFullMottoAd()
                     DialogViewer.displayFullMottoDialog(
+                        requireActivity(),
                         requireContext(),
                         mFullMottoDialog,
                         clickedMotto,

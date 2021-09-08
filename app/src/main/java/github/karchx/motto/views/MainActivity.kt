@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var inAppUpdate: InAppUpdate? = null
-    lateinit var firebaseAnalytics: FirebaseAnalytics
+    val firebaseAnalytics = Firebase.analytics
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,8 +52,6 @@ class MainActivity : AppCompatActivity() {
         window.navigationBarColor = ContextCompat.getColor(this, R.color.soft_black)
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-
-        firebaseAnalytics = Firebase.analytics
 
         try {
             MobileAds.initialize(this)

@@ -12,4 +12,5 @@ class UserPrefs(activity: MainActivity) {
     val mottosRandomness = MottosRandomness(userPrefs)
     val sourcesRandomness = SourcesRandomness(userPrefs)
     val noteSaves = NoteSaves(userPrefs)
+    val rateApp = RateApp(userPrefs)
 }

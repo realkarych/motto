@@ -42,5 +42,7 @@ class Constants {
         const val IS_SORT_SOURCES_BY_RANDOM = "is_sort_sources_by_random"
         const val IS_SORT_MOTTOS_BY_RANDOM = "is_sort_mottos_by_random"
         const val IS_SAVE_NOTE = "is_note_save"
+        const val RATE_APP = "app_rate"
+        const val RATE_APP_COUNTER = "app_rate_counter"
     }
 }

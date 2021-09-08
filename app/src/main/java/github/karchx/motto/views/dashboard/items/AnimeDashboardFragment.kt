@@ -187,6 +187,7 @@ class AnimeDashboardFragment : Fragment(R.layout.fragment_anime_dashboard) {
 
                     AdViewer(activity as MainActivity, requireContext()).displayFullMottoAd()
                     DialogViewer.displayFullMottoDialog(
+                        requireActivity(),
                         requireContext(),
                         fullMottoDialog,
                         clickedMotto,
