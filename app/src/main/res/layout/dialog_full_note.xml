@@ -13,7 +13,6 @@
         android:layout_margin="10dp"
         android:text="@string/motto_about"
         android:textColor="@color/red"
-        android:textSize="28sp"
         tools:ignore="HardcodedText" />
 
     <androidx.core.widget.NestedScrollView
@@ -41,7 +40,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="7dp"
+                    android:layout_marginBottom="8dp"
                     android:text="Stub"
                     android:textColor="@color/soft_white"
                     tools:ignore="HardcodedText" />
@@ -53,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textview_note_full_quote"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="7dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/patayya"
