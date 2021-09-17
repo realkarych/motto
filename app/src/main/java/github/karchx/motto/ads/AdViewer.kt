@@ -14,15 +14,15 @@ class AdViewer(private val activity: MainActivity, private val context: Context)
 
     private val userPrefs = UserPrefs(activity)
 
-    fun displayFullNoteAd() {
+    fun displayFullScreenAd() {
         val numberOfDisplayedAds = userPrefs.noteOpenings.getNumberOfOpens()
 
-        if (numberOfDisplayedAds < 3) {
+        if (numberOfDisplayedAds < 2) {
             userPrefs.noteOpenings.updateNumberOfOpens()
         } else {
             userPrefs.noteOpenings.resetNumberOfOpens()
             try {
-                _displayFullNoteAd()
+                _displayFullScreenAd()
             } catch (ex: Exception) {
             }
 
@@ -32,7 +32,7 @@ class AdViewer(private val activity: MainActivity, private val context: Context)
     fun displayFullMottoAd() {
         val numberOfDisplayedAds = userPrefs.mottoOpenings.getNumberOfOpens()
 
-        if (numberOfDisplayedAds < 5) {
+        if (numberOfDisplayedAds < 4) {
             userPrefs.mottoOpenings.updateNumberOfOpens()
         } else {
             userPrefs.mottoOpenings.resetNumberOfOpens()
@@ -44,7 +44,7 @@ class AdViewer(private val activity: MainActivity, private val context: Context)
         }
     }
 
-    private fun _displayFullNoteAd() {
+    private fun _displayFullScreenAd() {
         var mInterstitialAd: InterstitialAd?
 
         MobileAds.initialize(context) { }

@@ -88,6 +88,8 @@ class HomeFragment : Fragment() {
             observeRandomMottos()
             hideKeyboard()
         }
+
+        displayFullAd()
     }
 
     override fun onDestroyView() {
@@ -99,6 +101,10 @@ class HomeFragment : Fragment() {
         mSwipeRefreshLayoutRandomMottos.setOnRefreshListener {
             homeViewModel.putRandomMottosPostValue()
         }
+    }
+
+    private fun displayFullAd() {
+        AdViewer(activity as MainActivity, requireContext()).displayFullScreenAd()
     }
 
     private fun handleFindMottosClick() {

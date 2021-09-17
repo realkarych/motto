@@ -21,7 +21,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import github.karchx.motto.R
-import github.karchx.motto.ads.AdViewer
 import github.karchx.motto.copying.Copier
 import github.karchx.motto.databinding.FragmentNotesBinding
 import github.karchx.motto.models.date.DateManager
@@ -208,8 +207,6 @@ class NotesFragment : Fragment() {
                     Toaster.displayNoteUpdatedToast(requireContext(), isUpdated = false)
                 }
             }
-
-            displayFullNoteAd()
         }
     }
 
@@ -255,10 +252,6 @@ class NotesFragment : Fragment() {
                 }
             })
         )
-    }
-
-    private fun displayFullNoteAd() {
-        AdViewer(activity as MainActivity, requireContext()).displayFullNoteAd()
     }
 
     private fun hideKeyboard() {

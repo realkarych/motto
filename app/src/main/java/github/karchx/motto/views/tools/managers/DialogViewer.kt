@@ -5,7 +5,6 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
@@ -15,9 +14,7 @@ import com.google.android.play.core.review.ReviewManagerFactory
 import github.karchx.motto.R
 import github.karchx.motto.models.db.saved_motto.SavedMotto
 import github.karchx.motto.models.db.user_notes.UserNote
-import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.search_engine.citaty_info_website.UIMotto
-import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.firebase_events.MottoLikedEvent
 import github.karchx.motto.views.tools.firebase_events.MottoOpenedEvent
 import github.karchx.motto.views.tools.firebase_events.NoteOpenedEvent
@@ -73,14 +70,7 @@ class DialogViewer {
                 ivAddToFavourites.visibility = View.VISIBLE
             }
 
-            val userPrefs = UserPrefs(activity = activity as MainActivity)
-
-            val counter = userPrefs.rateApp.updateCounter()
-            Log.d("tag", counter.toString())
-            if ((counter == 10L) or (counter == 50L) or (counter == 100L)) {
-                Log.d("taag", "Показано")
-                displayRateAppIntent(activity, context)
-            }
+            displayRateAppIntent(activity, context)
 
             pushMottoOpenedEvent()
         }
