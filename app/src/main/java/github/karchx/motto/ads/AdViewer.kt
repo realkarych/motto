@@ -17,7 +17,7 @@ class AdViewer(private val activity: MainActivity, private val context: Context)
     fun displayFullScreenAd() {
         val numberOfDisplayedAds = userPrefs.noteOpenings.getNumberOfOpens()
 
-        if (numberOfDisplayedAds < 2) {
+        if (numberOfDisplayedAds < 4) {
             userPrefs.noteOpenings.updateNumberOfOpens()
         } else {
             userPrefs.noteOpenings.resetNumberOfOpens()
@@ -32,7 +32,7 @@ class AdViewer(private val activity: MainActivity, private val context: Context)
     fun displayFullMottoAd() {
         val numberOfDisplayedAds = userPrefs.mottoOpenings.getNumberOfOpens()
 
-        if (numberOfDisplayedAds < 4) {
+        if (numberOfDisplayedAds < 6) {
             userPrefs.mottoOpenings.updateNumberOfOpens()
         } else {
             userPrefs.mottoOpenings.resetNumberOfOpens()
