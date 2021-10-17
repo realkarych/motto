@@ -85,16 +85,9 @@ class SettingsFragment : Fragment() {
 
     private fun handleOpenTgChannelButtonClick() {
         buttonTgChannel.setOnClickListener {
-            val nomPackageInfo = "org.telegram.messenger"
-            val tg_channel_uri = "https://t.me/karchx_blog"
-            try {
-                requireActivity().packageManager.getPackageInfo(nomPackageInfo, 0)
-                val _intent = Intent(Intent.ACTION_VIEW, Uri.parse(tg_channel_uri))
-                requireActivity().startActivity(_intent)
-            } catch (e: Exception) {
-                val _intent = Intent(Intent.ACTION_VIEW, Uri.parse(tg_channel_uri))
-                requireActivity().startActivity(_intent)
-            }
+            val taplinkPageUri = "https://taplink.cc/the_karchx"
+            val _intent = Intent(Intent.ACTION_VIEW, Uri.parse(taplinkPageUri))
+            requireActivity().startActivity(_intent)
         }
     }
 
