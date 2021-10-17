@@ -82,6 +82,8 @@ class NotesFragment : Fragment() {
         handleNotesRecyclerItemClick()
 
         setFullNoteCardViewClickListener()
+
+        DialogViewer.displayRateAppIntent(requireActivity(), requireContext())
     }
 
     override fun onDestroyView() {

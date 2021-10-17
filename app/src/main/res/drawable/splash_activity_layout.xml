@@ -4,9 +4,9 @@
     <item android:drawable="@color/dark_purple" />
 
     <item
-        android:width="280dp"
-        android:height="280dp"
-        android:drawable="@drawable/app_logo"
+        android:width="200dp"
+        android:height="200dp"
+        android:drawable="@drawable/app_icon"
         android:gravity="center" />
 
 </layer-list>

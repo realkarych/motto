@@ -63,6 +63,8 @@ class FavouritesFragment : Fragment() {
         setAddToFavouritesBtnClickListener()
         setFavouriteMottosClickListener()
         setFullMottoCardViewClickListener()
+
+        DialogViewer.displayRateAppIntent(requireActivity(), requireContext())
     }
 
     private fun observeDbMottos() {

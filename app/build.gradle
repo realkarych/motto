@@ -14,8 +14,8 @@ android {
         applicationId "github.karchx.motto"
         minSdkVersion 24
         targetSdkVersion 31
-        versionCode 25
-        versionName "2.15"
+        versionCode 26
+        versionName "2.16"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

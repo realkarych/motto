@@ -84,6 +84,8 @@ class HomeFragment : Fragment() {
         setAddToFavouritesBtnClickListener()
         handleRecyclerSwipe()
 
+        DialogViewer.displayRateAppIntent(requireActivity(), requireContext())
+
         mMottosFoundTextView.setOnClickListener {
             observeRandomMottos()
             hideKeyboard()

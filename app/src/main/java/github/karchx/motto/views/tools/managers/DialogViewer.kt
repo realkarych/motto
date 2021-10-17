@@ -110,7 +110,7 @@ class DialogViewer {
             mottoLikedEvent.pushEvent()
         }
 
-        private fun displayRateAppIntent(activity: Activity, context: Context) {
+        fun displayRateAppIntent(activity: Activity, context: Context) {
             val manager = ReviewManagerFactory.create(context)
             val request = manager.requestReviewFlow()
             request.addOnCompleteListener { request ->

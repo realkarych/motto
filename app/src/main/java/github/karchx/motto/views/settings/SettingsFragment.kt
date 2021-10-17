@@ -15,6 +15,7 @@ import github.karchx.motto.databinding.FragmentSettingsBinding
 import github.karchx.motto.models.user_settings.UserPrefs
 import github.karchx.motto.views.MainActivity
 import github.karchx.motto.views.tools.managers.Arrow
+import github.karchx.motto.views.tools.managers.DialogViewer
 import github.karchx.motto.views.tools.managers.Vibrator
 
 class SettingsFragment : Fragment() {
