@@ -10,7 +10,7 @@ import github.karchx.motto.models.user_settings.UserPrefs
 class BooksFactory(application: Application, private val userPrefs: UserPrefs) :
     ViewModelProvider.Factory {
     private val mApplication = application
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return BooksDashboardViewModel(mApplication, userPrefs) as T
     }
 }
