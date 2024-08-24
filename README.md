@@ -1,15 +1,10 @@
-# Motto — Цитатник для Android
+# Motto — Quotes app for Android (CIS)
 
 <img src="https://user-images.githubusercontent.com/62261985/134786194-f854ffb2-ad70-4e42-9ec4-9f046743fdfc.png" alt="drawing" width="500"/>
 
 **Google Play:** ***https://play.google.com/store/apps/details?id=github.karchx.motto***
 
-
-## Стэк
-- Kotlin
-- Room (SQLite)
-
-## Скрины
+## Screenshots
 
 <img src="https://user-images.githubusercontent.com/62261985/134786111-73a734b2-2f3d-481a-94d1-d65b9c28d9c7.png" alt="drawing" width="200"/> <img src="https://user-images.githubusercontent.com/62261985/134786120-4c2efff4-ffb0-42a0-9224-a0eef9decd89.png" alt="drawing" width="200"/>
 <img src="https://user-images.githubusercontent.com/62261985/134786173-992f7a60-2114-42ae-931c-dbb78e50abef.png" alt="drawing" width="200"/>
